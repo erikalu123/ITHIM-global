@@ -388,7 +388,7 @@ server <- function(input, output, session) {
     local_df <- get_inj_data()
     text_colour <- "black"
       
-    ylab <- "Distance: risk per billion kilometeres"
+    ylab <- "Distance: risk per billion kilometers"
     if (input$in_risk_type == "Population by 100k people")
       ylab <- "Population: risk per 100K people"
     else if (input$in_risk_type == "100 million hours")
@@ -513,7 +513,7 @@ server <- function(input, output, session) {
     filtered_modes <- input$in_inj_modes
     
     local_df <- injury_risks_per_billion_kms_lng
-    ylab <- "Distance: risk per Billion kilometeres"
+    ylab <- "Distance: risk per Billion kilometers"
     if (input$in_risk_type == "Population by 100k people"){
       local_df <- injury_risks_per_100k_pop
       ylab <- "Population: risk per 100K"
