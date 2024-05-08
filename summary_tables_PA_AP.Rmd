@@ -1,4 +1,5 @@
 ---
+#title: "AP/PA Tables ITHIM Global"
 title: "AP/PA Tables ITHIM Global"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 params:
@@ -15,7 +16,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='asis')
 
-# Script to summarise the PM2.5 personal exposure levels, PM2.5 and CO2 concentrations and physical activity levels
+# Script to summarise the PM2.5 personal exposure levels, PM2.5 and CO2 emissions and physical activity levels
 
 # This script looks at individual level PM2.5 exposure for all scenarios, it summarise the PM2.5 and CO2 concentration levels for all scenarios and summarises the individual physical activity levels for all scenarios. 
 
@@ -30,7 +31,7 @@ knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='as
 
 # - one table for each city detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario
 
-# - one table detailing the percentage Baseline PM2.5 emissions attributed to each transport mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+# - one table detailing the percentage Baseline PM2.5 emissions attributed to each transport mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
 # - one table detailing the Baseline CO2 concentration levels for each scenario for all cities
 
@@ -44,9 +45,9 @@ knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='as
 
 # - boxplots for each city of daily individual PM2.5 exposure levels for each scenario 
 
-# - one table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+# - one table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
-# - one table for each city detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario. Table also contains CO2 concentrations for each scenario
+# - one table for each city detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario. Table also contains CO2 emissions for each scenario
 
 # - boxplots for each city of individual mMET physical activity levels for each scenario 
 
@@ -54,16 +55,16 @@ knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='as
 
 ### - output .csv/.xlsx files containing the following information:
 
-# - desc_stats.csv file (results/multi_city/AP/desc_stats.csv, also saved with output_version number in file name) containing the summary statistics of individual PM2.5 exposure levels, the total PM2.5 concentrations levels, the change in PM2.5 concentration levels compared to the reference scenario and the total transport related CO2 emission concentrations for each scenario and city
+# - desc_stats.csv file (results/multi_city/AP/desc_stats.csv, also saved with output_version number in file name) containing the summary statistics of individual PM2.5 exposure levels, the total PM2.5 emissions levels, the change in PM2.5 concentration levels compared to the reference scenario and the total transport related CO2 emission emissions for each scenario and city
 
 
 # - desc_stats_*output_version*.xlsx file (results/multi_city/AP/desc_stats_*output_version*.xlsx) containing the following tabs:
 
-#   - PM_2.5_emission_inventory: table detailing the percentage Baseline PM2.5 emissions attributed to each transport mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+#   - PM_2.5_emission_inventory: table detailing the percentage Baseline PM2.5 emissions attributed to each transport mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
 #   - C02_emission_inventory: table detailing the CO2 emission levels for each scenario for all cities
 
-#   - summary_stats_PM2.5_CO2: summary statistics of individual PM2.5 exposure levels, the total PM2.5 concentrations levels, the change in PM2.5 concentration levels compared to the reference scenario and the total transport related CO2 emission concentrations for each scenario and city
+#   - summary_stats_PM2.5_CO2: summary statistics of individual PM2.5 exposure levels, the total PM2.5 emissions levels, the change in PM2.5 concentration levels compared to the reference scenario and the total transport related CO2 emission emissions for each scenario and city
 
 
 
@@ -78,9 +79,9 @@ knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='as
 
 # - create one table for each city detailing the individual PM2.5 exposure levels incl. the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario
 
-# - create a single table detailing the percentage Baseline PM2.5 emissions attributed to each mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+# - create a single table detailing the percentage Baseline PM2.5 emissions attributed to each mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
-# - create a single summary table showing the CO2 concentrations in each scenario for all cities
+# - create a single summary table showing the CO2 emissions in each scenario for all cities
 
 # - create boxplots for each city showing the individual mMET levels for each scenario
 
@@ -94,9 +95,9 @@ knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='as
 
 # - create boxplots for each city of daily individual PM2.5 exposure levels for each scenario 
 
-# - create one table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+# - create one table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
-# - create one table for each city detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario. Table also contains CO2 concentrations for each scenario
+# - create one table for each city detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario. Table also contains CO2 emissions for each scenario
 
 # - create boxplots for each city of individual mMET physical activity levels for each scenario 
 
@@ -112,6 +113,7 @@ library(ggplot2)  #loading ggplot package for plotting graphs
 library(knitr)     
 library(tidyverse)
 library(readxl)
+library(cli)
 #library(plotly)
 #library(htmltools)
 
@@ -122,6 +124,21 @@ library(readxl)
 
 ###### Read in input parameters
 #output_version <- 
+#
+
+if (!exists("output_version")){
+  ## Get the current repo sha
+  gitArgs <- c("rev-parse", "--short", "HEAD", ">", file.path("repo_sha"))
+  # Use shell command for Windows as it's failing with system2 for Windows (giving status 128)
+  if (.Platform$OS.type == "windows"){
+    shell(paste(append("git", gitArgs), collapse = " "), wait = T)
+  } else {
+    system2("git", gitArgs, wait = T)
+  }
+  
+  repo_sha <-  as.character(readLines(file.path("repo_sha")))
+  output_version <- paste0(repo_sha, "_test_run")
+} 
 
 # Assumes that multi_city_script.R has been run  
 # read in input file
@@ -284,6 +301,12 @@ day_to_week_scalar <- as.numeric(day_to_week_scalar)
 
 
 # print model run information to screen:
+cat(
+   cli::style_hyperlink(
+      text = paste0("https://github.com/ITHIM/ITHIM-R/tree/", stringr::str_remove(output_version, "_test_run")),
+      url = paste0("https://github.com/ITHIM/ITHIM-R/tree/", stringr::str_remove(output_version, "_test_run"))
+   )
+)
 cat("  \n")
 cat(paste0('Output version: ', output_version)) 
 cat("  \n")
@@ -298,7 +321,7 @@ cat("  \n")
 # Introduction
 These are the summary tables of the following items
 
-1) Individual PM2.5 exposure levels and total PM2.5 concentrations for baseline and scenarios
+1) Individual PM2.5 exposure levels and total PM2.5 emissions for baseline and scenarios
 2) Overall CO2 emissions for baseline and scenarios
 3) Individual physical activity levels (mMETs) for baseline and scenarios
 
@@ -399,7 +422,7 @@ for (x in 1:length(cities)) {
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 
-# Create a single table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
+# Create a single table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these emissions attributed to transport for all cities
 
 
 sl <- list()
@@ -439,7 +462,7 @@ for (x in 1:length(cities)){ # loop through cities
   summary[nrow(summary),2] <- as.character(round(pm_trans_share[[cities[x]]] * 100))
   
   # add city wide PM2.5 concentration levels
-  summary[nrow(summary) + 1,1] <- "PM2.5 Conc"
+  summary[nrow(summary) + 1,1] <- "PM2.5 Concentration"
   summary[nrow(summary),2] <- as.character(pm_conc_base[[cities[x]]])
   
   # add to io list
@@ -459,17 +482,17 @@ print(kable(sl))
 ```
 
 
-# Summary table of CO2 concentrations related to transport in each scenario
+# Summary table of total CO2 emissions related to transport in each scenario
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 
-# create summary table of CO2 concentrations in each scenario
+# create summary table of CO2 emissions in each scenario
 co2_emission_inventory <- list()
 td <- NA
 
 for (city in cities) { # loop through cities
   
-  # extract CO2 concentrations
+  # extract CO2 emissions
   td <- round(colSums(io[[city]]$outcomes$co2_emission_inventory, na.rm = T), 1) %>% 
     as.data.frame() %>% tibble::rownames_to_column()
   names(td) <- c('Scenario', city)
@@ -485,6 +508,13 @@ for (city in cities) { # loop through cities
 # Dan: here the order is different (bus before car)
 # co2_emission_inventory$Scenario <- new_scen_names
 co2_emission_inventory$Scenario <- sapply(co2_emission_inventory$Scenario, FUN = get_qualified_scen_name)
+
+bv <- co2_emission_inventory |> filter(Scenario == "Baseline") |> dplyr::select(city) |> pull()
+
+pop_size <- sum(io[[city]]$demographic$population)
+
+co2_emission_inventory <- co2_emission_inventory |> mutate(change_baseline = !!rlang::sym(city) - bv, change_CO2_percentage = ifelse(change_baseline == 0, 0, round(change_baseline/bv * 100, 1)),
+                                                           CO2_per_capita = round(!!rlang::sym(city)/pop_size, 1))
 
 # print to html
 print(kable(co2_emission_inventory))
@@ -508,8 +538,10 @@ for (x in 1:length(cities)) { # loop through cities
   names(io[[cities[x]]]$outcomes$mmets)[change_names] <- sapply(gsub("_mmet" , "", names(io[[cities[x]]]$outcomes$mmets)[change_names]), FUN = get_qualified_scen_name)
   
   # extract data of interest
-  data_long <- gather(io[[cities[x]]]$outcomes$mmets, scenario, mmet, 
-                      Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
+  # data_long <- gather(io[[cities[x]]]$outcomes$mmets, scenario, mmet, 
+  #                     Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
+  
+  data_long <- pivot_longer(io[[cities[x]]]$outcomes$mmets |> dplyr::select(participant_id, new_scen_names), cols = !participant_id, names_to = "scenario", values_to = "mmet")
   
   # create the boxplots
   y <- ggplot(data_long, aes(x = scenario, y = mmet, fill = scenario)) +
@@ -537,8 +569,7 @@ for (x in 1:length(cities)) { # loop through the cities
   names(io[[cities[x]]]$outcomes$mmets)[change_names] <- sapply(gsub("_mmet" , "", names(io[[cities[x]]]$outcomes$mmets)[change_names]), FUN = get_qualified_scen_name)
   
   # create dataframe with individual mMET values
-  data_long <- gather(io[[cities[x]]]$outcomes$mmets, scenario, mmet, 
-                      Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
+  data_long <- pivot_longer(io[[cities[x]]]$outcomes$mmets |> dplyr::select(participant_id, new_scen_names), cols = !participant_id, names_to = "scenario", values_to = "mmet")
   
   # create summary stats
   summary <- as.data.frame(data_long %>% group_by(scenario) %>% 
@@ -554,218 +585,3 @@ for (x in 1:length(cities)) { # loop through the cities
 
 }
 ```
-
-
-# Average baseline physical activity levels (MMETs) in each city
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-# create a single table detailing the average mMETs levels for each scenario for all cities 
-
-cl <- list()
-for (city in cities){ # loop through cities
-
-  n_col <- ncol(io[[cities[x]]]$outcomes$mmets) # find number of columns of interest
-  
-  # extract the mean mMET values and create dataframe
-  # Dan: we change mmets column names before
-  # td <- round(colMeans(io[[city]]$outcomes$mmets[,(n_col - scen_length):n_col], na.rm = T), 1) %>%
-  #   as.data.frame() %>% tibble::rownames_to_column()
-  td <- round(colMeans(io[[city]]$outcomes$mmets[,new_scen_names], na.rm = T), 1) %>%
-    as.data.frame() %>% tibble::rownames_to_column()
-  names(td) <- c('Scenario', city)
-  
-  # create one dataframe containing information about all cities
-  if (length(cl) == 0)
-    cl <- td
-  else
-    cl <- left_join(cl, td)
-  
-}
-
-# We dont need this anymore
-# cl$Scenario <- new_scen_names
-
-# print to html 
-print(kable(cl))
-
-```
-
-
-# **2nd option**
-
-# PM2.5 and CO2 results
-
-
-```{r message=FALSE, warning=FALSE, echo=FALSE}
-
-# create PM2.5 and CO2 boxplots and tables:
-
-# - boxplots for each city of daily individual PM2.5 exposure levels for each scenario 
-
-# - one table detailing the Baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration levels and the percentage of these concentrations attributed to transport for all cities
-
-# - one table for each city detailing the individual PM2.5 exposure levels incl the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration levels for each scenario and the change in PM2.5 compared to the reference scenario. Table also contains CO2 concentrations for each scenario
-
-
-l <- list()
-# Have to keep the first chunk of code to run this part
-
-for (x in 1:length(cities)) { # loop through cities
-  # print(cities[x])
-  cat("\n \n")
-  cat( paste0('## **', cities[x], '** \n' )) 
-  
-  ## Emission inventory
-  
-  # find the mode names in the PM2.5 emissions inventory
-  modes <- names(unlist(io[[cities[x]]]$PM_emission_inventory))
-  
-  # extract the mode emissions
-  emissions <- as.data.frame(unlist(io[[cities[x]]]$PM_emission_inventory))
-  
-  # create one table with modes and corresponding PM2.5 emissions
-  city_emissions <- cbind(as.data.frame(modes),
-                          as.data.frame(emissions$`unlist(io[[cities[x]]]$PM_emission_inventory)`))
-  
-  names(city_emissions)[2] <- "emissions"
-  
-  # define list with modes of interest
-  select <- c("car", "motorcycle", "bus_driver", "truck", "big_truck")
-  city_emissions$modes <- as.character(city_emissions$modes)
-  
-  # define all other modes not in list of interest as 'other'
-  city_emissions$modes[!(city_emissions$modes %in% select)] <- "other"
-  
-  # sum the emissions (mainly to find the total emissions for all newly defined 'other' modes)
-  summary <- city_emissions %>% group_by(modes) %>% summarise(sum(emissions))
-  names(summary)[2] <- cities[x]
-  
-  # calculate the percentage contribution of each mode
-  summary[[cities[x]]] <- round(summary[[cities[x]]]*100/sum(summary[[cities[x]]]), digits = 1)
-  summary <- as.data.frame(summary)
-  
-  # rename mode columns including the word percentage
-  summary$modes <- paste0(summary$modes, ' (percentage)')
-  
-  # add the percentage attributed to transport
-  summary[nrow(summary)+1,1] <- "Transport share (percentage)"
-  summary[nrow(summary),2] <- as.character(round(pm_trans_share[[cities[x]]] * 100))
-  
-  # add the total PM2.5 concentration levels
-  summary[nrow(summary)+1,1] <- "PM2.5 Conc"
-  summary[nrow(summary),2] <- as.character(pm_conc_base[[cities[x]]])
-  
-  # add to io object
-  io[[cities[x]]]$summary_emission <- summary
-  
-   
-  ## PM2.5 table and plot
-  
-  n_col <- ncol(io[[cities[x]]]$outcomes$mmets) # find number of columns
-  
-  # assign new scenario names to columns
-  # names(io[[cities[x]]]$outcomes$pm_conc_pp)[(n_col - scen_length):n_col] <- new_scen_names
-  change_names <- which(grepl("pm_conc_", names(io[[cities[x]]]$outcomes$pm_conc_pp), fixed = TRUE))
-  names(io[[cities[x]]]$outcomes$pm_conc_pp)[change_names] <- sapply(gsub("pm_conc_" , "", names(io[[cities[x]]]$outcomes$pm_conc_pp)[change_names]), FUN = get_qualified_scen_name)
-  
-  # extract data with PM2.5 exposure levels for each scenario
-  data_long <- gather(io[[cities[x]]]$outcomes$pm_conc_pp, scenario, pm_conc,
-                      Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
-  
-  # create summary statistics
-  summary2 <- as.data.frame(data_long %>% group_by(scenario) %>%
-                             summarise('mean' = mean(pm_conc),
-                                       '5th' = quantile(pm_conc, 0.05),
-                                       '50th' = quantile(pm_conc, 0.5),
-                                       '95th' = quantile(pm_conc, 0.9)))
-  summary2 <- cbind(summary2$scenario, round(summary2[,2:5], digits = 1))
-  
-  # add total PM concentration levels for each scenario
-  ## Dan - TODO: This can be problematic because we are assuming that the order from "pm_conc_pp"
-  ## is the same as in "scenario_pm". And maybe it is, but don't know if this will
-  ## apply always.
-  ## To fix it we have to export "scenario_pm" with names and here compare the order of
-  ## both objects.
-  summary2$scenario_PM <- round(io[[cities[x]]]$outcomes$scenario_pm, 2)
-  
-  # calculate difference to reference scenario
-  summary2$change_PM <- round(io[[cities[x]]]$outcomes$scenario_pm - io[[cities[x]]]$outcomes$scenario_pm[loc_ref], digits = 2)
-  names(summary2)[1] <- "Scenario"
-  
-  # Plot individual level PM2.5 exposure levels by scenario
-  y <- ggplot(data_long, aes(x = scenario, y = pm_conc, fill = scenario)) +
-    geom_boxplot(outlier.shape = 8) + ggtitle(cities[x]) +
-    labs(y = "Daily PM2.5 Concentration", x = "Scenarios")
-  
-  
-  # CO2
-  # extract CO2 transport emissions for each scenario
-  td <- round(colSums(io[[cities[x]]]$outcomes$co2_emission_inventory, na.rm = T), 1) %>%
-    as.data.frame() %>% tibble::rownames_to_column()
-  names(td) <- c('Scenario', 'CO2')
-  
-  # Dan: here the order is different (bus before car)
-  # td$Scenario <- new_scen_names
-  td$Scenario <- sapply(td$Scenario, FUN = get_qualified_scen_name)
-  
-  
-  # print various boxplots and tables to html
-  cat("\n \n")
-  cat( paste('#### Boxplots of individual PM2.5 exposure levels \n' ))
-  print(y)
-  
-  cat("\n \n")
-  cat( paste('#### PM2.5 emissions inventory \n' )) 
-  print(kable(summary))
-  
-  cat("\n \n")
-  cat( paste('#### Summary statistics of individual level PM2.5 exposure levels and total transport related CO2 emissions\n' ))
-  cat(paste0('The change in PM2.5 levels is given as the difference to the reference scenario: ', reference_scenario))
-  l[[cities[x]]] <- left_join(summary2, td, by = "Scenario")
-  l[[cities[x]]]$city <- cities[x]
-  print(kable(cbind(summary2, td), caption = cities[x]))
-  
-}
-
-# create output Excel file containing the basic PM2.5 and CO2 exposure / concentration information
-output_file <- paste0('results/multi_city/AP/desc_stats_', output_version ,".xlsx")
-writexl::write_xlsx(list(PM_2.5_emission_inventory = sl,
-                         co2_emission_inventory = co2_emission_inventory,
-                         summary_stats_PM2.5_CO2 = bind_rows(l)), path = output_file)
-
-# create csv file (summary_stats_Pm2.5_CO2 tab in Excel file above) with and without output version number
-write_csv(bind_rows(l), paste0('results/multi_city/AP/desc_stats_', output_version ,".csv"))
-write_csv(bind_rows(l), paste0('results/multi_city/AP/desc_stats.csv'))
-
-```
-
-
-
-# Boxplots of individual physical activity levels (MMETs)
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-# create boxplots for each city of individual mMET physical activity levels for each scenario 
-
-limit = 100
-for (x in 1:length(cities)) { # loop through cities
-  
-  n_col <- ncol(io[[cities[x]]]$outcomes$mmets) # find number of columns
-  
-  # assign new scenario names
-  # Dan: This is not needed anymore
-  # names(io[[cities[x]]]$outcomes$mmets)[(n_col - scen_length):n_col] <- new_scen_names
-  
-  # extract mMETs data
-  data_long <- gather(io[[cities[x]]]$outcomes$mmets, scenario, mmet, Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
-  
-  # create boxplots
-  y <- ggplot(data_long, aes(x = scenario, y = mmet, fill = scenario)) + 
-    geom_boxplot(outlier.shape = NA) + ggtitle(cities[x]) + 
-    labs(y = "Weekly MMET", x = "Scenarios") + ylim(0, limit)
-  
-  # print to html
-  print(y)
-  
-}
-```
-
