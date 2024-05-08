@@ -20,6 +20,7 @@ library(flextable)
 library(ggplot2)
 library(tidyverse)
 library(writexl)
+library(cli)
 
 # Script to summarise injury outcomes
 
@@ -134,6 +135,21 @@ st_options(bootstrap.css     = FALSE,       # Already part of the theme so no ne
 
 ```{r load_objects = "asis"}
 #output_version <- "v0.3"
+#
+
+if (!exists("output_version")){
+  ## Get the current repo sha
+  gitArgs <- c("rev-parse", "--short", "HEAD", ">", file.path("repo_sha"))
+  # Use shell command for Windows as it's failing with system2 for Windows (giving status 128)
+  if (.Platform$OS.type == "windows"){
+    shell(paste(append("git", gitArgs), collapse = " "), wait = T)
+  } else {
+    system2("git", gitArgs, wait = T)
+  }
+  
+  repo_sha <-  as.character(readLines(file.path("repo_sha")))
+  output_version <- paste0(repo_sha, "_test_run")
+}
 
 # Assumes that multi_city_script.R has been run - read in ithim_objects saved as io.rds
 io <- readRDS(paste0("results/multi_city/io_", output_version, ".rds"))
@@ -212,6 +228,12 @@ get_qualified_scen_name <- function(cs){
 
 
 # print model run information to screen:
+cat(
+   cli::style_hyperlink(
+      text = paste0("https://github.com/ITHIM/ITHIM-R/tree/", stringr::str_remove(output_version, "_test_run")),
+      url = paste0("https://github.com/ITHIM/ITHIM-R/tree/", stringr::str_remove(output_version, "_test_run"))
+   )
+)
 cat("  \n")
 cat(paste0('Output version: ', output_version)) 
 cat("  \n")
