@@ -23,7 +23,7 @@ A BibTeX entry for LaTeX users is
 
 > \@Manual{,
   title = {ithimr: Integrated Transport and Health Impact Model},
-  author = {Ali Abbas and Anna Schroeder and Daniel Gil and Lambed Tatah and Rob Johnson},
+  author = {Ali Abbas, Anna Schroeder et. al},
   year = {2023},
   note = {R package version 0.1.2, https://github.com/ITHIM/ITHIM-R},
   url = {https://ithim.github.io/ITHIM-R/},
