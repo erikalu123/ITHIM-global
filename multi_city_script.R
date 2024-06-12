@@ -60,7 +60,7 @@ if (!require("drpa",character.only = TRUE)) {
 
 cities <- 'bogota'
 
-input_parameter_file <- "Bogota_InputParameters_v1.0.xlsx" # file containing the local and global input parameters
+input_parameter_file <- "Bogota_InputParameters_v1.02.xlsx" # file containing the local and global input parameters
 # 
 
 ## Get the current repo sha
@@ -80,8 +80,8 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 # any comments and the runtime of the code
 write_output_control = T # whether you want to save the model run specifics or not
 output_version <- paste0(repo_sha, "_test_run") # gives the version number of the output documents, independent of the input parameter file name
-author <- "DGS"
-comment <- "Testing after changing order in names in injury_death_to_yll function"
+author <- "AA"
+comment <- "Testing after updating the CO2 numbers from EDGAR"
 
 # scenario definition
 scenario_name <- "BOGOTA" # name of scenario to be called
@@ -89,7 +89,7 @@ scenario_name <- "BOGOTA" # name of scenario to be called
 # be the name of the scenario corresponding to the actual baseline burden of disease and 
 # other input data for the city 
 reference_scenario <- 'Baseline' 
-scenario_increase <- 0.05 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
+scenario_increase <- 0.5 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
 
 
 # define which output results to plot
