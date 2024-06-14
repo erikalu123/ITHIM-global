@@ -575,7 +575,6 @@ inj_counts_list <- rbind(inj_counts_list, inj_counts_list_total)
 
 
 # write to csv with and without output version number
-readr::write_csv(inj_counts_list, paste0('results/multi_city/inj/inj_counts_',output_version,'.csv')) # table containing all the fatality counts
 readr::write_csv(inj_counts_list, paste0('results/multi_city/inj/inj_counts.csv'))
 ```
 
@@ -833,7 +832,6 @@ rd <- rbind(rd, baseline_counts_km )
 
 
 # output csv with and without output version number
-readr::write_csv(rd,paste0( 'results/multi_city/inj/injury_risks_per_billion_kms_',output_version,'.csv'))
 readr::write_csv(rd,paste0( 'results/multi_city/inj/injury_risks_per_billion_kms.csv'))
 ```
 
@@ -982,8 +980,6 @@ baseline_counts_pop <- left_join(baseline_counts_pop, true_distances, by = c('ci
 injury_risks_per_100k <- rbind(injury_risks_per_100k, baseline_counts_pop)
 
 # write to csv with and without output version number
-readr::write_csv(injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'), paste0('results/multi_city/inj/injury_risks_per_100k_pop_',output_version,'.csv'))
-
 readr::write_csv(injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'), paste0('results/multi_city/inj/injury_risks_per_100k_pop.csv'))
 ```
 
@@ -1008,7 +1004,6 @@ true_distances_df_at <- true_distances_df_at %>% group_by(city, scenario) %>% su
 true_distances_df <- rbind(true_distances_df, true_distances_df_at) 
 
 # write to csv with and without output version number
-readr::write_csv(true_distances_df, paste0('results/multi_city/inj/distances_',output_version,'.csv'))
 readr::write_csv(true_distances_df, paste0('results/multi_city/inj/distances.csv'))
 ```
 
@@ -1199,14 +1194,13 @@ baseline_counts_dur <- left_join(baseline_counts_dur,true_distances, by = c('cit
 rd_hours <- rbind(rd_hours, baseline_counts_dur )
 
 # write as csv with and without output version number
-readr::write_csv(rd_hours, paste0('results/multi_city/inj/injury_risks_per_100million_h_',output_version,'.csv'))
 readr::write_csv(rd_hours, paste0('results/multi_city/inj/injury_risks_per_100million_h.csv'))
 ```
 
 
 ```{r}
 # Export injury datasets as a single excel file
-path_inj_wb <- paste0('results/multi_city/inj/inj_data_',output_version,'.xlsx')
+path_inj_wb <- paste0('results/multi_city/inj/inj_data.xlsx')
  writexl::write_xlsx(list(inj_counts = inj_counts_list, #%>% filter(str_mode != 'Total'),
                           injury_risks_billion_kms = rd,
                           injury_risks_100k_people  = injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'),
