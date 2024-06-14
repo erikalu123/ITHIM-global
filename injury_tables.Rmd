@@ -235,12 +235,15 @@ cat(
    )
 )
 cat("  \n")
+cat(paste0('Scenario: ', SCENARIO_INCREASE * 100, "%")) 
+cat("  \n")
 cat(paste0('Output version: ', output_version)) 
 cat("  \n")
 cat(paste0('Timestamp of model run: ', timestamp_model))
 cat("  \n")
 cat(paste0('Comments from model run: ', comments_model))
 cat("  \n")
+
 
 ```
 
