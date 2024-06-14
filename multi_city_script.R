@@ -89,7 +89,7 @@ scenario_name <- "BOGOTA" # name of scenario to be called
 # be the name of the scenario corresponding to the actual baseline burden of disease and 
 # other input data for the city 
 reference_scenario <- 'Baseline' 
-scenario_increase <- 0.5 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
+scenario_increase <- 0.05 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
 
 
 # define which output results to plot
