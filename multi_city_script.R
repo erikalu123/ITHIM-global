@@ -437,6 +437,7 @@ if (write_output_control == TRUE){
                                   'extdata/global'), "/")
   cat("",
       paste(timestamp, "by", author, sep = " "),
+      paste("Scenario:", SCENARIO_INCREASE * 100, "%", sep = " "),
       paste("Cities:", cities, sep = " "),
       paste("Input parameter file:", input_version, sep = " "),
       paste("Version number of outputs:", output_version, sep = " "),
