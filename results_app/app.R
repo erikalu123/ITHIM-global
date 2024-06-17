@@ -70,9 +70,6 @@ deaths <- ren_sex(deaths)
 ylls_pathway <- ren_sex(ylls_pathway)
 deaths_pathway <- ren_sex(deaths_pathway)
 
-
-
-
 overall_pop <- ylls |> distinct(sex, age_cat, .keep_all = T) |> summarise(sum(pop_age_sex)) |> pull()
 
 rel_path_inj <- paste0(github_path, "results/multi_city/inj/")
@@ -128,7 +125,7 @@ injury_risks_per_100million_h_lng <- ren_scen(injury_risks_per_100million_h_lng)
 # https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=5
 # ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00']
  
-scen_colours <- c("Baseline" = '#ffffbf',
+scen_colours <- c("Baseline" = '#ffff33',
                   "Cycling Scenario" = '#abdda4',
                   "Car Scenario" = '#d7191c',
                   "Bus Scenario" = '#2b83ba',
@@ -235,34 +232,12 @@ in_cities <- cities$city
 # “cerulean”, “cosmo”, “cyborg”, “darkly”, “flatly”, “journal”, “litera”, “lumen”, “lux”, 
 # “materia”, “minty”, “morph”, “pulse”, “quartz”, “sandstone”, “simplex”, “sketchy”, “slate”, 
 # “solar”, “spacelab”, “superhero”, “united”, “vapor”, “yeti”, “zephyr”
+# 
 
-ui <- grid_page(
+ui <- page_sidebar(
   theme = bs_theme(bootswatch = "yeti"),
-  tags$head(HTML("<title>ITHIM Results</title>")), 
-  # shinythemes::themeSelector(),
-  layout = c(
-    "area1 area2"
-  ),
-  row_sizes = c(
-    "1fr"
-  ),
-  col_sizes = c(
-    "0.20fr",
-    "0.80fr"
-  ),
-  gap_size = "1rem",
-  grid_card(
-    area = "area2",
-    tabsetPanel(
-      id = "main_tab",
-      tabPanel("Health Outcomes", 
-               plotlyOutput("in_pivot_int", width = "100%", height = "450px")),
-      tabPanel("Injury Risks", 
-               plotlyOutput("in_inj_pivot", width = "100%", height = "450px"))
-    )
-  ),
-  grid_card(
-    area = "area1",
+  title = "ITHIM Results",
+  sidebar = sidebar(
     pickerInput(inputId = "in_scens", 
                 label = "Scenario (5% increase)",
                 choices = scens,
@@ -280,10 +255,10 @@ ui <- grid_page(
                    label = "Outcome levels",
                    choices = level_choices),
       radioButtons(inputId = "in_strata", 
-                    label = "Stratification",
-                    choices = c("None", "Sex", "Age Group"),
-                    inline = TRUE,
-                    select = "None"),
+                   label = "Stratification",
+                   choices = c("None", "Sex", "Age Group"),
+                   inline = TRUE,
+                   select = "None"),
       checkboxInput(inputId = "in_per_100k", 
                     label = "per_100k",
                     value =  FALSE),
@@ -317,11 +292,18 @@ ui <- grid_page(
                    choices = inj_risk_types,
                    selected = inj_risk_types[1])
     ),
-    downloadButton("download_top_data", "Download data", icon = shiny::icon("file-download"))
-    
+      downloadButton("download_top_data", "Download data", icon = shiny::icon("file-download"))
+  ),
+  navset_card_underline(
+    id = "main_tab",
+    full_screen = TRUE,
+    nav_panel("Health Outcomes", 
+              plotlyOutput("in_pivot_int")),
+    nav_panel("Injury Risks", 
+              plotlyOutput("in_inj_pivot"))
   )
-  
 )
+
 server <- function(input, output, session) {
   
   observeEvent(input$main_tab,{
@@ -487,9 +469,11 @@ server <- function(input, output, session) {
                  x = ifelse(in_CIs == "No", y_lab, ""),
                  fill='Scenario')
           
-          plotly::ggplotly(gg) |> plotly::layout(boxmode = "group"#,
+          # plotly::ggplotly(gg) |> plotly::layout(boxmode = "group"#,
                                                  #margin = m
-                                                 )
+                                                 # )
+          
+          plotly::ggplotly(gg)
         }
     }else{
       plotly::ggplotly(ggplot(data.frame()))
