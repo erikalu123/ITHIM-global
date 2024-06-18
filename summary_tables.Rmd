@@ -372,6 +372,25 @@ get_scen_settings <- ithimr::get_scenario_settings(cities = cities)
 
 ```
 
+## Baseline mode split by distance category
+
+```{r trip_mode_dist_prop = "asis", echo = F}
+
+for (city in cities) {
+  
+  td <- io[[city]]$trip_scen_sets |> filter(scenario == "baseline" & trip_id != 0 & trip_mode %in% c('pedestrian', 'cycle', 'car', 'motorcycle', 'bus')) |>  distinct(trip_id, .keep_all = T) |> count(trip_mode, trip_distance_cat) |> mutate(freq = prop.table(n), .by = trip_mode) |> dplyr::select(-n) |> dplyr::mutate(freq = round(freq * 100, 1)) |> pivot_wider(names_from = trip_distance_cat, values_from = freq) |> janitor::adorn_totals('col') |> mutate(Total = round(Total))
+  
+    # print mode share for individual cities
+  print(kable(td, caption = paste("Trip proportion (%) by mode and by distance category for ", city)))
+  cat("\n")
+
+  
+}
+
+
+
+```
+
 ## Mode split for each scenario by city
 
 City specific trip proportions by mode, for baseline and scenarios
@@ -444,36 +463,6 @@ for (city in cities) { # Loop for each city
 } # End loop city
 
 ```
-
-<!-- ### Baseline mode split for all cities (%) -->
-
-<!-- ```{r} -->
-
-<!-- # create baseline mode share table containing information for all cities -->
-
-<!-- # prep data -->
-
-<!-- trip_prop <- trip_prop %>% dplyr::filter(stage_mode != "row_sums") %>% -->
-
-<!--   mutate_at(2:ncol(trip_prop), ~ as.numeric(as.character(.x))) %>% -->
-
-<!--   janitor::adorn_totals('row') -->
-
-<!-- # print table to html -->
-
-<!-- kable(trip_prop, caption = 'Baseline mode share (%) for all cities - only selected modes') -->
-
-<!-- ``` -->
-
-<!-- ```{r unload_tidyverse, echo = F, message = F} -->
-
-<!-- suppressWarnings({ -->
-
-<!--   detach("package:tidyverse", character.only = T) -->
-
-<!-- }) -->
-
-<!-- ``` -->
 
 ## Distance tables
 
