@@ -292,7 +292,7 @@ create_bogota_scenarios <- function(trip_set) {
 
     rdr_scen <- do.call(rbind, rdr_copy) # bind across all distance bands
     rdr_scen <- rbind(rdr_scen, rdr_not_changeable) # add trips that could not be changed
-
+    
     # Remove bus_driver from the dataset, to recalculate them
     if (ADD_BUS_DRIVERS) {
       rdr_scen <- filter(rdr_scen, !trip_mode %in% "bus_driver")
@@ -302,7 +302,7 @@ create_bogota_scenarios <- function(trip_set) {
         reference_mode = "bus",
         agerange_male = BUS_DRIVER_MALE_AGERANGE,
         agerange_female = BUS_DRIVER_FEMALE_AGERANGE,
-        scenario = paste0("Scenario ", i)
+        scenario = paste0("sc_ ", i)
       )
     }
 
@@ -313,15 +313,15 @@ create_bogota_scenarios <- function(trip_set) {
         trip_mode = "car_driver",
         distance_ratio = car_driver_scalar * DISTANCE_SCALAR_CAR_TAXI,
         reference_mode = "car",
-        scenario = paste0("Scenario ", i)
+        scenario = paste0("sc_ ", i)
       )
     }
 
     rdr_scen$scenario <- paste0("sc_", i) # add scenario name
     rd_list[[i]] <- rdr_scen # create output list by adding trips for each scenario
   } # End loop for scenarios
-
-
+  
+  
   # print warning message if there weren't enough trips to be converted for a scenario
   scen_warning <- unique(scen_warning)
 
