@@ -92,6 +92,23 @@ walk_to_pt_and_combine_scen <- function(SYNTHETIC_TRIPS) {
 
       # recombine all trips
       rd_list[[i]] <- rbind(not_pt_trips, pt_trips_w_walk, pt_walk_trips[[1]], pt_walk_trips[[2]])
+      
+      ## 24th June 2024
+      ## AA - To make sure that the distance matrix is correctly calculated, adjust bus_driver's distance using the new bus distance
+      if (ADD_BUS_DRIVERS) {
+        sc <- unique(rd_list[[i]]$scenario)
+        rd_list[[i]] <- rd_list[[i]] |> filter(stage_mode != "bus_driver")
+        rd_list[[i]] <- add_ghost_trips(rd_list[[i]],
+                                        trip_mode = "bus_driver",
+                                        distance_ratio = BUS_TO_PASSENGER_RATIO * DISTANCE_SCALAR_PT,
+                                        reference_mode = "bus",
+                                        agerange_male = BUS_DRIVER_MALE_AGERANGE,
+                                        agerange_female = BUS_DRIVER_FEMALE_AGERANGE,
+                                        scenario = paste0("sc_ ", i)
+        )
+
+        rd_list[[i]]$scenario <- sc
+      }
 
       rd_list[[i]]$id <- NULL
     }
