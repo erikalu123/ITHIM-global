@@ -516,7 +516,7 @@ bv <- co2_emission_inventory |> filter(Scenario == "Baseline") |> dplyr::select(
 pop_size <- sum(io[[city]]$demographic$population)
 
 co2_emission_inventory <- co2_emission_inventory |> mutate(change_baseline = !!rlang::sym(city) - bv, change_CO2_percentage = ifelse(change_baseline == 0, 0, round(change_baseline/bv * 100, 1)),
-                                                           CO2_per_capita = round(!!rlang::sym(city)/pop_size, 1))
+                                                           CO2_per_capita = round(!!rlang::sym(city)/pop_size, 2))
 
 # print to html
 print(kable(co2_emission_inventory))
