@@ -227,7 +227,16 @@ ithim_load_data <- function(speeds =
     #   filter(cond == 0 | is.na(cond)) %>%
     #   dplyr::select(-cond)
   }
-
+  
+  # AA - 24/06/2024
+  # Rename truck trips to bus trips
+  # Same applies to stages as well
+  if (ADD_TRUCK_DRIVERS) {
+    for (i in 1:length(mode_cols)) {
+      trip_set[[mode_cols[i]]][trip_set[[mode_cols[i]]] == "truck"] <- "bus"
+    }
+  }
+  
   # set to global environment
   TRIP_SET <<- trip_set
 
