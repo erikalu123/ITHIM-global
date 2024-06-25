@@ -65,17 +65,31 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
 
   # adding in travel not covered in the synthetic trip set
   emission_dist <- dist
-
+  
+  # Make a local copy of vehicle inventory
+  vi <- VEHICLE_INVENTORY
+  
   ## get emission factor by dividing inventory by baseline distance. (We don't need to scale to a whole year, as we are just scaling the background concentration.)
-  ordered_efs <- (VEHICLE_INVENTORY$PM_emission_inventory[match(emission_dist$stage_mode, VEHICLE_INVENTORY$stage_mode)] %>% as.numeric()) / (emission_dist$baseline %>% as.numeric())
+  ordered_efs <- (vi$PM_emission_inventory[match(emission_dist$stage_mode, vi$stage_mode)] %>% as.numeric()) / (emission_dist$baseline %>% as.numeric())
   ## get new emission by multiplying emission factor by scenario distance.
   trans_emissions <- emission_dist[, SCEN] * t(repmat(ordered_efs, NSCEN + 1, 1))
+  # Save stage mode
+  trans_emissions$stage_mode <- emission_dist$stage_mode
+  # Save last index
+  last_index <- nrow(trans_emissions)
 
   ## augment with travel emission contributions that aren't included in distance calculation
-  for (mode_type in which(!VEHICLE_INVENTORY$stage_mode %in% emission_dist$stage_mode)) {
-    trans_emissions[nrow(trans_emissions) + 1, ] <- VEHICLE_INVENTORY$PM_emission_inventory[mode_type]
+  for (mode_type in which(!vi$stage_mode %in% emission_dist$stage_mode)) {
+    # Only record where emission inventory is greater than 0
+    if (vi$PM_emission_inventory[mode_type] != 0){
+      trans_emissions[nrow(trans_emissions) + 1, ] <- vi$PM_emission_inventory[mode_type]
+      # Save mode
+      trans_emissions$stage_mode[last_index + 1] <- vi$stage_mode[mode_type]
+      # Increase index
+      last_index <- last_index + 1
+    }
   }
-
+  
   ## scenario travel pm2.5 calculated as relative to the baseline
   baseline_sum <- sum(trans_emissions[[SCEN[1]]], na.rm = T)
   conc_pm <- c()
@@ -83,7 +97,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
   for (i in 1:length(SCEN)) {
     conc_pm[i] <- non_transport_pm_conc + PM_TRANS_SHARE * PM_CONC_BASE * sum(trans_emissions[[SCEN[i]]], na.rm = T) / baseline_sum
   }
-
+  
   # Copy trips dataset
   trip_set <- trip_scen_sets
 
@@ -288,7 +302,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     scenario = SCEN,
     conc_pm = conc_pm
   )
-
+  
   # Join trip_set with PM concentration df
   trip_set <- left_join(trip_set, conc_pm_df, by = "scenario")
 
@@ -479,7 +493,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
   # Get all participants without any travel (in the travel survey)
   id_wo_travel <- SYNTHETIC_POPULATION |>
     filter(!participant_id %in% trip_set$participant_id)
-
+  
   # Assign all participants without travel baseline + scenario specific base concentration
   id_wo_travel <- cbind(id_wo_travel |>
     dplyr::select(-work_ltpa_marg_met), conc_pm_df |>
