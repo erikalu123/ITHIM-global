@@ -405,7 +405,7 @@ for (x in 1:length(cities)) {
   scenario_pm_df$scenario <- unlist(lapply(scenario_pm_df$scenario, FUN=get_qualified_scen_name))
   
   # Join summary and scenario_pm_df based on scenario names
-  summary <- left_join(summary, scenario_pm_df) |> mutate(change_PM = round(conc_pm[scenario == "Baseline"] - conc_pm, 2))
+  summary <- left_join(summary, scenario_pm_df) |> mutate(change_PM = round(conc_pm - conc_pm[scenario == "Baseline"], 2))
   
   # print to html file
   print(kable(summary, caption = cities[x]))
