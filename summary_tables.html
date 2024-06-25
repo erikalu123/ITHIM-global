@@ -1484,17 +1484,17 @@ font-size: 0.95em;
 
 
 <h1 class="title toc-ignore">Summary Tables</h1>
-<h4 class="date">14 June, 2024</h4>
+<h4 class="date">25 June, 2024</h4>
 
 </div>
 
 
-<p><a href="https://github.com/ITHIM/ITHIM-R/tree/7ea83a5c" class="uri">https://github.com/ITHIM/ITHIM-R/tree/7ea83a5c</a><br />
+<p><a href="https://github.com/ITHIM/ITHIM-R/tree/40914706" class="uri">https://github.com/ITHIM/ITHIM-R/tree/40914706</a><br />
 Scenario: 5%<br />
-Output version: 7ea83a5c_test_run<br />
-Timestamp of model run: 2024-06-14 12:12:10.819854<br />
-Comments from model run: Testing after updating the CO2 numbers from
-EDGAR</p>
+Output version: 40914706_test_run<br />
+Timestamp of model run: 2024-06-25 12:57:40.477583<br />
+Comments from model run: Testing after adding scenario names with PM2.5
+concentrations</p>
 <!-- # **1st option** -->
 <div id="summary-tables" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Summary tables</h1>
@@ -1557,8 +1557,62 @@ each distance category</h2>
 </tbody>
 </table>
 </div>
-<div id="mode-split-for-each-scenario-by-city" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Mode split for each
+<div id="baseline-mode-split-by-distance-category" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Baseline mode split
+by distance category</h2>
+<table>
+<caption>Trip proportion (%) by mode and by distance category for
+bogota</caption>
+<thead>
+<tr class="header">
+<th align="left">trip_mode</th>
+<th align="right">0-2km</th>
+<th align="right">2-6km</th>
+<th align="right">6+km</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">bus</td>
+<td align="right">3.8</td>
+<td align="right">26.6</td>
+<td align="right">69.6</td>
+<td align="right">100</td>
+</tr>
+<tr class="even">
+<td align="left">car</td>
+<td align="right">5.4</td>
+<td align="right">27.5</td>
+<td align="right">67.1</td>
+<td align="right">100</td>
+</tr>
+<tr class="odd">
+<td align="left">cycle</td>
+<td align="right">33.5</td>
+<td align="right">44.4</td>
+<td align="right">22.2</td>
+<td align="right">100</td>
+</tr>
+<tr class="even">
+<td align="left">motorcycle</td>
+<td align="right">4.4</td>
+<td align="right">22.2</td>
+<td align="right">73.3</td>
+<td align="right">100</td>
+</tr>
+<tr class="odd">
+<td align="left">pedestrian</td>
+<td align="right">91.6</td>
+<td align="right">7.4</td>
+<td align="right">1.0</td>
+<td align="right">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mode-split-for-each-scenario-by-city" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Mode split for each
 scenario by city</h2>
 <p>City specific trip proportions by mode, for baseline and
 scenarios</p>
@@ -1590,17 +1644,17 @@ scenarios</p>
 </tr>
 <tr class="odd">
 <td align="left">bus</td>
-<td align="left">34.7</td>
-<td align="left">39.7</td>
-<td align="left">31.4</td>
-<td align="left">32.9</td>
+<td align="left">34.8</td>
+<td align="left">39.8</td>
+<td align="left">31.6</td>
+<td align="left">33.0</td>
 </tr>
 <tr class="even">
 <td align="left">pedestrian</td>
 <td align="left">31.2</td>
 <td align="left">30.8</td>
 <td align="left">30.7</td>
-<td align="left">29.5</td>
+<td align="left">29.6</td>
 </tr>
 <tr class="odd">
 <td align="left">cycle</td>
@@ -1611,31 +1665,16 @@ scenarios</p>
 </tr>
 <tr class="even">
 <td align="left">row_sums</td>
-<td align="left">94.4</td>
-<td align="left">95.1</td>
-<td align="left">94.8</td>
-<td align="left">94.8</td>
+<td align="left">94.5</td>
+<td align="left">95.2</td>
+<td align="left">95.0</td>
+<td align="left">95.0</td>
 </tr>
 </tbody>
 </table>
-<!-- ### Baseline mode split for all cities (%) -->
-<!-- ```{r} -->
-<!-- # create baseline mode share table containing information for all cities -->
-<!-- # prep data -->
-<!-- trip_prop <- trip_prop %>% dplyr::filter(stage_mode != "row_sums") %>% -->
-<!--   mutate_at(2:ncol(trip_prop), ~ as.numeric(as.character(.x))) %>% -->
-<!--   janitor::adorn_totals('row') -->
-<!-- # print table to html -->
-<!-- kable(trip_prop, caption = 'Baseline mode share (%) for all cities - only selected modes') -->
-<!-- ``` -->
-<!-- ```{r unload_tidyverse, echo = F, message = F} -->
-<!-- suppressWarnings({ -->
-<!--   detach("package:tidyverse", character.only = T) -->
-<!-- }) -->
-<!-- ``` -->
 </div>
-<div id="distance-tables" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Distance tables</h2>
+<div id="distance-tables" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Distance tables</h2>
 <p>City specific distance tables showing average distance in km
 travelled by each person in the synthetic population by mode for all
 scenarios (incl Baseline)</p>
@@ -1669,7 +1708,7 @@ the synthetic population</caption>
 <tr class="odd">
 <td align="left">bus</td>
 <td align="right">6.8</td>
-<td align="right">6.5</td>
+<td align="right">6.6</td>
 <td align="right">6.1</td>
 <td align="right">8.0</td>
 </tr>
@@ -1706,7 +1745,7 @@ synthetic population (people with trips ONLY)</caption>
 <td align="left">car</td>
 <td align="right">5.8</td>
 <td align="right">5.6</td>
-<td align="right">7.0</td>
+<td align="right">7.1</td>
 <td align="right">4.8</td>
 </tr>
 <tr class="even">
@@ -1718,10 +1757,10 @@ synthetic population (people with trips ONLY)</caption>
 </tr>
 <tr class="odd">
 <td align="left">bus</td>
-<td align="right">7.9</td>
-<td align="right">7.6</td>
-<td align="right">7.1</td>
-<td align="right">9.3</td>
+<td align="right">8.0</td>
+<td align="right">7.7</td>
+<td align="right">7.2</td>
+<td align="right">9.4</td>
 </tr>
 <tr class="even">
 <td align="left">pedestrian</td>
@@ -1816,8 +1855,8 @@ synthetic population (people with trips ONLY)</caption>
 <!-- } -->
 <!-- ``` -->
 </div>
-<div id="duration-tables" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Duration tables</h2>
+<div id="duration-tables" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Duration tables</h2>
 <p>City specific duration tables for the synthetic population for
 baseline and scenarios (per day in minutes)</p>
 <table>
@@ -1838,7 +1877,7 @@ bogota ( 38647 ) per person (everyone)</caption>
 <td align="right">21.4</td>
 <td align="right">20.7</td>
 <td align="right">26.2</td>
-<td align="right">17.7</td>
+<td align="right">17.8</td>
 </tr>
 <tr class="even">
 <td align="left">motorcycle</td>
@@ -1849,14 +1888,14 @@ bogota ( 38647 ) per person (everyone)</caption>
 </tr>
 <tr class="odd">
 <td align="left">bus</td>
-<td align="right">50.1</td>
-<td align="right">48.3</td>
-<td align="right">44.9</td>
-<td align="right">58.9</td>
+<td align="right">50.4</td>
+<td align="right">48.6</td>
+<td align="right">45.3</td>
+<td align="right">59.2</td>
 </tr>
 <tr class="even">
 <td align="left">pedestrian</td>
-<td align="right">31.9</td>
+<td align="right">32.0</td>
 <td align="right">30.2</td>
 <td align="right">29.9</td>
 <td align="right">32.3</td>
@@ -1864,8 +1903,8 @@ bogota ( 38647 ) per person (everyone)</caption>
 <tr class="odd">
 <td align="left">cycle</td>
 <td align="right">4.4</td>
-<td align="right">9.2</td>
-<td align="right">4.1</td>
+<td align="right">9.5</td>
+<td align="right">4.0</td>
 <td align="right">3.8</td>
 </tr>
 </tbody>
@@ -1886,36 +1925,36 @@ survey for bogota ( 32991 ) per person (people with trips)</caption>
 <tr class="odd">
 <td align="left">car</td>
 <td align="right">25.1</td>
-<td align="right">24.3</td>
-<td align="right">30.6</td>
+<td align="right">24.2</td>
+<td align="right">30.7</td>
 <td align="right">20.8</td>
 </tr>
 <tr class="even">
 <td align="left">motorcycle</td>
 <td align="right">11.4</td>
-<td align="right">11.2</td>
+<td align="right">11.1</td>
 <td align="right">10.7</td>
 <td align="right">10.2</td>
 </tr>
 <tr class="odd">
 <td align="left">bus</td>
-<td align="right">58.7</td>
-<td align="right">56.6</td>
-<td align="right">52.6</td>
-<td align="right">69.0</td>
+<td align="right">59.1</td>
+<td align="right">56.9</td>
+<td align="right">53.1</td>
+<td align="right">69.3</td>
 </tr>
 <tr class="even">
 <td align="left">pedestrian</td>
 <td align="right">37.4</td>
 <td align="right">35.4</td>
-<td align="right">35.0</td>
-<td align="right">37.9</td>
+<td align="right">35.1</td>
+<td align="right">37.8</td>
 </tr>
 <tr class="odd">
 <td align="left">cycle</td>
 <td align="right">5.2</td>
-<td align="right">10.7</td>
-<td align="right">4.8</td>
+<td align="right">11.1</td>
+<td align="right">4.7</td>
 <td align="right">4.5</td>
 </tr>
 </tbody>
