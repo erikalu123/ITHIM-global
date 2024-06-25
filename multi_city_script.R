@@ -81,7 +81,7 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 write_output_control = T # whether you want to save the model run specifics or not
 output_version <- paste0(repo_sha, "_test_run") # gives the version number of the output documents, independent of the input parameter file name
 author <- "AA"
-comment <- "Testing after updating the CO2 numbers from EDGAR"
+comment <- "Testing after adding scenario names with PM2.5 concentrations"
 
 # scenario definition
 scenario_name <- "BOGOTA" # name of scenario to be called
