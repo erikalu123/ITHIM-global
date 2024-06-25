@@ -520,5 +520,5 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
   synth_pop$participant_id <- as.integer(synth_pop$participant_id)
 
   # Return list with concentration and per person PM2.5 exposure (unit: ug/m3)
-  list(scenario_pm = conc_pm, pm_conc_pp = as.data.frame(synth_pop))
+  list(scenario_pm = conc_pm_df, pm_conc_pp = as.data.frame(synth_pop))
 }

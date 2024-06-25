@@ -390,28 +390,22 @@ for (x in 1:length(cities)) {
   data_long <- gather(io[[cities[x]]]$outcomes$pm_conc_pp, scenario, pm_conc,
                       Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
   
+  
   # create summary stats
   summary <- as.data.frame(data_long %>% group_by(scenario) %>%
                              summarise('mean' = mean(pm_conc),
                                        '5th' = quantile(pm_conc, 0.05),
                                        '50th' = quantile(pm_conc, 0.5),
-                                       '95th' = quantile(pm_conc, 0.9)))
-  summary <- cbind(summary$scenario ,round(summary[,2:5], digits = 1))
+                                       '95th' = quantile(pm_conc, 0.9)) |> mutate_if(is.numeric, round, 2))
   
-  # add scenario specific PM2.5 concentration levels 
-  ## Dan - TODO: This can be problematic because we are assuming that the order from "pm_conc_pp"
-  ## is the same as in "scenario_pm". And maybe it is, but don't know if this will
-  ## apply always.
-  ## To fix it we have to export "scenario_pm" with names and here compare the order of
-  ## both objects.
-  summary$scenario_PM <- round(io[[cities[x]]]$outcomes$scenario_pm, digits=2)
+  # Extract scenario_pm with two columns with scenario names and scenario_pm_concentrations
+  scenario_pm_df <- io[[cities[x]]]$outcomes$scenario_pm |> mutate_if(is.numeric, round, 2)
   
-  # find location of reference scenario in vector of all scenarios
-  loc_ref <- which(new_scen_names == reference_scenario)
+  # Rename scenario names
+  scenario_pm_df$scenario <- unlist(lapply(scenario_pm_df$scenario, FUN=get_qualified_scen_name))
   
-  # calculate the PM2.5 changes between the reference scenario and the other scenarios
-  summary$change_PM <- round(io[[cities[x]]]$outcomes$scenario_pm - io[[cities[x]]]$outcomes$scenario_pm[loc_ref], digits=2)
-  names(summary)[1] <- "Scenario"
+  # Join summary and scenario_pm_df based on scenario names
+  summary <- left_join(summary, scenario_pm_df) |> mutate(change_PM = round(conc_pm[scenario == "Baseline"] - conc_pm, 2))
   
   # print to html file
   print(kable(summary, caption = cities[x]))
@@ -535,13 +529,8 @@ limit = 100
 for (x in 1:length(cities)) { # loop through cities
   
   n_col <- ncol(io[[cities[x]]]$outcomes$mmets) # define columns of interests
-  # names(io[[cities[x]]]$outcomes$mmets)[(n_col - scen_length):n_col] <- new_scen_names
   change_names <- which(grepl("_mmet", names(io[[cities[x]]]$outcomes$mmets), fixed = TRUE))
   names(io[[cities[x]]]$outcomes$mmets)[change_names] <- sapply(gsub("_mmet" , "", names(io[[cities[x]]]$outcomes$mmets)[change_names]), FUN = get_qualified_scen_name)
-  
-  # extract data of interest
-  # data_long <- gather(io[[cities[x]]]$outcomes$mmets, scenario, mmet, 
-  #                     Baseline:new_scen_names[length(new_scen_names)], factor_key = TRUE)
   
   data_long <- pivot_longer(io[[cities[x]]]$outcomes$mmets |> dplyr::select(participant_id, new_scen_names), cols = !participant_id, names_to = "scenario", values_to = "mmet")
   
