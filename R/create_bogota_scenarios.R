@@ -119,16 +119,18 @@ create_bogota_scenarios <- function(trip_set) {
 
   rd_list <- list()
   # define the modes that can't be changed
-  modes_not_changeable <- c("bus_driver", "truck", "car_driver") 
+  modes_not_changeable <- c("bus_driver", "truck", "car_driver")
   
   # bogota modal split across the three distance categories for each mode
   # use existing mode split from adjusted travel survey, i.e. once all the ITHIM changes to the travel
   # survey have been made
   
-  rdr_modeshares <-rdr |> filter(trip_mode %in% c('cycle', 'car', 'bus')) |> count(
-                    trip_mode, trip_distance_cat) |> mutate(freq = prop.table(n), .by = trip_mode
-                    ) |> dplyr::select(-n) |> dplyr::mutate(freq = round(freq * 100, 1)) |> pivot_wider(
-                    names_from = trip_distance_cat, values_from = freq)
+  rdr_modeshares <- rdr |> filter(trip_mode %in% c('cycle', 'car', 'bus')) |> 
+    distinct(trip_id, .keep_all = T) |> 
+    count(trip_mode, trip_distance_cat) |> mutate(freq = prop.table(n), .by = trip_mode) |> 
+    dplyr::select(-n) |> 
+    dplyr::mutate(freq = round(freq * 100, 1)) |> 
+    pivot_wider(names_from = trip_distance_cat, values_from = freq)
   
   # get modeshares into correct format
   cycle02 <-  rdr_modeshares %>% filter(trip_mode=='cycle') %>% pull('0-2km')
@@ -191,7 +193,7 @@ create_bogota_scenarios <- function(trip_set) {
   SCENARIO_PROPORTIONS <<- scenario_proportions
 
   # print(scenario_proportions)
-
+  
   # baseline scenario
   rd_list[["baseline"]] <- rdr
 
