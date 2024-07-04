@@ -8,6 +8,11 @@
 #' to parameterise the Poisson injury regression model:
 #'
 #' \itemize{
+#' 
+#'  \item taxi, shared_taxi and auto_rickshaw distances are multiplied by 2 to add drivers (note if there are multiple passengers in a vehicle apart
+#'    then this will overestimate these vehicle distances but taxis also spend a significant amount of time driving around without any
+#'    passenger which is not captured in the travel surveys.)
+#' 
 #'  \item stage modes are aggregated such that all walk related stages (walk and walk to pt) are of the same mode (walk),
 #'    similarly for all car related journeys
 #'
