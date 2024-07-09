@@ -56,8 +56,8 @@
 #'
 #' \item compute proportion of injuries in the age range considered in the model from the GBD data,
 #'   this proportion is applied to those injury datasets without age and sex information
-#'
-#' \item remove ages outside age ranges considered in model from GBD_data
+#'   
+#'\item remove ages outside age ranges considered in model from GBD_data
 #'
 #' \item create burden_of_disease dataframe from the GBD_data by changing the layout of the GBD_data:
 #'    \itemize{
@@ -73,6 +73,10 @@
 #' \item read in the city specific road injury data:
 #'    \itemize{
 #'    \item Set a 'weight' column to the unique number of years for which injury data exists (if such column does not already exist)
+#'    
+#'    \item calculate average yearly injury fatalities for each strike and casualty mode pair from original injury data
+#'    
+#'    \item adjusted those yearly counts by the injury reporting rate
 #'
 #'    \item where strike mode equals casualty mode, set the strike mode to 'nov' (no other vehicle)
 #'
@@ -507,6 +511,32 @@ ithim_load_data <- function(speeds =
     injuries$weight <- length(unique(injuries$year))
   }
 
+  # calculate injury counts for one year from raw data
+  inj_orig_1year <- injuries %>% group_by(cas_mode, strike_mode, weight) %>% summarise(total = length(weight))
+  inj_orig_1year$total <- inj_orig_1year$total / inj_orig_1year$weight
+  inj_orig_1year <- inj_orig_1year %>% dplyr::select(-c(weight))
+  
+  inj_orig_1year <- inj_orig_1year %>% tidyr::pivot_wider(names_from = cas_mode,
+                                                          values_from = total)
+  # replace NA with 0
+  inj_orig_1year <- inj_orig_1year %>% replace(is.na(.), 0)
+  
+  # add row and column sums
+  inj_orig_1year <- inj_orig_1year %>% mutate(rowSum = rowSums(across(where(is.numeric)),na.rm=TRUE))
+  inj_orig_1year <- inj_orig_1year %>% adorn_totals("row")
+  
+  # round results
+  inj_orig_1year<- inj_orig_1year%>% mutate_if(is.numeric, round, digits = 1)
+  
+
+  inj_orig_1year <<- inj_orig_1year
+  
+  # calculate the fatality counts adjusted by the injury_reporting_rate
+  inj_orig_1year_injreprate <- inj_orig_1year %>% modify_if(is.numeric, ~./injury_reporting_rate[[city]])
+  inj_orig_1year_injreprate <- inj_orig_1year_injreprate %>% mutate_if(is.numeric, round, digits = 1)
+  
+  inj_orig_1year_injreprate <<- inj_orig_1year_injreprate
+  
 
   # Get all injuries where casualty and strike mode are identical for car, bus, motorcycle, cycle and truck
   # Treat bus_driver same as bus for strike mode

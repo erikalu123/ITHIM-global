@@ -50,6 +50,7 @@ library(ithimr)
 library(readxl)
 library(truncnorm)
 library(tidyverse)
+library(janitor)
 
 if (!require("drpa",character.only = TRUE)) {
   print('Installing "drpa" package...')
@@ -314,6 +315,9 @@ print(system.time(for(city in cities){
   ithim_objects[[city]]$disease_burden <- DISEASE_BURDEN
   ithim_objects[[city]]$PM_emission_inventory <- PM_EMISSION_INVENTORY
   ithim_objects[[city]]$injury_table <- INJURY_TABLE
+  ithim_objects[[city]]$orig_inj <- list()
+  ithim_objects[[city]]$orig_inj$inj_orig_1year <- inj_orig_1year
+  ithim_objects[[city]]$orig_inj$inj_orig_1year_injreprate <- inj_orig_1year_injreprate
   ithim_objects[[city]]$vehicle_inventory <- VEHICLE_INVENTORY
   ithim_objects[[city]]$location$country <- country[[CITY]]
   ithim_objects[[city]]$location$continent <- continent[[CITY]]
