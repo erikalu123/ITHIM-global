@@ -91,6 +91,7 @@ scenario_name <- "BOGOTA" # name of scenario to be called
 # other input data for the city 
 reference_scenario <- 'Baseline' 
 scenario_increase <- 0.05 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
+TREAT_TAXI_AS_CAR <- FALSE
 
 
 # define which output results to plot
