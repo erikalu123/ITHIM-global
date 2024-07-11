@@ -115,19 +115,21 @@
 
 create_bogota_scenarios <- function(trip_set) {
   rdr <- trip_set
+  
   trip_set <- NULL
-
   rd_list <- list()
   # define the modes that can't be changed
-  modes_not_changeable <- c("bus_driver", "truck", "car_driver")
+  modes_not_changeable <- c("bus_driver", "truck", "car_driver", "taxi")
   
   # bogota modal split across the three distance categories for each mode
   # use existing mode split from adjusted travel survey, i.e. once all the ITHIM changes to the travel
   # survey have been made
   
-  rdr_modeshares <- rdr |> filter(trip_mode %in% c('cycle', 'car', 'bus')) |> 
+  rdr_modeshares <- rdr |> 
+    filter(participant_id !=0) |> 
     distinct(trip_id, .keep_all = T) |> 
     count(trip_mode, trip_distance_cat) |> mutate(freq = prop.table(n), .by = trip_mode) |> 
+    filter(trip_mode %in% c('cycle', 'car', 'bus')) |> 
     dplyr::select(-n) |> 
     dplyr::mutate(freq = round(freq * 100, 1)) |> 
     pivot_wider(names_from = trip_distance_cat, values_from = freq)
@@ -254,7 +256,7 @@ create_bogota_scenarios <- function(trip_set) {
       # These number of trips will be reassigned
       n_trips_to_change <- round(length(unique(rdr_all_by_distance[[j]]$trip_id)) *
         SCENARIO_PROPORTIONS[i, j] / 100)
-      # print(n_trips_to_change)
+      
 
       if (length(potential_trip_ids) > 0 & n_trips_to_change > 0) {
         # if the number of trips that could be changed equals the number of trips that need to be changed
@@ -322,7 +324,6 @@ create_bogota_scenarios <- function(trip_set) {
     rdr_scen$scenario <- paste0("sc_", i) # add scenario name
     rd_list[[i]] <- rdr_scen # create output list by adding trips for each scenario
   } # End loop for scenarios
-  
   
   # print warning message if there weren't enough trips to be converted for a scenario
   scen_warning <- unique(scen_warning)
