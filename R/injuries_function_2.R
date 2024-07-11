@@ -13,9 +13,12 @@
 #'   and each scenario (incl Baseline). If the sample mode is set to 'constant' (and not 'sample'),
 #'   we also predict upper and lower confidence interval boundaries
 #'
-#' \item create a whw_temp list containing the total predicted fatality counts for each casualty
-#'   and strike mode pair for each scenario split into whw and nov matrices and, for the
-#'   constant mode also give the upper and lower confidence interval limit predictions
+#' \item if running in constant mode, create a whw_temp list containing the total predicted
+#'   fatality counts for each casualty and strike mode pair for each scenario split into whw
+#'   and nov matrices and also give the upper and lower confidence interval limit predictions.
+#'   Also create a combined outcome table where NOV fatalities are added as casualty mode
+#'   equals strike mode fatalities.
+#'   
 #'
 #' \item create an injuries2 data frame containing the total predicted fatality counts
 #'   for each casualty mode by age and sex for each scenario. This dataframe also
@@ -194,7 +197,50 @@ injuries_function_2 <- function(true_distances, injuries_list, reg_model, consta
         }
       }
     }
-  }
+    
+    # if in constant mode add combined nov and whw fatality counts by looping through the casualty modes and adding the
+    # NOV accidents to the respective casualty versus casualty accidents (not for lower and upper bounds)
+    # i.e. car with NOV accidents are added to car with car accidents
+    
+    if (constant_mode) {
+      nov_data <- data.frame(as.list(whw_temp[[scen]]$nov))
+      cas_data <- data.frame(whw_temp[[scen]]$whw)
+      for (c_mode in colnames(nov_data)){ # loop through NOV casualty modes
+        
+        if (!c_mode %in% row.names(cas_data)){# if the casualty mode is not a strike mode, then add a row to data
+          cas_data[c_mode,] <- NA
+          cas_data[c_mode,c_mode] <- nov_data[1,c_mode]
+        } else {
+          cas_data[c_mode,c_mode] <- cas_data[c_mode,c_mode] + nov_data[1,c_mode]
+        }
+      }
+      
+      # order row and columns names alphabetically
+      cas_data <- cas_data[,order(colnames(cas_data))] # column names
+      cas_data <- cas_data[order(row.names(cas_data)),]
+      
+      # add row sums
+      cas_data <- cas_data %>% mutate(rowSum = rowSums(across(where(is.numeric)),na.rm=TRUE))
+      
+      # create first column containing rownames
+      cas_data <- data.frame(strike_mode = row.names(cas_data), cas_data)
+      
+      # calculate column sums
+      cas_data <- cas_data %>% adorn_totals("row")
+      
+      # re-assign first column as rownames
+      row.names(cas_data) <- cas_data[,1]
+      cas_data <- cas_data %>% dplyr::select(!strike_mode)
+      
+      # round all values to 1 significant figure
+      cas_data <- cas_data %>% mutate_if(is.numeric, round, digits = 1)
+      
+      whw_temp[[scen]]$combined <- cas_data
+      
+    }
+  
+    
+  } # end of scen loop
 
 
   # Create a total death count by summing across all casualty modes
@@ -224,6 +270,10 @@ injuries_function_2 <- function(true_distances, injuries_list, reg_model, consta
       by = c("age_cat", "sex", "dem_index", "scenario")
     )
   }
+
+  
+
+  
 
   list(injuries2, whw_temp)
 }
