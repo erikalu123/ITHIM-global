@@ -39,7 +39,7 @@
 dist_dur_tbls <- function(trip_scen_sets) {
   bs <- trip_scen_sets
   trip_scen_sets <- NULL
-
+  
   stage_modes <- unique(bs$stage_mode) # find the unique stage modes
 
   ## calculate all distances & durations for each scenario
@@ -61,7 +61,7 @@ dist_dur_tbls <- function(trip_scen_sets) {
         local_dur$sum_dur[local_dur$stage_mode == "pedestrian"] +
         local_dur$sum_dur[local_dur$stage_mode == "walk_to_pt"]
     }
-
+    
     # store results
     colnames(local_dist)[2] <- i
     l_dist[[i]] <- local_dist
@@ -125,7 +125,20 @@ dist_dur_tbls <- function(trip_scen_sets) {
     dur <- rbind(dur, dur[car_passenger_row, ])
     dur[nrow(dur), 1] <- "car_driver"
   }
-
-
+  
+  if ("taxi" %in% dist$stage_mode && TREAT_TAXI_AS_CAR) {
+    if ("car_driver" %in% dist$stage_mode) {
+      car_driver_row <- which(dist$stage_mode == "car_driver")
+      taxi_row <- which(dist$stage_mode == "taxi")
+      dist[car_driver_row, colnames(dist) %in% SCEN] <- dist[car_driver_row, colnames(dist) %in% SCEN] + 
+        dist[taxi_row, colnames(dist) %in% SCEN] 
+    }else{
+        car_row <- which(dist$stage_mode == "car")
+        taxi_row <- which(dist$stage_mode == "taxi")
+        dist[car_row, colnames(dist) %in% SCEN] <- dist[car_row, colnames(dist) %in% SCEN] + 
+          dist[taxi_row, colnames(dist) %in% SCEN] 
+      }
+  }
+  
   return(list(dist = dist, dur = dur))
 }

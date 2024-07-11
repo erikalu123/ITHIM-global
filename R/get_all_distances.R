@@ -76,6 +76,21 @@ get_all_distances <- function(ithim_object) {
 
     dist <- dist %>% filter(stage_mode != "walk_to_pt")
   }
+  
+  # add 'taxi' stage distances to 'car_' stage distances
+  if ("taxi" %in% dist$stage_mode && TREAT_TAXI_AS_CAR) {
+    if ("car_driver" %in% dist$stage_mode) {
+      dist[dist$stage_mode == "car_driver", ][SCEN] <- dist[dist$stage_mode == "car_driver", ][SCEN] +
+        dist[dist$stage_mode == "taxi", ][SCEN]
+    }else{
+      dist[dist$stage_mode == "car", ][SCEN] <- dist[dist$stage_mode == "car", ][SCEN] +
+        dist[dist$stage_mode == "taxi", ][SCEN]
+    }
+    # dist <- dist %>% filter(stage_mode != "walk_to_pt")
+  }
+  
+  
+  
 
   ## Find population distances for each age and gender category by
   # - determining the proportion of age and sex specific mode distances
