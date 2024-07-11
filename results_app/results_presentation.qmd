@@ -119,7 +119,16 @@ PIF <- PIF |> rename(Scenario = name) |> mutate(Scenario = case_when(
                )
 )
 
-prop <- io$bogota$trip_scen_sets |> distinct(scenario, trip_id, .keep_all = T) |> count(scenario, trip_mode) |> mutate(freq = round(prop.table(n) * 100, 1), .by = scenario) |> mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> filter(pd != 0)
+# prop <- io$bogota$trip_scen_sets |> filter(participant_id !=0) |> distinct(scenario, trip_id, .keep_all = T) |> count(scenario, trip_mode) |> mutate(freq = round(prop.table(n) * 100, 1), .by = scenario) |> mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> filter(pd != 0)
+
+
+prop <- io$bogota$trip_scen_sets |> 
+  filter(participant_id !=0) |> 
+  distinct(trip_id, scenario, .keep_all = T) |> 
+  count(scenario, trip_mode) |> 
+  mutate(freq = round(prop.table(n) * 100, 3), .by = scenario) |> 
+  mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> 
+  filter(pd != 0)
 
 prop[prop$scenario == "baseline",]$scenario <- "Baseline"
 prop[prop$scenario == "sc_bus",]$scenario <- "Public Transport"
@@ -168,6 +177,44 @@ plotly::ggplotly(ggplot(prop) +
      labs(title = "Scenario definition (by mode)", y = "Percentage (%)", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
 
 ```
+
+## Comparison by distance change
+
+```{r}
+
+# modes_to_ignore <- io$bogota$trip_scen_sets |> filter(participant_id == 0 & trip_mode != 'motorcycle') |> distinct(trip_mode) |> pull()
+
+prop_dist <- io$bogota$dist |> 
+  filter(!stage_mode %in% c("truck", "bus_driver", "car_driver")) |>
+  mutate_if(is.numeric, ~ round(. / sum(.) * 100, 1)) |> 
+  mutate(sc_bus = sc_bus - baseline, sc_car = sc_car - baseline, sc_cycle = sc_cycle - baseline) |>
+  filter(stage_mode %in% c("bus", "car", "cycle", "motorcycle", "pedestrian")) |> 
+  dplyr::select(-baseline) |> 
+  rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |>
+  pivot_longer(cols = -c(mode), names_to = "scenario")
+
+scen_colours <- c("Baseline" = '#ffffbf',
+                  "Bicycling" = '#abdda4',
+                  "Car" = '#d7191c',
+                  "Public Transport" = '#2b83ba',
+                  "Motorcycle" = '#fdae61')
+
+
+plotly::ggplotly(ggplot(prop_dist) +
+     aes(x = mode, fill = scenario, weight = value) +
+     geom_bar() +
+     scale_fill_hue(direction = 1) +
+    scale_x_discrete(guide = guide_axis(angle = 90)) + 
+    geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4, 
+                                 position = position_dodge()) + scale_fill_manual(values = scen_colours) +
+     facet_wrap(vars(scenario)) + 
+     labs(title = "Scenario definition (by mode) by distance", y = "Proportion differnce (%) from baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+
+
+
+```
+
 
 # Distance tables - (km)
 
@@ -247,6 +294,8 @@ change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
   names(mmets)[change_names] <- sapply(gsub("_mmet" , "", names(mmets)[change_names]), FUN = get_qualified_scen_name)
   
 mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
+
+write_csv(mmets, "mmets.csv")
 
 plotly::ggplotly(ggplot(mmets, aes(x=value, fill=Scenario)) + 
                    geom_density(alpha=.3) + 
