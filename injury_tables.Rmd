@@ -10,7 +10,7 @@ output:
     toc_float: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo=FALSE, results='hide'}
 library(knitr)
 library(pracma)
 library(summarytools)
@@ -129,11 +129,12 @@ st_options(bootstrap.css     = FALSE,       # Already part of the theme so no ne
            style             = "rmarkdown", # Idem.
            dfSummary.silent  = TRUE,        # Suppresses messages about temporary files
            footnote          = NA,          # Keeping the results minimalistic
-           subtitle.emphasis = FALSE)       # For the vignette theme, this gives much better results. Your mileage may vary
+           subtitle.emphasis = FALSE)        # For the vignette theme, this gives much better results. Your mileage may vary
+                 
 
 ```
 
-```{r load_objects = "asis"}
+```{r load_objects = "asis", echo=FALSE, message = F}
 #output_version <- "v0.3"
 #
 
@@ -257,7 +258,7 @@ Injury outcome for all scenarios for each scenario including the predicted and o
 ## Injury outcome for each scenario (incl predicted and observed baseline figures)
 
 
-```{r whw, results = 'asis', fig.width=7, fig.height=4, echo=FALSE}
+```{r whw, results = 'asis', fig.width=7, fig.height=4, echo=FALSE, message = F}
 # create dataframe with nov and whw injury counts by casualty and strike mode pair (if only one
 # of nov or whw exists, only create dataframe with existing data), add row and column sums
 # create distance, speed and duration dataframes
@@ -466,7 +467,7 @@ true_distances <- true_distances %>% rename(cas_mode = stage_mode)
 ```
 
 
-```{r whw_for_all_cs, results = 'asis', fig.width=7, fig.height=4, echo=FALSE}
+```{r whw_for_all_cs, results = 'asis', fig.width=7, fig.height=4, echo=FALSE, message = F}
 
 
 # create one dataframe for all cities and scenarios (incl original baseline counts) containing one column with fatality counts (and columns for city, strike mode, cas mode, scenario, distances, location)
@@ -581,7 +582,7 @@ readr::write_csv(inj_counts_list, paste0('results/multi_city/inj/inj_counts.csv'
 
 ## Casualty mode fatality counts for all case cities 
 
-```{r whw_print, results = 'asis', fig.width=7, fig.height=4, echo=FALSE}
+```{r whw_print, results = 'asis', fig.width=7, fig.height=4, echo=FALSE, message = F}
 
 ### Tables for each casualty mode, giving fatalities by strike mode -> print to html file
 
@@ -668,9 +669,14 @@ for (city in cities){ # loop through cities
     whw_qn <- paste0("whw", pref_name)
     nov_qn <- paste0("nov", pref_name)
     
+    
     for (cs in names(io[[city]]$outcomes$whw)){ # loop through scenarios
       # cs <- 'baseline'
-      if (length(word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()) == 2){ # if there are whw and nov matrices
+      
+        whw_nov_list <- word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()
+        whw_nov_list <- whw_nov_list[whw_nov_list != 'combined']
+      
+      if (length(whw_nov_list) == 2){ # if there are whw and nov matrices
          # td1: Number of fatalities in nov for each casualty mode
         td1 <- io[[city]]$outcomes$whw[[cs]][[nov_qn]] %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         # td2: Number of fatalities in whw for each casualty mode
@@ -679,12 +685,12 @@ for (city in cities){ # loop through cities
         td3 <- full_join(td2, td1, by = 'mode') %>% mutate(count = rowSums(.[2:3], na.rm = T)) %>% dplyr::select(-c('count.x', 'count.y'))
      
         
-      }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'whw'){ # if there are only whw matrices
+      }else if(length(whw_nov_list) == 1 && 'whw' %in% whw_nov_list){ # if there are only whw matrices
         # sum of fatalities for each casualty mode
         td3 <- colSums(io[[city]]$outcomes$whw[[cs]][[whw_qn]]) %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
        
       
-        }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'nov'){ # if there are only nov matrices
+        }else if(length(whw_nov_list) == 1 && 'nov' %in% whw_nov_list){ # if there are only nov matrices
         # sum of fatalities for each casualty mode
         td3 <- io[[city]]$outcomes$whw[[cs]][[nov_qn]] %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         
@@ -708,6 +714,12 @@ for (city in cities){ # loop through cities
       td4[, 2] <- as.numeric(td4[,2])
 
       
+      # create total
+      total <- td4 %>% group_by() %>% summarise(stage_mode = 'Total', 
+                                                                  x = sum(td4[,2]),
+                                                                  y = sum(td4[,3]))
+      colnames(total) <- colnames(td4)
+      
       # add active travel mode
       # filter out pedestrian and cycle trips, calculate sum of counts and distances and add to existing data
       active_travel <- td4 %>% filter(stage_mode == 'pedestrian' | stage_mode == 'cycle')
@@ -716,7 +728,9 @@ for (city in cities){ # loop through cities
                                                                   y = sum(active_travel[,3]))
       colnames(active_travel) <- colnames(td4)
       
-      td4 <- rbind(td4, active_travel)
+      td4 <- rbind(td4, active_travel, total) # add total and active travel
+      
+
 
 
       td5 <- td4 # save copy for later risk per population calculation
@@ -791,7 +805,7 @@ injury_risks_lng <- injury_risks_lng %>% dplyr::select(-variable)
 injury_risks_lng$scenario <- as.character(injury_risks_lng$scenario)
 
 rd <- rename(injury_risks_lng, mode = stage_mode)
-rd <- rd %>% filter(mode != 'Total')
+#rd <- rd %>% filter(mode != 'Total')
 
 # add country and continent information
 rd <- left_join(rd, location, by = 'city')
@@ -800,11 +814,19 @@ rd <- left_join(rd, location, by = 'city')
 # get true_distances into correct format
 true_distances <- true_distances  %>% rename(mode = cas_mode)
 
-# add active travel distances
+# calculate total distances
+true_distances_total <- true_distances %>% group_by(city,scenario) %>% summarise(
+                                              mode_distance = sum(mode_distance), mode = 'Total')
+
+# calculate active travel distances
 true_distances_at <- true_distances %>% filter(mode == 'cycle' | mode == 'pedestrian')
 true_distances_at <- true_distances_at %>% group_by(city,scenario) %>% summarise(
                                               mode_distance = sum(mode_distance), mode = 'active_travel')
-true_distances <- rbind(true_distances, true_distances_at)
+
+
+# add active travel and total distances
+true_distances <- rbind(true_distances, true_distances_at ,true_distances_total)
+
 
 # add distance information 
 rd <- left_join(rd, true_distances, by = c('mode', 'city','scenario'))
@@ -814,8 +836,16 @@ rd <- left_join(rd, true_distances, by = c('mode', 'city','scenario'))
 # aggregate baseline counts by cas_mode
 baseline_counts_agg <- baseline_counts %>% group_by(city,cas_mode, country, continent, measure, scenario) %>% summarise(value = sum(value)) %>% rename(mode = cas_mode)
 
+
+# add total
+baseline_counts_agg_total <- baseline_counts_agg %>% group_by(city, country, continent, measure, scenario) %>% summarise(value = sum(value))
+baseline_counts_agg_total$mode <- 'Total'
+
+baseline_counts_agg <- rbind(baseline_counts_agg, baseline_counts_agg_total)
+
 # merge baseline count with distance
 baseline_counts_km <- left_join(baseline_counts_agg, true_distances, by = c('mode', 'city', 'scenario'))
+
 
 # add active travel 
 active_travel <- baseline_counts_km %>% filter(mode == 'cycle' | mode == 'pedestrian')
@@ -823,6 +853,8 @@ active_travel <- active_travel %>% group_by(city, scenario, country, continent, 
                                    value = sum(value), mode_distance = sum(mode_distance), mode ='active_travel')
 
 baseline_counts_km <- rbind(baseline_counts_km, active_travel)
+
+
 
 
 # calculate value per distance
@@ -862,7 +894,10 @@ for (city in cities){ # loop through cities
     
     for (cs in names(io[[city]]$outcomes$whw)){ # loop through scenarios
       
-      if (length(word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()) == 2){ # if both whw and nov outputs exist
+      whw_nov_list <- word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()
+      whw_nov_list <- whw_nov_list[whw_nov_list != 'combined']
+      
+      if (length(whw_nov_list) == 2){ # if both whw and nov outputs exist
         # extract nov part and get into correct format
         td1 <- (io[[city]]$outcomes$whw[[cs]][[nov_qn]]) %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         # extract whw part and get into correct format
@@ -870,10 +905,11 @@ for (city in cities){ # loop through cities
         # join nov and whw parts
         td3 <- full_join(td2, td1, by = 'mode') %>% mutate(count = rowSums(.[2:3], na.rm = T)) %>% dplyr::select(-c('count.x', 'count.y'))
         
-      }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'whw'){ # if only whw outputs exist
+      }else if(length(whw_nov_list) == 1 && 'whw' %in% whw_nov_list){ # if only whw outputs exist
         # extract whw part and get into correct format
         td3 <- colSums((io[[city]]$outcomes$whw[[cs]][[whw_qn]])) %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
-      }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'nov'){ # if only nov outputs exist
+        
+      }else if(length(whw_nov_list) == 1 && 'nov' %in% whw_nov_list){ # if only nov outputs exist
         # extract nov part and get into correct format
         td3 <- (io[[city]]$outcomes$whw[[cs]][[nov_qn]]) %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         
@@ -892,7 +928,7 @@ for (city in cities){ # loop through cities
       var <- get_qualified_scen_name(cs)
       
       names(td4)[2] <- var
-      
+    
       
       ## add active travel mode
       # filter out pedestrian and cycle trips, calculate sum of counts and distances and add to existing data
@@ -901,6 +937,7 @@ for (city in cities){ # loop through cities
                                                                   x = sum(active_travel[,2]))
       colnames(active_travel) <- colnames(td4)
       
+      # add active travel
       td4 <- rbind(td4, active_travel)
 
       
@@ -912,6 +949,7 @@ for (city in cities){ # loop through cities
       el <- full_join(el, td4, by = 'stage_mode')
     }
 
+    # calculate total
     el_no_at <- el %>% filter(!stage_mode == 'active_travel')
     el_total <- el_no_at %>% ungroup() %>% janitor::adorn_totals(c('row'))
    
@@ -998,10 +1036,19 @@ for (city in cities) { # Loop for each city
 }
 true_distances_df <- bind_rows(true_distances_city)
 
+
+
+# calculate total distances
+true_distances_df_total <- true_distances_df %>% group_by(city,scenario) %>% summarise(
+                                              distance = sum(distance), mode = 'Total')
+
 # add active travel distances
 true_distances_df_at <- true_distances_df %>% filter(stage_mode == 'cycle' | stage_mode == 'pedestrian')
 true_distances_df_at <- true_distances_df_at %>% group_by(city, scenario) %>% summarise(stage_mode = 'active_travel', distance = sum(distance))
-true_distances_df <- rbind(true_distances_df, true_distances_df_at) 
+
+true_distances_df <- rbind(true_distances_df, true_distances_df_at, true_distances_df_total) 
+
+
 
 # write to csv with and without output version number
 readr::write_csv(true_distances_df, paste0('results/multi_city/inj/distances.csv'))
@@ -1036,8 +1083,13 @@ for (city in cities){ # loop through cities
     nov_qn <- paste0("nov", pref_name)
     
     for (cs in names(io[[city]]$outcomes$whw)){ # loop through scenarios
-      # cs <- 'Baseline'
-      if (length(word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()) == 2){ # if there exist nov and whw matrices
+      # cs <- 'baseline'
+      
+      whw_nov_list <- word(names(io[[city]]$outcomes$whw$baseline), 1, sep = "_") %>% unique()
+      whw_nov_list <- whw_nov_list[whw_nov_list != 'combined']
+      
+      
+      if (length(whw_nov_list) == 2){ # if there exist nov and whw matrices
         # td1: Number of fatalities in nov
         td1 <- io[[city]]$outcomes$whw[[cs]][[nov_qn]] %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         # td2: Number of fatalities in whw
@@ -1046,13 +1098,13 @@ for (city in cities){ # loop through cities
         td3 <- full_join(td2, td1, by = 'mode') %>% mutate(count = rowSums(.[2:3], na.rm = T)) %>% dplyr::select(-c('count.x', 'count.y'))
 
         
-      }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'whw'){ # if there exist only whw matrices
+      }else if(length(whw_nov_list) == 1 && 'whw' %in% whw_nov_list){ # if there exist only whw matrices
         
         # td3: number of fatalities for whw only
         td3 <- colSums(io[[city]]$outcomes$whw[[cs]][[whw_qn]]) %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
         
         
-      }else if(length(names(io[[city]]$outcomes$whw$baseline)) == 1 && names(io[[city]]$outcomes$whw$baseline) == 'nov'){ # if there exist only nov matrices
+      }else if(length(whw_nov_list) == 1 && 'nov' %in% whw_nov_list){ # if there exist only nov matrices
         
         # td3: number of fatalities for nov only
         td3 <- io[[city]]$outcomes$whw[[cs]][[nov_qn]] %>% as.data.frame() %>% rownames_to_column() %>% rename(mode = rowname) %>% rename_at(2, ~"count")
@@ -1077,6 +1129,14 @@ for (city in cities){ # loop through cities
       td4[, 2] <- as.numeric(unlist(td4[,2]))
       td4[, 3] <- as.numeric(unlist(td4[,3]))
       
+      
+      # create total
+      total <- td4 %>% group_by() %>% summarise(stage_mode = 'Total', 
+                                                                  x = sum(td4[,2]),
+                                                                  y = sum(td4[,3]))
+      colnames(total) <- colnames(td4)
+      
+      
       # add active travel mode
       # filter out pedestrian and cycle trips, calculate sum of counts and distances and add to existing data
       active_travel <- td4 %>% filter(stage_mode == 'pedestrian' | stage_mode == 'cycle')
@@ -1085,7 +1145,9 @@ for (city in cities){ # loop through cities
                                                                   y = sum(active_travel[,3]))
       
       colnames(active_travel) <- colnames(td4)
-      td4 <- rbind(td4, active_travel)
+      
+      # add active travel and total
+      td4 <- rbind(td4, active_travel, total)
       
       
       # Compute risk per 100 million hours travelled
@@ -1169,6 +1231,7 @@ duration <- duration  %>% rename(mode = stage_mode)
 duration_at <- duration %>% filter(mode == 'pedestrian' | mode == 'cycle')
 duration_at <- duration_at %>% group_by(scenario, city) %>% summarise(mode = 'active_travel',
                                                                       mode_duration = sum(mode_duration))
+
 duration <- rbind(duration, duration_at)
 
 
@@ -1202,9 +1265,9 @@ readr::write_csv(rd_hours, paste0('results/multi_city/inj/injury_risks_per_100mi
 # Export injury datasets as a single excel file
 path_inj_wb <- paste0('results/multi_city/inj/inj_data.xlsx')
  writexl::write_xlsx(list(inj_counts = inj_counts_list, #%>% filter(str_mode != 'Total'),
-                          injury_risks_billion_kms = rd,
+                          injury_risks_billion_kms = rd %>% filter(mode != 'Total'),
                           injury_risks_100k_people  = injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'),
-                          injury_risks_100mil_h = rd_hours,
+                          injury_risks_100mil_h = rd_hours%>% filter(mode != 'Total'),
                           true_distances = true_distances_df),
                      path = path_inj_wb)
 ```
