@@ -377,8 +377,14 @@ get_scen_settings <- ithimr::get_scenario_settings(cities = cities)
 ```{r trip_mode_dist_prop = "asis", echo = F}
 
 for (city in cities) {
-  
-  td <- io[[city]]$trip_scen_sets |> filter(scenario == "baseline" & trip_id != 0 & trip_mode %in% c('pedestrian', 'cycle', 'car', 'motorcycle', 'bus')) |>  distinct(trip_id, .keep_all = T) |> count(trip_mode, trip_distance_cat) |> mutate(freq = prop.table(n), .by = trip_mode) |> dplyr::select(-n) |> dplyr::mutate(freq = round(freq * 100, 1)) |> pivot_wider(names_from = trip_distance_cat, values_from = freq) |> janitor::adorn_totals('col') |> mutate(Total = round(Total))
+  #  & 
+  td <- io[[city]]$trip_scen_sets |> 
+    filter(scenario == "baseline" & trip_id != 0 & participant_id != 0) |>  
+    distinct(trip_id, .keep_all = T) |> 
+    count(trip_mode, trip_distance_cat) |> 
+    mutate(freq = prop.table(n), .by = trip_mode) |>
+    filter(trip_mode %in% c('pedestrian', 'cycle', 'car', 'motorcycle', 'bus')) |> 
+  dplyr::select(-n) |> dplyr::mutate(freq = round(freq * 100, 1)) |> pivot_wider(names_from = trip_distance_cat, values_from = freq) |> janitor::adorn_totals('col') |> mutate(Total = round(Total))
   
     # print mode share for individual cities
   print(kable(td, caption = paste("Trip proportion (%) by mode and by distance category for ", city)))
