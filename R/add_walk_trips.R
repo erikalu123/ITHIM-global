@@ -17,8 +17,12 @@
 #' \item find the trip stages that need changing
 #'
 #' \item add new 'walk to pt' stages. If the duration of the public transport stage is shorter than
-#'   BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, set the new stage duration to 3. Otherwise,
-#'   set the new stage duration to either BUS_WALK_TIME or RAIL_WALK_TIME depending on the trip mode
+#'   the minimum_pt_time, then do not add any walking stage. If the duration is in between the minimum_pt_time
+#'   and the BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, then set the pt stage to the minimum_pt_time
+#'   and the rest of the trip duration is defined as walking to pt. If the duration is larger than 
+#'   BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, set the new walking stage duration to
+#'   either BUS_WALK_TIME or RAIL_WALK_TIME depending on the trip mode and subtract this BUS_WALK_TIME
+#'   or RAIL_WALK_TIME from the pt stage.
 #'
 #' \item update the original public transport stage duration
 #'
@@ -64,32 +68,55 @@ add_walk_trips <- function(pt_trips) {
   # add new stage_mode as walk to pt
   walk_trips$stage_mode_new <- "walk_to_pt"
 
-  # Replace walk trips with duration greater than that of (pt time + min_pt_time) with new pt time, else set time to 0
-  # Walk_to_pt for bus trips
-  walk_trips$stage_duration_new <- ifelse(((walk_trips$stage_duration > BUS_WALK_TIME + min_pt_time) &
-    (walk_trips$stage_mode == "bus" | walk_trips$stage_mode == "minibus")), BUS_WALK_TIME, 0)
-  # Walk_to_pt for rail trips
-  walk_trips$stage_duration_new <- ifelse(((walk_trips$stage_duration > RAIL_WALK_TIME + min_pt_time) &
-    (walk_trips$stage_mode == "rail" | walk_trips$stage_mode == "subway")), RAIL_WALK_TIME,
-  walk_trips$stage_duration_new
-  )
+  # Replace walk trips with duration greater than that of (walk to time + min_pt_time) with median walk time. 
+  # trips with duration between min_pt_time and (walk to time + min_pt_time) get a walking stage duration of stage_duration - min_pt_time
+  # Trips with duration less than min_pt_time get a walk duration of 0
+  
+  walk_trips$stage_duration_new <- 0
+  
+  walk_trips <- walk_trips %>% mutate(stage_duration_new = case_when(
+    ((walk_trips$stage_duration <= min_pt_time) &
+       (walk_trips$stage_mode == "bus" | walk_trips$stage_mode == "minibus")) ~ 0,
+    ((walk_trips$stage_duration > min_pt_time) & 
+       (walk_trips$stage_duration < (min_pt_time + BUS_WALK_TIME)) &
+       (walk_trips$stage_mode == "bus" | walk_trips$stage_mode == "minibus")) ~ 
+      (walk_trips$stage_duration - min_pt_time),
+    ((walk_trips$stage_duration >= (min_pt_time + BUS_WALK_TIME)) &
+      (walk_trips$stage_mode == "bus" | walk_trips$stage_mode == "minibus")) ~ BUS_WALK_TIME,
+    ((walk_trips$stage_duration <= min_pt_time) &
+        (walk_trips$stage_mode == "rail" | walk_trips$stage_mode == "subway")) ~ 0,
+    ((walk_trips$stage_duration > min_pt_time) & 
+       (walk_trips$stage_duration < (min_pt_time + RAIL_WALK_TIME)) &
+       (walk_trips$stage_mode == "rail" | walk_trips$stage_mode == "subway")) ~ 
+      (walk_trips$stage_duration - min_pt_time),
+    ((walk_trips$stage_duration >= (min_pt_time + RAIL_WALK_TIME)) &
+      (walk_trips$stage_mode == "rail" | walk_trips$stage_mode == "subway")) ~ RAIL_WALK_TIME,
+    TRUE ~ walk_trips$stage_duration_new
+  ))
+  
+ 
 
-  # Remove walk_to_pt duration from trip duration for bus trips
-  pt_trips_to_change$stage_duration <- ifelse(
-    ((pt_trips_to_change$stage_duration > BUS_WALK_TIME + min_pt_time) &
-      (pt_trips_to_change$stage_mode == "bus" | pt_trips_to_change$stage_mode == "minibus")),
-    pt_trips_to_change$stage_duration - BUS_WALK_TIME,
-    pt_trips_to_change$stage_duration
-  )
+  # Remove walk_to_pt duration from trip duration for bus and rail trips
+  pt_trips_to_change <- pt_trips_to_change %>% mutate(stage_duration = case_when(
+    ((pt_trips_to_change$stage_duration <= min_pt_time) &
+       (pt_trips_to_change$stage_mode == "bus" | pt_trips_to_change$stage_mode == "minibus")) ~ pt_trips_to_change$stage_duration,
+    ((pt_trips_to_change$stage_duration > min_pt_time) & 
+       (pt_trips_to_change$stage_duration < (min_pt_time + BUS_WALK_TIME)) &
+       (pt_trips_to_change$stage_mode == "bus" | pt_trips_to_change$stage_mode == "minibus")) ~ min_pt_time,
+    ((pt_trips_to_change$stage_duration >= (min_pt_time + BUS_WALK_TIME)) &
+      (pt_trips_to_change$stage_mode == "bus" | pt_trips_to_change$stage_mode == "minibus")) ~ (pt_trips_to_change$stage_duration - BUS_WALK_TIME),
+    ((pt_trips_to_change$stage_duration <= min_pt_time) &
+        (pt_trips_to_change$stage_mode == "rail" | pt_trips_to_change$stage_mode == "subway")) ~ pt_trips_to_change$stage_duration,
+    ((pt_trips_to_change$stage_duration > min_pt_time) & 
+       (pt_trips_to_change$stage_duration < (min_pt_time + RAIL_WALK_TIME)) &
+       (pt_trips_to_change$stage_mode == "rail" | pt_trips_to_change$stage_mode == "subway")) ~ min_pt_time,
+    ((pt_trips_to_change$stage_duration >= (min_pt_time + RAIL_WALK_TIME)) &
+      (pt_trips_to_change$stage_mode == "rail" | pt_trips_to_change$stage_mode == "subway")) ~ (pt_trips_to_change$stage_duration - RAIL_WALK_TIME),
+    TRUE ~ pt_trips_to_change$stage_duration
+  ))
+    
 
-  # Remove walk_to_pt duration from trip duration for rail trips
-  pt_trips_to_change$stage_duration <- ifelse(
-    ((pt_trips_to_change$stage_duration > RAIL_WALK_TIME + min_pt_time) &
-      (pt_trips_to_change$stage_mode == "rail" | pt_trips_to_change$stage_mode == "subway")),
-    pt_trips_to_change$stage_duration - RAIL_WALK_TIME,
-    pt_trips_to_change$stage_duration
-  )
-
+  
   # Correct walk trips distance
   walk_trips$stage_distance_new <- (walk_trips$stage_duration_new / 60) * VEHICLE_INVENTORY$speed[VEHICLE_INVENTORY$stage_mode == "pedestrian"]
 
