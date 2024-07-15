@@ -52,8 +52,6 @@
 #'
 #' @export
 scenario_pm_calculations <- function(dist, trip_scen_sets) {
-  print("Using new implementation of ventilation rates...")
-
   # Exposure factor rate by activity (the ratio between that mode’s PM2.5 and the background’s PM2.5)
   exp_facs <- data.frame(
     stage_mode = c("car", "taxi", "bus", "rail", "cycle", "pedestrian", "motorcycle"),
