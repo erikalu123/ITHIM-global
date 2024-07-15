@@ -61,7 +61,7 @@ if (!require("drpa",character.only = TRUE)) {
 
 cities <- 'bogota'
 
-input_parameter_file <- "Bogota_InputParameters_v2.0.xlsx" # file containing the local and global input parameters
+input_parameter_file <- "Bogota_InputParameters_v2.1.xlsx" # file containing the local and global input parameters
 # 
 
 ## Get the current repo sha
@@ -82,7 +82,7 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 write_output_control = T # whether you want to save the model run specifics or not
 output_version <- paste0(repo_sha, "_test_run") # gives the version number of the output documents, independent of the input parameter file name
 author <- "AA"
-comment <- "Testing after adding scenario names with PM2.5 concentrations"
+comment <- "Using taxi as car flag (T)"
 
 # scenario definition
 scenario_name <- "BOGOTA" # name of scenario to be called
@@ -91,7 +91,6 @@ scenario_name <- "BOGOTA" # name of scenario to be called
 # other input data for the city 
 reference_scenario <- 'Baseline' 
 scenario_increase <- 0.05 # increase for each mode in each scenario (used in GLOBAL, BOGOTA, LATAM and AFRICA_INDIA scenarios)
-TREAT_TAXI_AS_CAR <- FALSE
 
 
 # define which output results to plot
@@ -244,6 +243,7 @@ print(system.time(for(city in cities){
     ADD_WALK_TO_PT_TRIPS = as.logical(add_walk_to_pt_trips[[city]]),
     CITY = city,
     AGE_RANGE = c(min_age,max_age),
+    TREAT_TAXI_AS_CAR = as.logical(treat_taxi_as_car),
     ADD_TRUCK_DRIVERS = as.logical(add_truck_drivers),
     ADD_BUS_DRIVERS = as.logical(add_bus_drivers),
     ADD_CAR_DRIVERS = as.logical(add_car_drivers),
