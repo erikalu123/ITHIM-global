@@ -79,6 +79,7 @@
 #' @param CO2_emission_inventory named list of CO2 mode emissions
 #' @param DIST_CAT vector string of distance categories in the form '0-6'. (The unit is assumed to be the same as in the trip set and is related to speed values, usually in km)
 #' @param AGE_RANGE vector of minimum and maximum ages to include
+#' @param TREAT_TAXI_AS_CAR logic: whether to treat taxi as car/car_driver
 #' @param ADD_WALK_TO_PT_TRIPS logic: whether or not to add short walks to all PT trips
 #' @param ADD_BUS_DRIVERS logic: whether or not to add bus drivers
 #' @param ADD_CAR_DRIVERS logic: whether or not to find and add distance travelled by individual cars, denoted by car drivers
@@ -157,6 +158,7 @@ run_ithim_setup <- function(seed = 1,
                             CO2_emission_inventory = NULL,
                             DIST_CAT = c("0-2 km", "2-6 km", "6+ km"),
                             AGE_RANGE = c(15, 69),
+                            TREAT_TAXI_AS_CAR = T,
                             ADD_WALK_TO_PT_TRIPS = T,
                             ADD_BUS_DRIVERS = T,
                             ADD_CAR_DRIVERS = T,
@@ -254,6 +256,7 @@ run_ithim_setup <- function(seed = 1,
   NSAMPLES <<- NSAMPLES
 
   # MODEL FLAGS, set to global
+  TREAT_TAXI_AS_CAR <<- TREAT_TAXI_AS_CAR
   ADD_WALK_TO_PT_TRIPS <<- ADD_WALK_TO_PT_TRIPS
   ADD_BUS_DRIVERS <<- ADD_BUS_DRIVERS
   ADD_CAR_DRIVERS <<- ADD_CAR_DRIVERS
