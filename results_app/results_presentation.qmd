@@ -41,6 +41,7 @@ library(fixest)
 library(gt)
 library(gtExtras)
 library(gghighlight)
+library(gridExtra)
 library(quartomonothemer)
 library(showtext)
 ```
@@ -110,14 +111,14 @@ library(gtExtras)
 repo_sha <-  as.character(readLines(file.path("repo_sha")))
 io <- readRDS(paste0("../results/multi_city/io_", repo_sha, "_test_run.rds"))
 
-PIF <- read_csv("data/PIF.csv")
-
-PIF <- PIF |> rename(Scenario = name) |> mutate(Scenario = case_when(
-                 Scenario  == "sc_cycle_PIF" ~ "Bicycling",
-                 Scenario  == "sc_car_PIF" ~ "Car",
-                 Scenario  == "sc_bus_PIF" ~ "Public Transport",
-               )
-)
+# PIF <- read_csv("data/PIF.csv")
+# 
+# PIF <- PIF |> rename(Scenario = name) |> mutate(Scenario = case_when(
+#                  Scenario  == "sc_cycle_PIF" ~ "Bicycling",
+#                  Scenario  == "sc_car_PIF" ~ "Car",
+#                  Scenario  == "sc_bus_PIF" ~ "Public Transport",
+#                )
+# )
 
 # prop <- io$bogota$trip_scen_sets |> filter(participant_id !=0) |> distinct(scenario, trip_id, .keep_all = T) |> count(scenario, trip_mode) |> mutate(freq = round(prop.table(n) * 100, 1), .by = scenario) |> mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> filter(pd != 0)
 
@@ -185,7 +186,7 @@ plotly::ggplotly(ggplot(prop) +
 # modes_to_ignore <- io$bogota$trip_scen_sets |> filter(participant_id == 0 & trip_mode != 'motorcycle') |> distinct(trip_mode) |> pull()
 
 prop_dist <- io$bogota$dist |> 
-  filter(!stage_mode %in% c("truck", "bus_driver", "car_driver")) |>
+  # filter(!stage_mode %in% c("truck", "bus_driver", "car_driver")) |>
   mutate_if(is.numeric, ~ round(. / sum(.) * 100, 1)) |> 
   mutate(sc_bus = sc_bus - baseline, sc_car = sc_car - baseline, sc_cycle = sc_cycle - baseline) |>
   filter(stage_mode %in% c("bus", "car", "cycle", "motorcycle", "pedestrian")) |> 
@@ -208,9 +209,40 @@ plotly::ggplotly(ggplot(prop_dist) +
     geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4, 
                                  position = position_dodge()) + scale_fill_manual(values = scen_colours) +
      facet_wrap(vars(scenario)) + 
-     labs(title = "Scenario definition (by mode) by distance", y = "Proportion differnce (%) from baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+     labs(title = "Scenario definition (by mode) by distance", y = "Proportional change (%) when compared with baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
 
 
+
+
+```
+
+
+# Comparision by proportional change in distance
+```{r}
+
+prop_dist <- io$bogota$dist |> 
+  mutate(across(starts_with("sc"), ~ (round((. - baseline)/., 3)))) |>
+  filter(!stage_mode %in% c("truck", "car_driver", "bus_driver", "taxi", "auto_rickshaw", "rail")) |> 
+  dplyr::select(-baseline) |> 
+  rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |>
+  pivot_longer(cols = -c(mode), names_to = "scenario")
+
+scen_colours <- c("Baseline" = '#ffffbf',
+                  "Bicycling" = '#abdda4',
+                  "Car" = '#d7191c',
+                  "Public Transport" = '#2b83ba',
+                  "Motorcycle" = '#fdae61')
+
+
+plotly::ggplotly(ggplot(prop_dist) +
+     aes(x = mode, fill = scenario, weight = value) +
+     geom_bar() +
+     scale_fill_hue(direction = 1) +
+    scale_x_discrete(guide = guide_axis(angle = 90)) + 
+    geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4, 
+                                 position = position_dodge()) + scale_fill_manual(values = scen_colours) +
+     facet_wrap(vars(scenario)) + 
+     labs(title = "Scenario definition (by mode) by distance", y = "Proportion change (%) from baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
 
 
 ```
@@ -295,7 +327,7 @@ change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
   
 mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
 
-write_csv(mmets, "mmets.csv")
+# write_csv(mmets, "mmets.csv")
 
 plotly::ggplotly(ggplot(mmets, aes(x=value, fill=Scenario)) + 
                    geom_density(alpha=.3) + 
@@ -320,23 +352,87 @@ mmets |>
 ```
 
 
-## Potential Impact Fraction using different censor points
+```{r}
 
+
+print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
+  rr <- mmets |> mutate(across(ends_with("mmet"), ~ drpa::dose_response(
+    cause = "all-cause-mortality", outcome_type = "fatal",
+    dose = .x, censor_method = censor_method) |> pull())) |> 
+    dplyr::select(ends_with("mmet")) |> 
+    rename_with(~ gsub("mmet", "rr", .x, fixed = TRUE))
+  
+  pif <- cbind(mmets, rr) |> 
+    dplyr::select(ends_with("_rr"), age_cat, sex) |> 
+    group_by (age_cat, sex) |> 
+    summarise(across(where(is.numeric), sum)) |> 
+    mutate(pif_cyc = ((base_rr - sc_cycle_rr)/base_rr), 
+           pif_bus = ((base_rr - sc_bus_rr)/base_rr)) |> 
+    dplyr::select(age_cat, sex, contains("pif")) |> 
+    pivot_longer(cols = -c(age_cat, sex))
+  
+  total_pif <- reframe(pif |> ungroup(), total = round(sum(value), 2), .by = name)
+  print(ggplot(pif) +
+          aes(x = value, y = name, fill = name) +
+          geom_boxplot() +
+          scale_fill_hue(direction = 1) +
+          theme_minimal() +
+          labs(title = plot_tile, x = "PIF (%)", y = "Scenario") +
+          annotation_custom(tableGrob(total_pif, rows=NULL), 
+                            xmin=0.015, xmax=0.020, ymin="pif_bus"))
+  
+  #print(reframe(pif |> ungroup(), sum(value), .by = name))
+}
+
+
+# print_pif_table(mmets, censor_method = "WHO-DRL", plot_tile = "PIF for cycling/public transport with censor point at 17.5 MMET hours per week")
+# 
+# print_pif_table(mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/public transport with censor point at 35 MMET hours per week")
+
+
+```
+
+
+## Potential Impact Fraction using different censor points
 
 ```{r}
 
-ggplotly(ggplot(PIF) +
-  aes(x = group, y = value, fill = Scenario) +
-  geom_boxplot() +
-  scale_fill_hue(direction = 1) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  scale_fill_manual(values = scen_colours) +
-  facet_wrap(vars(Scenario)) +
-  labs("Potential Impact Fraction using all-cause DRF",
-  subtitle = "We have used three different DRFs where censor point varies. PIF_75p where censor point is at 75th percentile, and PIF_WHO_DRL (censor point is at 35 MMETs per person per week and PIF_none (without any censor point)",
-  x = "", y = "PIF (%) (+ve benefit)"))
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/public transport with no censor point")
 
 ```
+
+
+## Potential Impact Fraction at 17.5 MMET hours per week
+
+```{r}
+
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile = "PIF for cycling/public transport with censor point at 17.5 MMET hours per week")
+
+```
+
+## Potential Impact Fraction at 35 MMET hours per week
+
+```{r}
+
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/public transport with censor point at 35 MMET hours per week")
+
+```
+
+
+<!-- ```{r} -->
+
+<!-- ggplotly(ggplot(PIF) + -->
+<!--   aes(x = group, y = value, fill = Scenario) + -->
+<!--   geom_boxplot() + -->
+<!--   scale_fill_hue(direction = 1) + -->
+<!--   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + -->
+<!--   scale_fill_manual(values = scen_colours) + -->
+<!--   facet_wrap(vars(Scenario)) + -->
+<!--   labs("Potential Impact Fraction using all-cause DRF", -->
+<!--   subtitle = "We have used three different DRFs where censor point varies. PIF_75p where censor point is at 75th percentile, and PIF_WHO_DRL (censor point is at 35 MMETs per person per week and PIF_none (without any censor point)", -->
+<!--   x = "", y = "PIF (%) (+ve benefit)")) -->
+
+<!-- ``` -->
 
 
 ## Health Outcomes
