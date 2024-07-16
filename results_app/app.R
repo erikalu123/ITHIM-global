@@ -1,7 +1,7 @@
 library(shiny)
 library(plotly)
 library(tidyverse)
-library(gridlayout)
+library(gridlayout) # devtools::install_github("rstudio/gridlayout")
 library(shinyWidgets)
 library(bslib)
 library(readxl)
@@ -31,8 +31,12 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 output_version <- paste0(repo_sha, "_test_run")
 github_path <- "https://raw.githubusercontent.com/ITHIM/ITHIM-R/bogota/"
 # github_path <- "../"
-rel_path_health <- paste0(github_path, "results/multi_city/health_impacts/")
- 
+
+
+# results_file
+results_file <- 'multi_city'
+
+rel_path_health <- paste0(github_path, "results/",results_file,"/health_impacts/")
 
 ren_dose <- function(df){
   df[df$dose == "RTI",]$dose <- "Road Traffic Injuries (RTI)"
@@ -72,7 +76,7 @@ deaths_pathway <- ren_sex(deaths_pathway)
 
 overall_pop <- ylls |> distinct(sex, age_cat, .keep_all = T) |> summarise(sum(pop_age_sex)) |> pull()
 
-rel_path_inj <- paste0(github_path, "results/multi_city/inj/")
+rel_path_inj <- paste0(github_path, "results/",results_file,"/inj/")
 
 injury_risks_per_billion_kms_lng <- read_csv(paste0(rel_path_inj, "injury_risks_per_billion_kms.csv"))
 injury_risks_per_100k_pop <- read_csv(paste0(rel_path_inj, "injury_risks_per_100k_pop.csv"))
@@ -236,7 +240,7 @@ in_cities <- cities$city
 
 ui <- page_sidebar(
   theme = bs_theme(bootswatch = "yeti"),
-  title = "ITHIM Results",
+  title = paste0("ITHIM Results  ",output_version),
   sidebar = sidebar(
     pickerInput(inputId = "in_scens", 
                 label = "Scenario (5% increase)",
