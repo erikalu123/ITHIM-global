@@ -1,0 +1,5 @@
+Scenario,mean,5th,50th,95th,scenario_PM,change_PM,CO2,city
+Baseline,14.4,12.7,14.2,16.5,12.69,0,1588919,bogota
+Bicycling,14.4,12.6,14.1,16.3,12.6,-0.09,1541754.8,bogota
+Car,14.5,12.7,14.2,16.5,12.67,-0.02,1797637.2,bogota
+Public Transport,14.5,12.7,14.1,16.8,12.68,-0.01,1417360.9,bogota
