@@ -301,7 +301,7 @@ plotly::ggplotly(ggplot(prop_dist) +
 
 ![](images/duration-table.png)
 
-## PM Emission Inventory
+## EDGAR emissions of PM2.5 by modes
 
 ```{r fig.height=5, fig.width=8}
 
@@ -393,15 +393,6 @@ print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
 ```
 
 
-## Potential Impact Fraction using different censor points
-
-```{r}
-
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/public transport with no censor point")
-
-```
-
-
 ## Potential Impact Fraction at 17.5 MMET hours per week
 
 ```{r}
@@ -415,6 +406,50 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile =
 ```{r}
 
 print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/public transport with censor point at 35 MMET hours per week")
+
+```
+
+## Potential Impact Fraction using different censor points
+
+```{r}
+
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/public transport with no censor point")
+
+```
+
+
+## Decile MMETs hours per week
+
+
+```{r}
+
+df_deciles <- mmets  |> 
+  group_by(Scenario) |> 
+  summarise(q = list(quantile(value, probs = seq(0, 0.9, by = 0.1) ))) |> 
+  unnest_wider(q) |> 
+  pivot_longer(cols = contains("%"), names_to = "decile", values_to = "value")
+
+# Plot deciles by scenario
+plotly::ggplotly(ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)) +
+  geom_line(aes(group = Scenario)) +
+  geom_point() +
+  labs(title = "Deciles of Value by Scenario", x = "Quantiles (0.1 - 0.9)", y = "MMET hours per week") +
+  geom_hline(yintercept = 17.5, linetype="dashed", color = "red") +
+  geom_hline(yintercept = 17.5 * 2, linetype="dashed", color = "red") +
+  theme_minimal())
+```
+
+## PIF on deciles
+
+```{r}
+pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(3:5, ~ ifelse(. != 0, round(((Baseline - .)/.), 2), 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile))
+
+ggplot(pif_deciles) +
+  aes(x = decile, y = value, fill = name) +
+  geom_col() +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()
+
 
 ```
 
