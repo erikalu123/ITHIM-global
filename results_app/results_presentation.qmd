@@ -46,7 +46,6 @@ library(quartomonothemer)
 library(showtext)
 ```
 
-
 ```{r}
 font_title <- "Josefin Sans"
 font_text <- "Montserrat"
@@ -147,21 +146,21 @@ scen_colours <- c("Baseline" = '#ffffbf',
 
 # Scenario Definition - (5% change)
 
-## Scenario Proportions
+<!-- ## Scenario Proportions -->
 
-![](images/trip-prop.png)
+<!-- ![](images/trip-prop.png) -->
 
-## Cycling Scenario
+<!-- ## Cycling Scenario -->
 
-![](images/cycle-scenario.png)
+<!-- ![](images/cycle-scenario.png) -->
 
-## Bus Scenario
+<!-- ## Bus Scenario -->
 
-![](images/bus-transport-scenario.png)
+<!-- ![](images/bus-transport-scenario.png) -->
 
-## Car Scenario
+<!-- ## Car Scenario -->
 
-![](images/car-scenario.png)
+<!-- ![](images/car-scenario.png) -->
 
 ## Comparison
 
@@ -179,112 +178,109 @@ plotly::ggplotly(ggplot(prop) +
 
 ```
 
-## Comparison by distance change
+<!-- ## Comparison by distance change -->
 
-```{r}
+<!-- ```{r} -->
 
-# modes_to_ignore <- io$bogota$trip_scen_sets |> filter(participant_id == 0 & trip_mode != 'motorcycle') |> distinct(trip_mode) |> pull()
+<!-- # modes_to_ignore <- io$bogota$trip_scen_sets |> filter(participant_id == 0 & trip_mode != 'motorcycle') |> distinct(trip_mode) |> pull() -->
 
-prop_dist <- io$bogota$dist |> 
-  # filter(!stage_mode %in% c("truck", "bus_driver", "car_driver")) |>
-  mutate_if(is.numeric, ~ round(. / sum(.) * 100, 1)) |> 
-  mutate(sc_bus = sc_bus - baseline, sc_car = sc_car - baseline, sc_cycle = sc_cycle - baseline) |>
-  filter(stage_mode %in% c("bus", "car", "cycle", "motorcycle", "pedestrian")) |> 
-  dplyr::select(-baseline) |> 
-  rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |>
-  pivot_longer(cols = -c(mode), names_to = "scenario")
+<!-- prop_dist <- io$bogota$dist |>  -->
+<!--   # filter(!stage_mode %in% c("truck", "bus_driver", "car_driver")) |> -->
+<!--   mutate_if(is.numeric, ~ round(. / sum(.) * 100, 1)) |>  -->
+<!--   mutate(sc_bus = sc_bus - baseline, sc_car = sc_car - baseline, sc_cycle = sc_cycle - baseline) |> -->
+<!--   filter(stage_mode %in% c("bus", "car", "cycle", "motorcycle", "pedestrian")) |>  -->
+<!--   dplyr::select(-baseline) |>  -->
+<!--   rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |> -->
+<!--   pivot_longer(cols = -c(mode), names_to = "scenario") -->
 
-scen_colours <- c("Baseline" = '#ffffbf',
-                  "Bicycling" = '#abdda4',
-                  "Car" = '#d7191c',
-                  "Public Transport" = '#2b83ba',
-                  "Motorcycle" = '#fdae61')
-
-
-plotly::ggplotly(ggplot(prop_dist) +
-     aes(x = mode, fill = scenario, weight = value) +
-     geom_bar() +
-     scale_fill_hue(direction = 1) +
-    scale_x_discrete(guide = guide_axis(angle = 90)) + 
-    geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4, 
-                                 position = position_dodge()) + scale_fill_manual(values = scen_colours) +
-     facet_wrap(vars(scenario)) + 
-     labs(title = "Scenario definition (by mode) by distance", y = "Proportional change (%) when compared with baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+<!-- scen_colours <- c("Baseline" = '#ffffbf', -->
+<!--                   "Bicycling" = '#abdda4', -->
+<!--                   "Car" = '#d7191c', -->
+<!--                   "Public Transport" = '#2b83ba', -->
+<!--                   "Motorcycle" = '#fdae61') -->
 
 
-
-
-```
-
-
-# Comparision by proportional change in distance
-```{r}
-
-prop_dist <- io$bogota$dist |> 
-  mutate(across(starts_with("sc"), ~ (round((. - baseline)/., 3)))) |>
-  filter(!stage_mode %in% c("truck", "car_driver", "bus_driver", "taxi", "auto_rickshaw", "rail")) |> 
-  dplyr::select(-baseline) |> 
-  rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |>
-  pivot_longer(cols = -c(mode), names_to = "scenario")
-
-scen_colours <- c("Baseline" = '#ffffbf',
-                  "Bicycling" = '#abdda4',
-                  "Car" = '#d7191c',
-                  "Public Transport" = '#2b83ba',
-                  "Motorcycle" = '#fdae61')
-
-
-plotly::ggplotly(ggplot(prop_dist) +
-     aes(x = mode, fill = scenario, weight = value) +
-     geom_bar() +
-     scale_fill_hue(direction = 1) +
-    scale_x_discrete(guide = guide_axis(angle = 90)) + 
-    geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4, 
-                                 position = position_dodge()) + scale_fill_manual(values = scen_colours) +
-     facet_wrap(vars(scenario)) + 
-     labs(title = "Scenario definition (by mode) by distance", y = "Proportion change (%) from baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
-
-
-```
-
-
-# Distance tables - (km)
-
-## Distance table
-
-![](images/distance-table.png)
-
-## Cycling Scenario distance table
-
-![](images/distance-table-cycle-scenario.png)
-
-## Bus Scenario distance table
-
-![](images/distance-table-bus-scenario.png)
-
-## Car Scenario distance table
-
-![](images/distance-table-car-scenario.png)
+<!-- plotly::ggplotly(ggplot(prop_dist) + -->
+<!--      aes(x = mode, fill = scenario, weight = value) + -->
+<!--      geom_bar() + -->
+<!--      scale_fill_hue(direction = 1) + -->
+<!--     scale_x_discrete(guide = guide_axis(angle = 90)) +  -->
+<!--     geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4,  -->
+<!--                                  position = position_dodge()) + scale_fill_manual(values = scen_colours) + -->
+<!--      facet_wrap(vars(scenario)) +  -->
+<!--      labs(title = "Scenario definition (by mode) by distance", y = "Proportional change (%) when compared with baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))) -->
 
 
 
-# Duration tables - (minutes)
 
-## Duration table
+<!-- ``` -->
 
-![](images/duration-table.png)
+<!-- # Comparision by proportional change in distance -->
 
-## Cycling Scenario duration table
+<!-- ```{r} -->
 
-![](images/duration-table-cycle-scenario.png)
+<!-- prop_dist <- io$bogota$dist |>  -->
+<!--   mutate(across(starts_with("sc"), ~ (round((. - baseline)/., 3)))) |> -->
+<!--   filter(!stage_mode %in% c("truck", "car_driver", "bus_driver", "taxi", "auto_rickshaw", "rail")) |>  -->
+<!--   dplyr::select(-baseline) |>  -->
+<!--   rename("Bicycling" = sc_cycle, "Car" = sc_car, "Public Transport" = sc_bus, "mode" = stage_mode) |> -->
+<!--   pivot_longer(cols = -c(mode), names_to = "scenario") -->
 
-## Bus Scenario duration table
+<!-- scen_colours <- c("Baseline" = '#ffffbf', -->
+<!--                   "Bicycling" = '#abdda4', -->
+<!--                   "Car" = '#d7191c', -->
+<!--                   "Public Transport" = '#2b83ba', -->
+<!--                   "Motorcycle" = '#fdae61') -->
 
-![](images/duration-table-bus-scenario.png)
 
-## Car Scenario duration table
+<!-- plotly::ggplotly(ggplot(prop_dist) + -->
+<!--      aes(x = mode, fill = scenario, weight = value) + -->
+<!--      geom_bar() + -->
+<!--      scale_fill_hue(direction = 1) + -->
+<!--     scale_x_discrete(guide = guide_axis(angle = 90)) +  -->
+<!--     geom_text(aes(x = mode, y = round(value, 1), label = round(value, 1)), size = 4,  -->
+<!--                                  position = position_dodge()) + scale_fill_manual(values = scen_colours) + -->
+<!--      facet_wrap(vars(scenario)) +  -->
+<!--      labs(title = "Scenario definition (by mode) by distance", y = "Proportion change (%) from baseline", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))) -->
 
-![](images/duration-table-car-scenario.png)
+
+<!-- ``` -->
+
+<!-- # Distance tables - (km) -->
+
+<!-- ## Distance table -->
+
+<!-- ![](images/distance-table.png) -->
+
+<!-- ## Cycling Scenario distance table -->
+
+<!-- ![](images/distance-table-cycle-scenario.png) -->
+
+<!-- ## Bus Scenario distance table -->
+
+<!-- ![](images/distance-table-bus-scenario.png) -->
+
+<!-- ## Car Scenario distance table -->
+
+<!-- ![](images/distance-table-car-scenario.png) -->
+
+<!-- # Duration tables - (minutes) -->
+
+<!-- ## Duration table -->
+
+<!-- ![](images/duration-table.png) -->
+
+<!-- ## Cycling Scenario duration table -->
+
+<!-- ![](images/duration-table-cycle-scenario.png) -->
+
+<!-- ## Bus Scenario duration table -->
+
+<!-- ![](images/duration-table-bus-scenario.png) -->
+
+<!-- ## Car Scenario duration table -->
+
+<!-- ![](images/duration-table-car-scenario.png) -->
 
 ## ITHIM Overview
 
@@ -296,10 +292,9 @@ plotly::ggplotly(ggplot(prop_dist) +
 
 ## Outcomes
 
+<!-- ## Duration table -->
 
-## Duration table
-
-![](images/duration-table.png)
+<!-- ![](images/duration-table.png) -->
 
 ## EDGAR emissions of PM2.5 by modes
 
@@ -316,7 +311,7 @@ gtb <- io$bogota$vehicle_inventory |>
 gtb
 ```
 
-## AP Outcomes - PM2.5 exposure levels ($\mu$/$m^3$)
+## PA outcomes - Marginal METs per person per week
 
 ```{r mmets}
 
@@ -340,7 +335,7 @@ plotly::ggplotly(ggplot(mmets, aes(x=value, fill=Scenario)) +
 
 ```
 
-## PA outcomes - Marginal METs per person per week
+## AP Outcomes - PM2.5 exposure levels ($\mu$/$m^3$)
 
 ```{r}
 mmets |> 
@@ -350,7 +345,6 @@ mmets |>
 
 
 ```
-
 
 ```{r}
 
@@ -392,7 +386,6 @@ print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
 
 ```
 
-
 ## Potential Impact Fraction at 17.5 MMET hours per week
 
 ```{r}
@@ -417,9 +410,7 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "P
 
 ```
 
-
 ## Decile MMETs hours per week
-
 
 ```{r}
 
@@ -453,27 +444,34 @@ ggplot(pif_deciles) +
 
 ```
 
-
 <!-- ```{r} -->
 
 <!-- ggplotly(ggplot(PIF) + -->
+
 <!--   aes(x = group, y = value, fill = Scenario) + -->
+
 <!--   geom_boxplot() + -->
+
 <!--   scale_fill_hue(direction = 1) + -->
+
 <!--   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + -->
+
 <!--   scale_fill_manual(values = scen_colours) + -->
+
 <!--   facet_wrap(vars(Scenario)) + -->
+
 <!--   labs("Potential Impact Fraction using all-cause DRF", -->
+
 <!--   subtitle = "We have used three different DRFs where censor point varies. PIF_75p where censor point is at 75th percentile, and PIF_WHO_DRL (censor point is at 35 MMETs per person per week and PIF_none (without any censor point)", -->
+
 <!--   x = "", y = "PIF (%) (+ve benefit)")) -->
 
 <!-- ``` -->
 
+<!-- ## Health Outcomes -->
 
-## Health Outcomes
+<!-- ### YLLs and Deaths by total, sex and gender stratification - with and without interaction for three levels and covering all three paths -->
 
-### YLLs and Deaths by total, sex and gender stratification - with and without interaction for three levels and covering all three paths
+<!-- ### Touch on unexpected results when median values of MMETs per week compared in bus and cycle scenarios -->
 
-### Touch on unexpected results when median values of MMETs per week compared in bus and cycle scenarios
-
-## Injury risks by population, distance and duration - overall and not stratified
+<!-- ## Injury risks by population, distance and duration - overall and not stratified -->
