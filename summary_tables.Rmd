@@ -310,6 +310,8 @@ cat(
 cat("  \n")
 cat(paste0('Scenario: ', SCENARIO_INCREASE * 100, "%")) 
 cat("  \n")
+cat(paste0('Input Parameter version: ', io$ithim_run$input_parameter_file)) 
+cat("  \n")
 cat(paste0('Output version: ', output_version)) 
 cat("  \n")
 cat(paste0('Timestamp of model run: ', timestamp_model))
