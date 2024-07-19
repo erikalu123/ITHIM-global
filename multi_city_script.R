@@ -61,7 +61,7 @@ if (!require("drpa",character.only = TRUE)) {
 
 cities <- 'bogota'
 
-input_parameter_file <- "Bogota_InputParameters_v2.2.xlsx" # file containing the local and global input parameters
+input_parameter_file <- "Bogota_InputParameters_v3.0.xlsx" # file containing the local and global input parameters
 # 
 
 ## Get the current repo sha
@@ -82,7 +82,7 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 write_output_control = T # whether you want to save the model run specifics or not
 output_version <- paste0(repo_sha, "_test_run") # gives the version number of the output documents, independent of the input parameter file name
 author <- "AA"
-comment <- "Using taxi as car flag (T)"
+comment <- "Using updated SiN coefficients using the random effects values from the meta analysis"
 
 # scenario definition
 scenario_name <- "BOGOTA" # name of scenario to be called
