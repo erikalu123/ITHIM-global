@@ -57,7 +57,7 @@ gen_pa_rr <- function(mmets_pp, conf_int = F) {
     }
 
     # Apply PA DR function to all doses as one long vector
-    # Use a hard censor method of WHO-QRL which flattens the relationship after 17.5 MMETs per week
+    # Use a hard censor method of WHO-DRL which flattens the relationship after 17.5 MMETs per week
     return_vector <- drpa::dose_response(
       cause = pa_dn, outcome_type = outcome,
       dose = doses_vector, quantile = quant, confidence_intervals = conf_int,
