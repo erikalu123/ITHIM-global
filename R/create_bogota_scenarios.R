@@ -125,6 +125,7 @@ create_bogota_scenarios <- function(trip_set) {
   # use existing mode split from adjusted travel survey, i.e. once all the ITHIM changes to the travel
   # survey have been made
   
+  # find modeshares for cycle, car and bus
   rdr_modeshares <- rdr |> 
     filter(participant_id !=0) |> 
     distinct(trip_id, .keep_all = T) |> 
@@ -133,6 +134,16 @@ create_bogota_scenarios <- function(trip_set) {
     dplyr::select(-n) |> 
     dplyr::mutate(freq = round(freq * 100, 1)) |> 
     pivot_wider(names_from = trip_distance_cat, values_from = freq)
+  
+  # to get overall trip shares for the distance bands
+  # trips_by_distance_cat <- rdr |> 
+  #   filter(participant_id !=0) |> 
+  #   distinct(trip_id, .keep_all = T) |> 
+  #   count(trip_distance_cat) |> mutate(freq = prop.table(n)) |> 
+  #   dplyr::select(-n) |> 
+  #   dplyr::mutate(freq = round(freq * 100, 1)) |> 
+  #   pivot_wider(names_from = trip_distance_cat, values_from = freq)
+  
   
   # get modeshares into correct format
   cycle02 <-  rdr_modeshares %>% filter(trip_mode=='cycle') %>% pull('0-2km')
