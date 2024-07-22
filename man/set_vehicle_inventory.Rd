@@ -17,7 +17,7 @@ This function performs the following operations:
 
 \item PM emissions are added from the city specific (or default) PM inventory
 
-\item big_truck mode is added for which there is no distance but it this mode is used in the air pollution modules
+\item heavy_truck mode is added for which there is no distance but it this mode is used in the air pollution modules
 
 \item other mode is added if it does not already exist in the travel survey (and hence in the mode speeds)
 
