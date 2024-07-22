@@ -10,6 +10,7 @@ Authors@R: c(
     person("Rob", "Johnson", , "rob.johnson@mrc-bsu.cam.ac.uk", role = "aut")
   )
 Description: Modelling the impact of transport choices on population health.
+Encoding: UTF-8
 Depends: R (>= 4.1.0),
     dplyr,
     tidyr,
