@@ -438,7 +438,7 @@ for (x in 1:length(cities)){ # loop through cities
   names(city_emissions)[2] <- "emissions"
   
   # define modes of interest
-  select <- c("car", "motorcycle", "bus_driver", "truck", "big_truck")
+  select <- c("car", "motorcycle", "bus_driver", "truck", "heavy_truck")
   city_emissions$modes <- as.character(city_emissions$modes)
   
   # call all other modes not in list of modes of interest 'other'

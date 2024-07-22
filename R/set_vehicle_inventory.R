@@ -9,7 +9,7 @@
 #'
 #' \item PM emissions are added from the city specific (or default) PM inventory
 #'
-#' \item big_truck mode is added for which there is no distance but it this mode is used in the air pollution modules
+#' \item heavy_truck mode is added for which there is no distance but it this mode is used in the air pollution modules
 #'
 #' \item other mode is added if it does not already exist in the travel survey (and hence in the mode speeds)
 #'
@@ -36,9 +36,9 @@ set_vehicle_inventory <- function() {
 
   # add big truck mode to vehicle inventory
   vehicle_inventory <- rbind(vehicle_inventory, data.frame(
-    stage_mode = "big_truck",
+    stage_mode = "heavy_truck",
     speed = 8.1,
-    PM_emission_inventory = PM_EMISSION_INVENTORY[["big_truck"]]
+    PM_emission_inventory = PM_EMISSION_INVENTORY[["heavy_truck"]]
   ))
 
   # if other mode does not already exist, add other mode

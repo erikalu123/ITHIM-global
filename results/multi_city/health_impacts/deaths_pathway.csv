@@ -1165,7 +1165,7 @@
 "female","55-59","sc_car_deaths_pa_lung_cancer_ub",-0.02375,"bogota","Car",NA,NA,"L3: lung_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_lung_cancer_ub",-0.02974,"bogota","Car",NA,NA,"L3: lung_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_lung_cancer_ub",-0.03638,"bogota","Car",NA,NA,"L3: lung_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_lung_cancer_ub",0.00005,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",282736
+"male","15-19","sc_bus_deaths_pa_lung_cancer_ub",5e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",282736
 "male","20-24","sc_bus_deaths_pa_lung_cancer_ub",0.00028,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_lung_cancer_ub",0.00077,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",360031
 "male","30-34","sc_bus_deaths_pa_lung_cancer_ub",0.00153,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",321492
@@ -1176,7 +1176,7 @@
 "male","55-59","sc_bus_deaths_pa_lung_cancer_ub",0.02521,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",187551
 "male","60-64","sc_bus_deaths_pa_lung_cancer_ub",0.03535,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_lung_cancer_ub",0.03827,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",105412
-"female","15-19","sc_bus_deaths_pa_lung_cancer_ub",0.00007,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",279280
+"female","15-19","sc_bus_deaths_pa_lung_cancer_ub",7e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",279280
 "female","20-24","sc_bus_deaths_pa_lung_cancer_ub",0.00012,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",360197
 "female","25-29","sc_bus_deaths_pa_lung_cancer_ub",0.00039,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_lung_cancer_ub",0.00086,"bogota","Public Transport",NA,NA,"L3: lung_cancer","PA",330341
@@ -1198,7 +1198,7 @@
 "male","55-59","sc_cycle_deaths_ap_lung_cancer",-0.01553,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_cycle_deaths_ap_lung_cancer",-0.03136,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_cycle_deaths_ap_lung_cancer",-0.02911,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_cycle_deaths_ap_lung_cancer",-0.0002,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
+"female","15-19","sc_cycle_deaths_ap_lung_cancer",-2e-04,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
 "female","20-24","sc_cycle_deaths_ap_lung_cancer",-0.00053,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_cycle_deaths_ap_lung_cancer",-0.00092,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_cycle_deaths_ap_lung_cancer",-0.00138,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",330341
@@ -1242,8 +1242,8 @@
 "male","55-59","sc_bus_deaths_ap_lung_cancer",0.02117,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_bus_deaths_ap_lung_cancer",0.02518,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_bus_deaths_ap_lung_cancer",0.02331,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_bus_deaths_ap_lung_cancer",0.00004,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
-"female","20-24","sc_bus_deaths_ap_lung_cancer",0.00005,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
+"female","15-19","sc_bus_deaths_ap_lung_cancer",4e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
+"female","20-24","sc_bus_deaths_ap_lung_cancer",5e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_bus_deaths_ap_lung_cancer",0.00015,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_bus_deaths_ap_lung_cancer",0.00078,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",330341
 "female","35-39","sc_bus_deaths_ap_lung_cancer",0.00128,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",309304
@@ -1264,7 +1264,7 @@
 "male","55-59","sc_cycle_deaths_ap_lung_cancer_lb",-0.01553,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_cycle_deaths_ap_lung_cancer_lb",-0.03136,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_cycle_deaths_ap_lung_cancer_lb",-0.02911,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_cycle_deaths_ap_lung_cancer_lb",-0.0002,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
+"female","15-19","sc_cycle_deaths_ap_lung_cancer_lb",-2e-04,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
 "female","20-24","sc_cycle_deaths_ap_lung_cancer_lb",-0.00053,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_cycle_deaths_ap_lung_cancer_lb",-0.00092,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_cycle_deaths_ap_lung_cancer_lb",-0.00138,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",330341
@@ -1308,8 +1308,8 @@
 "male","55-59","sc_bus_deaths_ap_lung_cancer_lb",0.02117,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_bus_deaths_ap_lung_cancer_lb",0.02518,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_bus_deaths_ap_lung_cancer_lb",0.02331,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_bus_deaths_ap_lung_cancer_lb",0.00004,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
-"female","20-24","sc_bus_deaths_ap_lung_cancer_lb",0.00005,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
+"female","15-19","sc_bus_deaths_ap_lung_cancer_lb",4e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
+"female","20-24","sc_bus_deaths_ap_lung_cancer_lb",5e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_bus_deaths_ap_lung_cancer_lb",0.00015,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_bus_deaths_ap_lung_cancer_lb",0.00078,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",330341
 "female","35-39","sc_bus_deaths_ap_lung_cancer_lb",0.00128,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",309304
@@ -1330,7 +1330,7 @@
 "male","55-59","sc_cycle_deaths_ap_lung_cancer_ub",-0.01553,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_cycle_deaths_ap_lung_cancer_ub",-0.03136,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_cycle_deaths_ap_lung_cancer_ub",-0.02911,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_cycle_deaths_ap_lung_cancer_ub",-0.0002,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
+"female","15-19","sc_cycle_deaths_ap_lung_cancer_ub",-2e-04,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",279280
 "female","20-24","sc_cycle_deaths_ap_lung_cancer_ub",-0.00053,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_cycle_deaths_ap_lung_cancer_ub",-0.00092,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_cycle_deaths_ap_lung_cancer_ub",-0.00138,"bogota","Bicycling",NA,NA,"L3: lung_cancer","AP",330341
@@ -1374,8 +1374,8 @@
 "male","55-59","sc_bus_deaths_ap_lung_cancer_ub",0.02117,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",187551
 "male","60-64","sc_bus_deaths_ap_lung_cancer_ub",0.02518,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",146500
 "male","65-69","sc_bus_deaths_ap_lung_cancer_ub",0.02331,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",105412
-"female","15-19","sc_bus_deaths_ap_lung_cancer_ub",0.00004,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
-"female","20-24","sc_bus_deaths_ap_lung_cancer_ub",0.00005,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
+"female","15-19","sc_bus_deaths_ap_lung_cancer_ub",4e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",279280
+"female","20-24","sc_bus_deaths_ap_lung_cancer_ub",5e-05,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",360197
 "female","25-29","sc_bus_deaths_ap_lung_cancer_ub",0.00015,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",364423
 "female","30-34","sc_bus_deaths_ap_lung_cancer_ub",0.00078,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",330341
 "female","35-39","sc_bus_deaths_ap_lung_cancer_ub",0.00128,"bogota","Public Transport",NA,NA,"L3: lung_cancer","AP",309304
@@ -1396,7 +1396,7 @@
 "male","55-59","sc_cycle_deaths_ap_COPD",-0.01265,"bogota","Bicycling",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_cycle_deaths_ap_COPD",-0.03057,"bogota","Bicycling",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_cycle_deaths_ap_COPD",-0.0373,"bogota","Bicycling",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_cycle_deaths_ap_COPD",-0.0002,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
+"female","15-19","sc_cycle_deaths_ap_COPD",-2e-04,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
 "female","20-24","sc_cycle_deaths_ap_COPD",-0.00059,"bogota","Bicycling",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_cycle_deaths_ap_COPD",-0.00069,"bogota","Bicycling",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_cycle_deaths_ap_COPD",-0.00071,"bogota","Bicycling",NA,NA,"L3: COPD","AP",330341
@@ -1440,11 +1440,11 @@
 "male","55-59","sc_bus_deaths_ap_COPD",0.01698,"bogota","Public Transport",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_bus_deaths_ap_COPD",0.02507,"bogota","Public Transport",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_bus_deaths_ap_COPD",0.02971,"bogota","Public Transport",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_bus_deaths_ap_COPD",0.00004,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
-"female","20-24","sc_bus_deaths_ap_COPD",0.00006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
+"female","15-19","sc_bus_deaths_ap_COPD",4e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
+"female","20-24","sc_bus_deaths_ap_COPD",6e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_bus_deaths_ap_COPD",0.00012,"bogota","Public Transport",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_bus_deaths_ap_COPD",0.00041,"bogota","Public Transport",NA,NA,"L3: COPD","AP",330341
-"female","35-39","sc_bus_deaths_ap_COPD",0.0006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
+"female","35-39","sc_bus_deaths_ap_COPD",6e-04,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
 "female","40-44","sc_bus_deaths_ap_COPD",0.00054,"bogota","Public Transport",NA,NA,"L3: COPD","AP",275440
 "female","45-49","sc_bus_deaths_ap_COPD",0.00055,"bogota","Public Transport",NA,NA,"L3: COPD","AP",254843
 "female","50-54","sc_bus_deaths_ap_COPD",0.00116,"bogota","Public Transport",NA,NA,"L3: COPD","AP",256059
@@ -1462,7 +1462,7 @@
 "male","55-59","sc_cycle_deaths_ap_COPD_lb",-0.01265,"bogota","Bicycling",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_cycle_deaths_ap_COPD_lb",-0.03057,"bogota","Bicycling",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_cycle_deaths_ap_COPD_lb",-0.0373,"bogota","Bicycling",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_cycle_deaths_ap_COPD_lb",-0.0002,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
+"female","15-19","sc_cycle_deaths_ap_COPD_lb",-2e-04,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
 "female","20-24","sc_cycle_deaths_ap_COPD_lb",-0.00059,"bogota","Bicycling",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_cycle_deaths_ap_COPD_lb",-0.00069,"bogota","Bicycling",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_cycle_deaths_ap_COPD_lb",-0.00071,"bogota","Bicycling",NA,NA,"L3: COPD","AP",330341
@@ -1506,11 +1506,11 @@
 "male","55-59","sc_bus_deaths_ap_COPD_lb",0.01698,"bogota","Public Transport",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_bus_deaths_ap_COPD_lb",0.02507,"bogota","Public Transport",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_bus_deaths_ap_COPD_lb",0.02971,"bogota","Public Transport",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_bus_deaths_ap_COPD_lb",0.00004,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
-"female","20-24","sc_bus_deaths_ap_COPD_lb",0.00006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
+"female","15-19","sc_bus_deaths_ap_COPD_lb",4e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
+"female","20-24","sc_bus_deaths_ap_COPD_lb",6e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_bus_deaths_ap_COPD_lb",0.00012,"bogota","Public Transport",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_bus_deaths_ap_COPD_lb",0.00041,"bogota","Public Transport",NA,NA,"L3: COPD","AP",330341
-"female","35-39","sc_bus_deaths_ap_COPD_lb",0.0006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
+"female","35-39","sc_bus_deaths_ap_COPD_lb",6e-04,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
 "female","40-44","sc_bus_deaths_ap_COPD_lb",0.00054,"bogota","Public Transport",NA,NA,"L3: COPD","AP",275440
 "female","45-49","sc_bus_deaths_ap_COPD_lb",0.00055,"bogota","Public Transport",NA,NA,"L3: COPD","AP",254843
 "female","50-54","sc_bus_deaths_ap_COPD_lb",0.00116,"bogota","Public Transport",NA,NA,"L3: COPD","AP",256059
@@ -1528,7 +1528,7 @@
 "male","55-59","sc_cycle_deaths_ap_COPD_ub",-0.01265,"bogota","Bicycling",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_cycle_deaths_ap_COPD_ub",-0.03057,"bogota","Bicycling",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_cycle_deaths_ap_COPD_ub",-0.0373,"bogota","Bicycling",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_cycle_deaths_ap_COPD_ub",-0.0002,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
+"female","15-19","sc_cycle_deaths_ap_COPD_ub",-2e-04,"bogota","Bicycling",NA,NA,"L3: COPD","AP",279280
 "female","20-24","sc_cycle_deaths_ap_COPD_ub",-0.00059,"bogota","Bicycling",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_cycle_deaths_ap_COPD_ub",-0.00069,"bogota","Bicycling",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_cycle_deaths_ap_COPD_ub",-0.00071,"bogota","Bicycling",NA,NA,"L3: COPD","AP",330341
@@ -1572,11 +1572,11 @@
 "male","55-59","sc_bus_deaths_ap_COPD_ub",0.01698,"bogota","Public Transport",NA,NA,"L3: COPD","AP",187551
 "male","60-64","sc_bus_deaths_ap_COPD_ub",0.02507,"bogota","Public Transport",NA,NA,"L3: COPD","AP",146500
 "male","65-69","sc_bus_deaths_ap_COPD_ub",0.02971,"bogota","Public Transport",NA,NA,"L3: COPD","AP",105412
-"female","15-19","sc_bus_deaths_ap_COPD_ub",0.00004,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
-"female","20-24","sc_bus_deaths_ap_COPD_ub",0.00006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
+"female","15-19","sc_bus_deaths_ap_COPD_ub",4e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",279280
+"female","20-24","sc_bus_deaths_ap_COPD_ub",6e-05,"bogota","Public Transport",NA,NA,"L3: COPD","AP",360197
 "female","25-29","sc_bus_deaths_ap_COPD_ub",0.00012,"bogota","Public Transport",NA,NA,"L3: COPD","AP",364423
 "female","30-34","sc_bus_deaths_ap_COPD_ub",0.00041,"bogota","Public Transport",NA,NA,"L3: COPD","AP",330341
-"female","35-39","sc_bus_deaths_ap_COPD_ub",0.0006,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
+"female","35-39","sc_bus_deaths_ap_COPD_ub",6e-04,"bogota","Public Transport",NA,NA,"L3: COPD","AP",309304
 "female","40-44","sc_bus_deaths_ap_COPD_ub",0.00054,"bogota","Public Transport",NA,NA,"L3: COPD","AP",275440
 "female","45-49","sc_bus_deaths_ap_COPD_ub",0.00055,"bogota","Public Transport",NA,NA,"L3: COPD","AP",254843
 "female","50-54","sc_bus_deaths_ap_COPD_ub",0.00116,"bogota","Public Transport",NA,NA,"L3: COPD","AP",256059
@@ -2221,7 +2221,7 @@
 "female","55-59","sc_car_deaths_ap_T2D",-0.01595,"bogota","Car",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_car_deaths_ap_T2D",-0.02785,"bogota","Car",NA,"L2: Other","L3: T2D","AP",189600
 "female","65-69","sc_car_deaths_ap_T2D",-0.01996,"bogota","Car",NA,"L2: Other","L3: T2D","AP",141409
-"male","15-19","sc_bus_deaths_ap_T2D",0.00008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
+"male","15-19","sc_bus_deaths_ap_T2D",8e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
 "male","20-24","sc_bus_deaths_ap_T2D",0.00026,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",357934
 "male","25-29","sc_bus_deaths_ap_T2D",0.00075,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360031
 "male","30-34","sc_bus_deaths_ap_T2D",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",321492
@@ -2232,17 +2232,17 @@
 "male","55-59","sc_bus_deaths_ap_T2D",0.01639,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",187551
 "male","60-64","sc_bus_deaths_ap_T2D",0.01673,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",146500
 "male","65-69","sc_bus_deaths_ap_T2D",0.01618,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",105412
-"female","15-19","sc_bus_deaths_ap_T2D",0.00006,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
-"female","20-24","sc_bus_deaths_ap_T2D",0.00007,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
+"female","15-19","sc_bus_deaths_ap_T2D",6e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
+"female","20-24","sc_bus_deaths_ap_T2D",7e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
 "female","25-29","sc_bus_deaths_ap_T2D",0.00019,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",364423
-"female","30-34","sc_bus_deaths_ap_T2D",0.0008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
+"female","30-34","sc_bus_deaths_ap_T2D",8e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
 "female","35-39","sc_bus_deaths_ap_T2D",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",309304
-"female","40-44","sc_bus_deaths_ap_T2D",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
+"female","40-44","sc_bus_deaths_ap_T2D",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
 "female","45-49","sc_bus_deaths_ap_T2D",0.00092,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",254843
 "female","50-54","sc_bus_deaths_ap_T2D",0.00157,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",256059
 "female","55-59","sc_bus_deaths_ap_T2D",0.00588,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_bus_deaths_ap_T2D",-0.00115,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",189600
-"female","65-69","sc_bus_deaths_ap_T2D",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
+"female","65-69","sc_bus_deaths_ap_T2D",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
 "male","15-19","sc_cycle_deaths_ap_T2D_lb",-0.00014,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",282736
 "male","20-24","sc_cycle_deaths_ap_T2D_lb",-0.00044,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",357934
 "male","25-29","sc_cycle_deaths_ap_T2D_lb",-0.00096,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",360031
@@ -2287,7 +2287,7 @@
 "female","55-59","sc_car_deaths_ap_T2D_lb",-0.01595,"bogota","Car",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_car_deaths_ap_T2D_lb",-0.02785,"bogota","Car",NA,"L2: Other","L3: T2D","AP",189600
 "female","65-69","sc_car_deaths_ap_T2D_lb",-0.01996,"bogota","Car",NA,"L2: Other","L3: T2D","AP",141409
-"male","15-19","sc_bus_deaths_ap_T2D_lb",0.00008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
+"male","15-19","sc_bus_deaths_ap_T2D_lb",8e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
 "male","20-24","sc_bus_deaths_ap_T2D_lb",0.00026,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",357934
 "male","25-29","sc_bus_deaths_ap_T2D_lb",0.00075,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360031
 "male","30-34","sc_bus_deaths_ap_T2D_lb",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",321492
@@ -2298,17 +2298,17 @@
 "male","55-59","sc_bus_deaths_ap_T2D_lb",0.01639,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",187551
 "male","60-64","sc_bus_deaths_ap_T2D_lb",0.01673,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",146500
 "male","65-69","sc_bus_deaths_ap_T2D_lb",0.01618,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",105412
-"female","15-19","sc_bus_deaths_ap_T2D_lb",0.00006,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
-"female","20-24","sc_bus_deaths_ap_T2D_lb",0.00007,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
+"female","15-19","sc_bus_deaths_ap_T2D_lb",6e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
+"female","20-24","sc_bus_deaths_ap_T2D_lb",7e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
 "female","25-29","sc_bus_deaths_ap_T2D_lb",0.00019,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",364423
-"female","30-34","sc_bus_deaths_ap_T2D_lb",0.0008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
+"female","30-34","sc_bus_deaths_ap_T2D_lb",8e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
 "female","35-39","sc_bus_deaths_ap_T2D_lb",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",309304
-"female","40-44","sc_bus_deaths_ap_T2D_lb",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
+"female","40-44","sc_bus_deaths_ap_T2D_lb",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
 "female","45-49","sc_bus_deaths_ap_T2D_lb",0.00092,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",254843
 "female","50-54","sc_bus_deaths_ap_T2D_lb",0.00157,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",256059
 "female","55-59","sc_bus_deaths_ap_T2D_lb",0.00588,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_bus_deaths_ap_T2D_lb",-0.00115,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",189600
-"female","65-69","sc_bus_deaths_ap_T2D_lb",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
+"female","65-69","sc_bus_deaths_ap_T2D_lb",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
 "male","15-19","sc_cycle_deaths_ap_T2D_ub",-0.00014,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",282736
 "male","20-24","sc_cycle_deaths_ap_T2D_ub",-0.00044,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",357934
 "male","25-29","sc_cycle_deaths_ap_T2D_ub",-0.00096,"bogota","Bicycling",NA,"L2: Other","L3: T2D","AP",360031
@@ -2353,7 +2353,7 @@
 "female","55-59","sc_car_deaths_ap_T2D_ub",-0.01595,"bogota","Car",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_car_deaths_ap_T2D_ub",-0.02785,"bogota","Car",NA,"L2: Other","L3: T2D","AP",189600
 "female","65-69","sc_car_deaths_ap_T2D_ub",-0.01996,"bogota","Car",NA,"L2: Other","L3: T2D","AP",141409
-"male","15-19","sc_bus_deaths_ap_T2D_ub",0.00008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
+"male","15-19","sc_bus_deaths_ap_T2D_ub",8e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",282736
 "male","20-24","sc_bus_deaths_ap_T2D_ub",0.00026,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",357934
 "male","25-29","sc_bus_deaths_ap_T2D_ub",0.00075,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360031
 "male","30-34","sc_bus_deaths_ap_T2D_ub",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",321492
@@ -2364,17 +2364,17 @@
 "male","55-59","sc_bus_deaths_ap_T2D_ub",0.01639,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",187551
 "male","60-64","sc_bus_deaths_ap_T2D_ub",0.01673,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",146500
 "male","65-69","sc_bus_deaths_ap_T2D_ub",0.01618,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",105412
-"female","15-19","sc_bus_deaths_ap_T2D_ub",0.00006,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
-"female","20-24","sc_bus_deaths_ap_T2D_ub",0.00007,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
+"female","15-19","sc_bus_deaths_ap_T2D_ub",6e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",279280
+"female","20-24","sc_bus_deaths_ap_T2D_ub",7e-05,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",360197
 "female","25-29","sc_bus_deaths_ap_T2D_ub",0.00019,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",364423
-"female","30-34","sc_bus_deaths_ap_T2D_ub",0.0008,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
+"female","30-34","sc_bus_deaths_ap_T2D_ub",8e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",330341
 "female","35-39","sc_bus_deaths_ap_T2D_ub",0.00116,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",309304
-"female","40-44","sc_bus_deaths_ap_T2D_ub",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
+"female","40-44","sc_bus_deaths_ap_T2D_ub",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",275440
 "female","45-49","sc_bus_deaths_ap_T2D_ub",0.00092,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",254843
 "female","50-54","sc_bus_deaths_ap_T2D_ub",0.00157,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",256059
 "female","55-59","sc_bus_deaths_ap_T2D_ub",0.00588,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",235548
 "female","60-64","sc_bus_deaths_ap_T2D_ub",-0.00115,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",189600
-"female","65-69","sc_bus_deaths_ap_T2D_ub",0.0009,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
+"female","65-69","sc_bus_deaths_ap_T2D_ub",9e-04,"bogota","Public Transport",NA,"L2: Other","L3: T2D","AP",141409
 "male","15-19","sc_cycle_deaths_ap_LRI",-0.00156,"bogota","Bicycling",NA,NA,"L3: LRI","AP",282736
 "male","20-24","sc_cycle_deaths_ap_LRI",-0.00305,"bogota","Bicycling",NA,NA,"L3: LRI","AP",357934
 "male","25-29","sc_cycle_deaths_ap_LRI",-0.00491,"bogota","Bicycling",NA,NA,"L3: LRI","AP",360031
@@ -2439,7 +2439,7 @@
 "female","45-49","sc_bus_deaths_ap_LRI",0.00078,"bogota","Public Transport",NA,NA,"L3: LRI","AP",254843
 "female","50-54","sc_bus_deaths_ap_LRI",0.00094,"bogota","Public Transport",NA,NA,"L3: LRI","AP",256059
 "female","55-59","sc_bus_deaths_ap_LRI",0.00262,"bogota","Public Transport",NA,NA,"L3: LRI","AP",235548
-"female","60-64","sc_bus_deaths_ap_LRI",0.00006,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
+"female","60-64","sc_bus_deaths_ap_LRI",6e-05,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
 "female","65-69","sc_bus_deaths_ap_LRI",0.00087,"bogota","Public Transport",NA,NA,"L3: LRI","AP",141409
 "male","15-19","sc_cycle_deaths_ap_LRI_lb",-0.00156,"bogota","Bicycling",NA,NA,"L3: LRI","AP",282736
 "male","20-24","sc_cycle_deaths_ap_LRI_lb",-0.00305,"bogota","Bicycling",NA,NA,"L3: LRI","AP",357934
@@ -2505,7 +2505,7 @@
 "female","45-49","sc_bus_deaths_ap_LRI_lb",0.00078,"bogota","Public Transport",NA,NA,"L3: LRI","AP",254843
 "female","50-54","sc_bus_deaths_ap_LRI_lb",0.00094,"bogota","Public Transport",NA,NA,"L3: LRI","AP",256059
 "female","55-59","sc_bus_deaths_ap_LRI_lb",0.00262,"bogota","Public Transport",NA,NA,"L3: LRI","AP",235548
-"female","60-64","sc_bus_deaths_ap_LRI_lb",0.00006,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
+"female","60-64","sc_bus_deaths_ap_LRI_lb",6e-05,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
 "female","65-69","sc_bus_deaths_ap_LRI_lb",0.00087,"bogota","Public Transport",NA,NA,"L3: LRI","AP",141409
 "male","15-19","sc_cycle_deaths_ap_LRI_ub",-0.00156,"bogota","Bicycling",NA,NA,"L3: LRI","AP",282736
 "male","20-24","sc_cycle_deaths_ap_LRI_ub",-0.00305,"bogota","Bicycling",NA,NA,"L3: LRI","AP",357934
@@ -2571,10 +2571,10 @@
 "female","45-49","sc_bus_deaths_ap_LRI_ub",0.00078,"bogota","Public Transport",NA,NA,"L3: LRI","AP",254843
 "female","50-54","sc_bus_deaths_ap_LRI_ub",0.00094,"bogota","Public Transport",NA,NA,"L3: LRI","AP",256059
 "female","55-59","sc_bus_deaths_ap_LRI_ub",0.00262,"bogota","Public Transport",NA,NA,"L3: LRI","AP",235548
-"female","60-64","sc_bus_deaths_ap_LRI_ub",0.00006,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
+"female","60-64","sc_bus_deaths_ap_LRI_ub",6e-05,"bogota","Public Transport",NA,NA,"L3: LRI","AP",189600
 "female","65-69","sc_bus_deaths_ap_LRI_ub",0.00087,"bogota","Public Transport",NA,NA,"L3: LRI","AP",141409
-"male","15-19","sc_cycle_deaths_pa_breast_cancer",0.00004,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_cycle_deaths_pa_breast_cancer",0.00006,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
+"male","15-19","sc_cycle_deaths_pa_breast_cancer",4e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_cycle_deaths_pa_breast_cancer",6e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_cycle_deaths_pa_breast_cancer",0.00015,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",360031
 "male","30-34","sc_cycle_deaths_pa_breast_cancer",0.00014,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_cycle_deaths_pa_breast_cancer",0.00025,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",289808
@@ -2595,10 +2595,10 @@
 "female","55-59","sc_cycle_deaths_pa_breast_cancer",0.16062,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_cycle_deaths_pa_breast_cancer",0.14318,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_cycle_deaths_pa_breast_cancer",0.21876,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_car_deaths_pa_breast_cancer",-0.00006,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_car_deaths_pa_breast_cancer",-0.0001,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
+"male","15-19","sc_car_deaths_pa_breast_cancer",-6e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_car_deaths_pa_breast_cancer",-1e-04,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_car_deaths_pa_breast_cancer",-0.00014,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_car_deaths_pa_breast_cancer",-0.00009,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
+"male","30-34","sc_car_deaths_pa_breast_cancer",-9e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_car_deaths_pa_breast_cancer",-0.00015,"bogota","Car",NA,NA,"L3: breast_cancer","PA",289808
 "male","40-44","sc_car_deaths_pa_breast_cancer",-0.00017,"bogota","Car",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_car_deaths_pa_breast_cancer",-0.00038,"bogota","Car",NA,NA,"L3: breast_cancer","PA",215491
@@ -2617,10 +2617,10 @@
 "female","55-59","sc_car_deaths_pa_breast_cancer",-0.21811,"bogota","Car",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_breast_cancer",-0.16278,"bogota","Car",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_breast_cancer",-0.16074,"bogota","Car",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_breast_cancer",0.00004,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_bus_deaths_pa_breast_cancer",0.0001,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",357934
+"male","15-19","sc_bus_deaths_pa_breast_cancer",4e-05,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_bus_deaths_pa_breast_cancer",1e-04,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_breast_cancer",0.00021,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_bus_deaths_pa_breast_cancer",0.0002,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",321492
+"male","30-34","sc_bus_deaths_pa_breast_cancer",2e-04,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_bus_deaths_pa_breast_cancer",0.00036,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",289808
 "male","40-44","sc_bus_deaths_pa_breast_cancer",0.00045,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_bus_deaths_pa_breast_cancer",0.00088,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",215491
@@ -2639,8 +2639,8 @@
 "female","55-59","sc_bus_deaths_pa_breast_cancer",0.24852,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_bus_deaths_pa_breast_cancer",0.14858,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_bus_deaths_pa_breast_cancer",0.17812,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_cycle_deaths_pa_breast_cancer_lb",0.00006,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_cycle_deaths_pa_breast_cancer_lb",0.00009,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
+"male","15-19","sc_cycle_deaths_pa_breast_cancer_lb",6e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_cycle_deaths_pa_breast_cancer_lb",9e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_cycle_deaths_pa_breast_cancer_lb",0.00027,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",360031
 "male","30-34","sc_cycle_deaths_pa_breast_cancer_lb",0.00026,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_cycle_deaths_pa_breast_cancer_lb",0.00045,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",289808
@@ -2662,7 +2662,7 @@
 "female","60-64","sc_cycle_deaths_pa_breast_cancer_lb",0.25574,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_cycle_deaths_pa_breast_cancer_lb",0.3614,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",141409
 "male","15-19","sc_car_deaths_pa_breast_cancer_lb",-0.00012,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_car_deaths_pa_breast_cancer_lb",-0.0002,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
+"male","20-24","sc_car_deaths_pa_breast_cancer_lb",-2e-04,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_car_deaths_pa_breast_cancer_lb",-0.00027,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360031
 "male","30-34","sc_car_deaths_pa_breast_cancer_lb",-0.00019,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_car_deaths_pa_breast_cancer_lb",-0.00029,"bogota","Car",NA,NA,"L3: breast_cancer","PA",289808
@@ -2683,11 +2683,11 @@
 "female","55-59","sc_car_deaths_pa_breast_cancer_lb",-0.40304,"bogota","Car",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_breast_cancer_lb",-0.29154,"bogota","Car",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_breast_cancer_lb",-0.29697,"bogota","Car",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_breast_cancer_lb",0.0001,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
+"male","15-19","sc_bus_deaths_pa_breast_cancer_lb",1e-04,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
 "male","20-24","sc_bus_deaths_pa_breast_cancer_lb",0.00026,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_breast_cancer_lb",0.00052,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",360031
 "male","30-34","sc_bus_deaths_pa_breast_cancer_lb",0.00048,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",321492
-"male","35-39","sc_bus_deaths_pa_breast_cancer_lb",0.0009,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",289808
+"male","35-39","sc_bus_deaths_pa_breast_cancer_lb",9e-04,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",289808
 "male","40-44","sc_bus_deaths_pa_breast_cancer_lb",0.00112,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_bus_deaths_pa_breast_cancer_lb",0.00216,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",215491
 "male","50-54","sc_bus_deaths_pa_breast_cancer_lb",0.00345,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",209137
@@ -2705,12 +2705,12 @@
 "female","55-59","sc_bus_deaths_pa_breast_cancer_lb",0.61413,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_bus_deaths_pa_breast_cancer_lb",0.3582,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_bus_deaths_pa_breast_cancer_lb",0.44627,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_cycle_deaths_pa_breast_cancer_ub",0.00002,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_cycle_deaths_pa_breast_cancer_ub",0.00004,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
-"male","25-29","sc_cycle_deaths_pa_breast_cancer_ub",0.00006,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_cycle_deaths_pa_breast_cancer_ub",0.00004,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",321492
-"male","35-39","sc_cycle_deaths_pa_breast_cancer_ub",0.00007,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",289808
-"male","40-44","sc_cycle_deaths_pa_breast_cancer_ub",0.00007,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",244543
+"male","15-19","sc_cycle_deaths_pa_breast_cancer_ub",2e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_cycle_deaths_pa_breast_cancer_ub",4e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",357934
+"male","25-29","sc_cycle_deaths_pa_breast_cancer_ub",6e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",360031
+"male","30-34","sc_cycle_deaths_pa_breast_cancer_ub",4e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",321492
+"male","35-39","sc_cycle_deaths_pa_breast_cancer_ub",7e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",289808
+"male","40-44","sc_cycle_deaths_pa_breast_cancer_ub",7e-05,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_cycle_deaths_pa_breast_cancer_ub",0.00022,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",215491
 "male","50-54","sc_cycle_deaths_pa_breast_cancer_ub",0.00021,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",209137
 "male","55-59","sc_cycle_deaths_pa_breast_cancer_ub",0.00056,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",187551
@@ -2727,19 +2727,19 @@
 "female","55-59","sc_cycle_deaths_pa_breast_cancer_ub",0.07198,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_cycle_deaths_pa_breast_cancer_ub",0.04277,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_cycle_deaths_pa_breast_cancer_ub",0.08049,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_car_deaths_pa_breast_cancer_ub",-0.00001,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_car_deaths_pa_breast_cancer_ub",-0.00002,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
-"male","25-29","sc_car_deaths_pa_breast_cancer_ub",-0.00001,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_car_deaths_pa_breast_cancer_ub",-0.00001,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
+"male","15-19","sc_car_deaths_pa_breast_cancer_ub",-1e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_car_deaths_pa_breast_cancer_ub",-2e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
+"male","25-29","sc_car_deaths_pa_breast_cancer_ub",-1e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360031
+"male","30-34","sc_car_deaths_pa_breast_cancer_ub",-1e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_car_deaths_pa_breast_cancer_ub",0,"bogota","Car",NA,NA,"L3: breast_cancer","PA",289808
-"male","40-44","sc_car_deaths_pa_breast_cancer_ub",-0.00004,"bogota","Car",NA,NA,"L3: breast_cancer","PA",244543
-"male","45-49","sc_car_deaths_pa_breast_cancer_ub",-0.00001,"bogota","Car",NA,NA,"L3: breast_cancer","PA",215491
-"male","50-54","sc_car_deaths_pa_breast_cancer_ub",-0.00003,"bogota","Car",NA,NA,"L3: breast_cancer","PA",209137
-"male","55-59","sc_car_deaths_pa_breast_cancer_ub",-0.00008,"bogota","Car",NA,NA,"L3: breast_cancer","PA",187551
+"male","40-44","sc_car_deaths_pa_breast_cancer_ub",-4e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",244543
+"male","45-49","sc_car_deaths_pa_breast_cancer_ub",-1e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",215491
+"male","50-54","sc_car_deaths_pa_breast_cancer_ub",-3e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",209137
+"male","55-59","sc_car_deaths_pa_breast_cancer_ub",-8e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",187551
 "male","60-64","sc_car_deaths_pa_breast_cancer_ub",-0.00023,"bogota","Car",NA,NA,"L3: breast_cancer","PA",146500
-"male","65-69","sc_car_deaths_pa_breast_cancer_ub",-0.00007,"bogota","Car",NA,NA,"L3: breast_cancer","PA",105412
-"female","15-19","sc_car_deaths_pa_breast_cancer_ub",-0.00004,"bogota","Car",NA,NA,"L3: breast_cancer","PA",279280
-"female","20-24","sc_car_deaths_pa_breast_cancer_ub",-0.0005,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360197
+"male","65-69","sc_car_deaths_pa_breast_cancer_ub",-7e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",105412
+"female","15-19","sc_car_deaths_pa_breast_cancer_ub",-4e-05,"bogota","Car",NA,NA,"L3: breast_cancer","PA",279280
+"female","20-24","sc_car_deaths_pa_breast_cancer_ub",-5e-04,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360197
 "female","25-29","sc_car_deaths_pa_breast_cancer_ub",-0.00314,"bogota","Car",NA,NA,"L3: breast_cancer","PA",364423
 "female","30-34","sc_car_deaths_pa_breast_cancer_ub",-0.00407,"bogota","Car",NA,NA,"L3: breast_cancer","PA",330341
 "female","35-39","sc_car_deaths_pa_breast_cancer_ub",-0.00941,"bogota","Car",NA,NA,"L3: breast_cancer","PA",309304
@@ -2749,10 +2749,10 @@
 "female","55-59","sc_car_deaths_pa_breast_cancer_ub",-0.04109,"bogota","Car",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_breast_cancer_ub",-0.0346,"bogota","Car",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_breast_cancer_ub",-0.01958,"bogota","Car",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_breast_cancer_ub",-0.00001,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
-"male","20-24","sc_bus_deaths_pa_breast_cancer_ub",-0.00003,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",357934
-"male","25-29","sc_bus_deaths_pa_breast_cancer_ub",-0.00007,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_bus_deaths_pa_breast_cancer_ub",-0.00006,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",321492
+"male","15-19","sc_bus_deaths_pa_breast_cancer_ub",-1e-05,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",282736
+"male","20-24","sc_bus_deaths_pa_breast_cancer_ub",-3e-05,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",357934
+"male","25-29","sc_bus_deaths_pa_breast_cancer_ub",-7e-05,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",360031
+"male","30-34","sc_bus_deaths_pa_breast_cancer_ub",-6e-05,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_bus_deaths_pa_breast_cancer_ub",-0.00013,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",289808
 "male","40-44","sc_bus_deaths_pa_breast_cancer_ub",-0.00016,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_bus_deaths_pa_breast_cancer_ub",-0.00033,"bogota","Public Transport",NA,NA,"L3: breast_cancer","PA",215491
@@ -2870,7 +2870,7 @@
 "male","55-59","sc_car_deaths_pa_colon_cancer_lb",-0.07061,"bogota","Car",NA,NA,"L3: colon_cancer","PA",187551
 "male","60-64","sc_car_deaths_pa_colon_cancer_lb",-0.04326,"bogota","Car",NA,NA,"L3: colon_cancer","PA",146500
 "male","65-69","sc_car_deaths_pa_colon_cancer_lb",-0.11879,"bogota","Car",NA,NA,"L3: colon_cancer","PA",105412
-"female","15-19","sc_car_deaths_pa_colon_cancer_lb",-0.0008,"bogota","Car",NA,NA,"L3: colon_cancer","PA",279280
+"female","15-19","sc_car_deaths_pa_colon_cancer_lb",-8e-04,"bogota","Car",NA,NA,"L3: colon_cancer","PA",279280
 "female","20-24","sc_car_deaths_pa_colon_cancer_lb",-0.00417,"bogota","Car",NA,NA,"L3: colon_cancer","PA",360197
 "female","25-29","sc_car_deaths_pa_colon_cancer_lb",-0.00715,"bogota","Car",NA,NA,"L3: colon_cancer","PA",364423
 "female","30-34","sc_car_deaths_pa_colon_cancer_lb",-0.01101,"bogota","Car",NA,NA,"L3: colon_cancer","PA",330341
@@ -2914,8 +2914,8 @@
 "male","55-59","sc_cycle_deaths_pa_colon_cancer_ub",0.01234,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",187551
 "male","60-64","sc_cycle_deaths_pa_colon_cancer_ub",0.01617,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",146500
 "male","65-69","sc_cycle_deaths_pa_colon_cancer_ub",0.02484,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",105412
-"female","15-19","sc_cycle_deaths_pa_colon_cancer_ub",0.00008,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",279280
-"female","20-24","sc_cycle_deaths_pa_colon_cancer_ub",0.0005,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",360197
+"female","15-19","sc_cycle_deaths_pa_colon_cancer_ub",8e-05,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",279280
+"female","20-24","sc_cycle_deaths_pa_colon_cancer_ub",5e-04,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",360197
 "female","25-29","sc_cycle_deaths_pa_colon_cancer_ub",0.00105,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",364423
 "female","30-34","sc_cycle_deaths_pa_colon_cancer_ub",0.00185,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",330341
 "female","35-39","sc_cycle_deaths_pa_colon_cancer_ub",0.00355,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",309304
@@ -2926,7 +2926,7 @@
 "female","60-64","sc_cycle_deaths_pa_colon_cancer_ub",0.01132,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",189600
 "female","65-69","sc_cycle_deaths_pa_colon_cancer_ub",0.02211,"bogota","Bicycling",NA,NA,"L3: colon_cancer","PA",141409
 "male","15-19","sc_car_deaths_pa_colon_cancer_ub",-0.00017,"bogota","Car",NA,NA,"L3: colon_cancer","PA",282736
-"male","20-24","sc_car_deaths_pa_colon_cancer_ub",-0.0005,"bogota","Car",NA,NA,"L3: colon_cancer","PA",357934
+"male","20-24","sc_car_deaths_pa_colon_cancer_ub",-5e-04,"bogota","Car",NA,NA,"L3: colon_cancer","PA",357934
 "male","25-29","sc_car_deaths_pa_colon_cancer_ub",-0.00108,"bogota","Car",NA,NA,"L3: colon_cancer","PA",360031
 "male","30-34","sc_car_deaths_pa_colon_cancer_ub",-0.00123,"bogota","Car",NA,NA,"L3: colon_cancer","PA",321492
 "male","35-39","sc_car_deaths_pa_colon_cancer_ub",-0.00192,"bogota","Car",NA,NA,"L3: colon_cancer","PA",289808
@@ -2947,8 +2947,8 @@
 "female","55-59","sc_car_deaths_pa_colon_cancer_ub",-0.01121,"bogota","Car",NA,NA,"L3: colon_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_colon_cancer_ub",-0.01219,"bogota","Car",NA,NA,"L3: colon_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_colon_cancer_ub",-0.01361,"bogota","Car",NA,NA,"L3: colon_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_colon_cancer_ub",0.00005,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",282736
-"male","20-24","sc_bus_deaths_pa_colon_cancer_ub",0.0003,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",357934
+"male","15-19","sc_bus_deaths_pa_colon_cancer_ub",5e-05,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",282736
+"male","20-24","sc_bus_deaths_pa_colon_cancer_ub",3e-04,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_colon_cancer_ub",0.00108,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",360031
 "male","30-34","sc_bus_deaths_pa_colon_cancer_ub",0.0017,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",321492
 "male","35-39","sc_bus_deaths_pa_colon_cancer_ub",0.00298,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",289808
@@ -2958,7 +2958,7 @@
 "male","55-59","sc_bus_deaths_pa_colon_cancer_ub",0.01027,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",187551
 "male","60-64","sc_bus_deaths_pa_colon_cancer_ub",0.01211,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_colon_cancer_ub",0.01375,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",105412
-"female","15-19","sc_bus_deaths_pa_colon_cancer_ub",0.00005,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",279280
+"female","15-19","sc_bus_deaths_pa_colon_cancer_ub",5e-05,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",279280
 "female","20-24","sc_bus_deaths_pa_colon_cancer_ub",0.00017,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",360197
 "female","25-29","sc_bus_deaths_pa_colon_cancer_ub",0.00056,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_colon_cancer_ub",0.00095,"bogota","Public Transport",NA,NA,"L3: colon_cancer","PA",330341
@@ -3025,7 +3025,7 @@
 "male","60-64","sc_bus_deaths_pa_endo_cancer",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_endo_cancer",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",105412
 "female","15-19","sc_bus_deaths_pa_endo_cancer",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",279280
-"female","20-24","sc_bus_deaths_pa_endo_cancer",0.0001,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",360197
+"female","20-24","sc_bus_deaths_pa_endo_cancer",1e-04,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",360197
 "female","25-29","sc_bus_deaths_pa_endo_cancer",0.00048,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_endo_cancer",0.00077,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",330341
 "female","35-39","sc_bus_deaths_pa_endo_cancer",0.00193,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",309304
@@ -3048,7 +3048,7 @@
 "male","65-69","sc_cycle_deaths_pa_endo_cancer_lb",0,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",105412
 "female","15-19","sc_cycle_deaths_pa_endo_cancer_lb",0,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",279280
 "female","20-24","sc_cycle_deaths_pa_endo_cancer_lb",0.00025,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",360197
-"female","25-29","sc_cycle_deaths_pa_endo_cancer_lb",0.0008,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",364423
+"female","25-29","sc_cycle_deaths_pa_endo_cancer_lb",8e-04,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",364423
 "female","30-34","sc_cycle_deaths_pa_endo_cancer_lb",0.0015,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",330341
 "female","35-39","sc_cycle_deaths_pa_endo_cancer_lb",0.00339,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",309304
 "female","40-44","sc_cycle_deaths_pa_endo_cancer_lb",0.0047,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",275440
@@ -3113,7 +3113,7 @@
 "male","60-64","sc_cycle_deaths_pa_endo_cancer_ub",0,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",146500
 "male","65-69","sc_cycle_deaths_pa_endo_cancer_ub",0,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",105412
 "female","15-19","sc_cycle_deaths_pa_endo_cancer_ub",0,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",279280
-"female","20-24","sc_cycle_deaths_pa_endo_cancer_ub",0.00008,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",360197
+"female","20-24","sc_cycle_deaths_pa_endo_cancer_ub",8e-05,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",360197
 "female","25-29","sc_cycle_deaths_pa_endo_cancer_ub",0.00027,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",364423
 "female","30-34","sc_cycle_deaths_pa_endo_cancer_ub",0.00043,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",330341
 "female","35-39","sc_cycle_deaths_pa_endo_cancer_ub",0.00102,"bogota","Bicycling",NA,NA,"L3: endo_cancer","PA",309304
@@ -3157,7 +3157,7 @@
 "male","60-64","sc_bus_deaths_pa_endo_cancer_ub",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_endo_cancer_ub",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",105412
 "female","15-19","sc_bus_deaths_pa_endo_cancer_ub",0,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",279280
-"female","20-24","sc_bus_deaths_pa_endo_cancer_ub",0.00003,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",360197
+"female","20-24","sc_bus_deaths_pa_endo_cancer_ub",3e-05,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",360197
 "female","25-29","sc_bus_deaths_pa_endo_cancer_ub",0.00015,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_endo_cancer_ub",0.00023,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",330341
 "female","35-39","sc_bus_deaths_pa_endo_cancer_ub",0.00058,"bogota","Public Transport",NA,NA,"L3: endo_cancer","PA",309304
@@ -3233,7 +3233,7 @@
 "female","55-59","sc_bus_deaths_pa_liver_cancer",0.02956,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",235548
 "female","60-64","sc_bus_deaths_pa_liver_cancer",0.02636,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",189600
 "female","65-69","sc_bus_deaths_pa_liver_cancer",0.03856,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",141409
-"male","15-19","sc_cycle_deaths_pa_liver_cancer_lb",0.0006,"bogota","Bicycling",NA,NA,"L3: liver_cancer","PA",282736
+"male","15-19","sc_cycle_deaths_pa_liver_cancer_lb",6e-04,"bogota","Bicycling",NA,NA,"L3: liver_cancer","PA",282736
 "male","20-24","sc_cycle_deaths_pa_liver_cancer_lb",0.00134,"bogota","Bicycling",NA,NA,"L3: liver_cancer","PA",357934
 "male","25-29","sc_cycle_deaths_pa_liver_cancer_lb",0.00447,"bogota","Bicycling",NA,NA,"L3: liver_cancer","PA",360031
 "male","30-34","sc_cycle_deaths_pa_liver_cancer_lb",0.00644,"bogota","Bicycling",NA,NA,"L3: liver_cancer","PA",321492
@@ -3332,7 +3332,7 @@
 "male","55-59","sc_car_deaths_pa_liver_cancer_ub",-0.01539,"bogota","Car",NA,NA,"L3: liver_cancer","PA",187551
 "male","60-64","sc_car_deaths_pa_liver_cancer_ub",-0.01149,"bogota","Car",NA,NA,"L3: liver_cancer","PA",146500
 "male","65-69","sc_car_deaths_pa_liver_cancer_ub",-0.0281,"bogota","Car",NA,NA,"L3: liver_cancer","PA",105412
-"female","15-19","sc_car_deaths_pa_liver_cancer_ub",-0.0002,"bogota","Car",NA,NA,"L3: liver_cancer","PA",279280
+"female","15-19","sc_car_deaths_pa_liver_cancer_ub",-2e-04,"bogota","Car",NA,NA,"L3: liver_cancer","PA",279280
 "female","20-24","sc_car_deaths_pa_liver_cancer_ub",-0.00043,"bogota","Car",NA,NA,"L3: liver_cancer","PA",360197
 "female","25-29","sc_car_deaths_pa_liver_cancer_ub",-0.00065,"bogota","Car",NA,NA,"L3: liver_cancer","PA",364423
 "female","30-34","sc_car_deaths_pa_liver_cancer_ub",-0.00073,"bogota","Car",NA,NA,"L3: liver_cancer","PA",330341
@@ -3343,7 +3343,7 @@
 "female","55-59","sc_car_deaths_pa_liver_cancer_ub",-0.01055,"bogota","Car",NA,NA,"L3: liver_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_liver_cancer_ub",-0.01191,"bogota","Car",NA,NA,"L3: liver_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_liver_cancer_ub",-0.01452,"bogota","Car",NA,NA,"L3: liver_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_liver_cancer_ub",0.00005,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",282736
+"male","15-19","sc_bus_deaths_pa_liver_cancer_ub",5e-05,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",282736
 "male","20-24","sc_bus_deaths_pa_liver_cancer_ub",0.00024,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_liver_cancer_ub",0.00064,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",360031
 "male","30-34","sc_bus_deaths_pa_liver_cancer_ub",0.00095,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",321492
@@ -3354,9 +3354,9 @@
 "male","55-59","sc_bus_deaths_pa_liver_cancer_ub",0.0146,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",187551
 "male","60-64","sc_bus_deaths_pa_liver_cancer_ub",0.01802,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_liver_cancer_ub",0.02117,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",105412
-"female","15-19","sc_bus_deaths_pa_liver_cancer_ub",0.00007,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",279280
+"female","15-19","sc_bus_deaths_pa_liver_cancer_ub",7e-05,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",279280
 "female","20-24","sc_bus_deaths_pa_liver_cancer_ub",0.00011,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",360197
-"female","25-29","sc_bus_deaths_pa_liver_cancer_ub",0.0003,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",364423
+"female","25-29","sc_bus_deaths_pa_liver_cancer_ub",3e-04,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_liver_cancer_ub",0.00041,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",330341
 "female","35-39","sc_bus_deaths_pa_liver_cancer_ub",0.00101,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",309304
 "female","40-44","sc_bus_deaths_pa_liver_cancer_ub",0.00124,"bogota","Public Transport",NA,NA,"L3: liver_cancer","PA",275440
@@ -3898,7 +3898,7 @@
 "male","25-29","sc_cycle_deaths_pa_total_dementia_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",360031
 "male","30-34","sc_cycle_deaths_pa_total_dementia_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",321492
 "male","35-39","sc_cycle_deaths_pa_total_dementia_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",289808
-"male","40-44","sc_cycle_deaths_pa_total_dementia_ub",0.0006,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",244543
+"male","40-44","sc_cycle_deaths_pa_total_dementia_ub",6e-04,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",244543
 "male","45-49","sc_cycle_deaths_pa_total_dementia_ub",0.00442,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",215491
 "male","50-54","sc_cycle_deaths_pa_total_dementia_ub",0.00793,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",209137
 "male","55-59","sc_cycle_deaths_pa_total_dementia_ub",0.01032,"bogota","Bicycling",NA,"L2: Other","L3: total_dementia","PA",187551
@@ -3960,7 +3960,7 @@
 "female","60-64","sc_bus_deaths_pa_total_dementia_ub",0.03332,"bogota","Public Transport",NA,"L2: Other","L3: total_dementia","PA",189600
 "female","65-69","sc_bus_deaths_pa_total_dementia_ub",0.09409,"bogota","Public Transport",NA,"L2: Other","L3: total_dementia","PA",141409
 "male","15-19","sc_cycle_deaths_pa_myeloma",0,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",282736
-"male","20-24","sc_cycle_deaths_pa_myeloma",0.0002,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",357934
+"male","20-24","sc_cycle_deaths_pa_myeloma",2e-04,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",357934
 "male","25-29","sc_cycle_deaths_pa_myeloma",0.00094,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",360031
 "male","30-34","sc_cycle_deaths_pa_myeloma",0.00173,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",321492
 "male","35-39","sc_cycle_deaths_pa_myeloma",0.00485,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",289808
@@ -4092,8 +4092,8 @@
 "female","60-64","sc_bus_deaths_pa_myeloma_lb",0.06145,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",189600
 "female","65-69","sc_bus_deaths_pa_myeloma_lb",0.08724,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",141409
 "male","15-19","sc_cycle_deaths_pa_myeloma_ub",0,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",282736
-"male","20-24","sc_cycle_deaths_pa_myeloma_ub",0.00003,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",357934
-"male","25-29","sc_cycle_deaths_pa_myeloma_ub",0.0002,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",360031
+"male","20-24","sc_cycle_deaths_pa_myeloma_ub",3e-05,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",357934
+"male","25-29","sc_cycle_deaths_pa_myeloma_ub",2e-04,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",360031
 "male","30-34","sc_cycle_deaths_pa_myeloma_ub",0.00039,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",321492
 "male","35-39","sc_cycle_deaths_pa_myeloma_ub",0.00112,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",289808
 "male","40-44","sc_cycle_deaths_pa_myeloma_ub",0.0012,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",244543
@@ -4103,8 +4103,8 @@
 "male","60-64","sc_cycle_deaths_pa_myeloma_ub",0.00832,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",146500
 "male","65-69","sc_cycle_deaths_pa_myeloma_ub",0.01683,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",105412
 "female","15-19","sc_cycle_deaths_pa_myeloma_ub",0,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",279280
-"female","20-24","sc_cycle_deaths_pa_myeloma_ub",0.00004,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",360197
-"female","25-29","sc_cycle_deaths_pa_myeloma_ub",0.00006,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",364423
+"female","20-24","sc_cycle_deaths_pa_myeloma_ub",4e-05,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",360197
+"female","25-29","sc_cycle_deaths_pa_myeloma_ub",6e-05,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",364423
 "female","30-34","sc_cycle_deaths_pa_myeloma_ub",0.00032,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",330341
 "female","35-39","sc_cycle_deaths_pa_myeloma_ub",0.00062,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",309304
 "female","40-44","sc_cycle_deaths_pa_myeloma_ub",0.00093,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",275440
@@ -4114,7 +4114,7 @@
 "female","60-64","sc_cycle_deaths_pa_myeloma_ub",0.00658,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",189600
 "female","65-69","sc_cycle_deaths_pa_myeloma_ub",0.01286,"bogota","Bicycling",NA,NA,"L3: myeloma","PA",141409
 "male","15-19","sc_car_deaths_pa_myeloma_ub",0,"bogota","Car",NA,NA,"L3: myeloma","PA",282736
-"male","20-24","sc_car_deaths_pa_myeloma_ub",-0.0001,"bogota","Car",NA,NA,"L3: myeloma","PA",357934
+"male","20-24","sc_car_deaths_pa_myeloma_ub",-1e-04,"bogota","Car",NA,NA,"L3: myeloma","PA",357934
 "male","25-29","sc_car_deaths_pa_myeloma_ub",-0.00022,"bogota","Car",NA,NA,"L3: myeloma","PA",360031
 "male","30-34","sc_car_deaths_pa_myeloma_ub",-0.00031,"bogota","Car",NA,NA,"L3: myeloma","PA",321492
 "male","35-39","sc_car_deaths_pa_myeloma_ub",-0.00078,"bogota","Car",NA,NA,"L3: myeloma","PA",289808
@@ -4147,7 +4147,7 @@
 "male","60-64","sc_bus_deaths_pa_myeloma_ub",0.01891,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",146500
 "male","65-69","sc_bus_deaths_pa_myeloma_ub",0.02612,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",105412
 "female","15-19","sc_bus_deaths_pa_myeloma_ub",0,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",279280
-"female","20-24","sc_bus_deaths_pa_myeloma_ub",0.00007,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",360197
+"female","20-24","sc_bus_deaths_pa_myeloma_ub",7e-05,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",360197
 "female","25-29","sc_bus_deaths_pa_myeloma_ub",0.00016,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",364423
 "female","30-34","sc_bus_deaths_pa_myeloma_ub",0.00048,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",330341
 "female","35-39","sc_bus_deaths_pa_myeloma_ub",0.00111,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",309304
@@ -4158,9 +4158,9 @@
 "female","60-64","sc_bus_deaths_pa_myeloma_ub",0.00963,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",189600
 "female","65-69","sc_bus_deaths_pa_myeloma_ub",0.0147,"bogota","Public Transport",NA,NA,"L3: myeloma","PA",141409
 "male","15-19","sc_cycle_deaths_pa_Parkinson",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_cycle_deaths_pa_Parkinson",0.00003,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_cycle_deaths_pa_Parkinson",3e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_cycle_deaths_pa_Parkinson",0.00014,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_cycle_deaths_pa_Parkinson",0.00008,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","30-34","sc_cycle_deaths_pa_Parkinson",8e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_cycle_deaths_pa_Parkinson",0.00044,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_cycle_deaths_pa_Parkinson",0.00128,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_cycle_deaths_pa_Parkinson",0.00504,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",215491
@@ -4169,20 +4169,20 @@
 "male","60-64","sc_cycle_deaths_pa_Parkinson",0.02583,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_cycle_deaths_pa_Parkinson",0.07699,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_cycle_deaths_pa_Parkinson",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_cycle_deaths_pa_Parkinson",0.00002,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_cycle_deaths_pa_Parkinson",0.00002,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","20-24","sc_cycle_deaths_pa_Parkinson",2e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_cycle_deaths_pa_Parkinson",2e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_cycle_deaths_pa_Parkinson",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_cycle_deaths_pa_Parkinson",0.00003,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
-"female","40-44","sc_cycle_deaths_pa_Parkinson",0.0006,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",275440
+"female","35-39","sc_cycle_deaths_pa_Parkinson",3e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","40-44","sc_cycle_deaths_pa_Parkinson",6e-04,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_cycle_deaths_pa_Parkinson",0.00189,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_cycle_deaths_pa_Parkinson",0.00394,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",256059
 "female","55-59","sc_cycle_deaths_pa_Parkinson",0.00576,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",235548
 "female","60-64","sc_cycle_deaths_pa_Parkinson",0.01139,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_cycle_deaths_pa_Parkinson",0.04299,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_car_deaths_pa_Parkinson",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_car_deaths_pa_Parkinson",-0.00005,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_car_deaths_pa_Parkinson",-5e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_car_deaths_pa_Parkinson",-0.00011,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_car_deaths_pa_Parkinson",-0.00005,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","30-34","sc_car_deaths_pa_Parkinson",-5e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_car_deaths_pa_Parkinson",-0.00022,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_car_deaths_pa_Parkinson",-0.00082,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_car_deaths_pa_Parkinson",-0.00275,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",215491
@@ -4191,10 +4191,10 @@
 "male","60-64","sc_car_deaths_pa_Parkinson",-0.01215,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_car_deaths_pa_Parkinson",-0.05686,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_car_deaths_pa_Parkinson",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_car_deaths_pa_Parkinson",-0.00003,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_car_deaths_pa_Parkinson",-0.00003,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","20-24","sc_car_deaths_pa_Parkinson",-3e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_car_deaths_pa_Parkinson",-3e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_car_deaths_pa_Parkinson",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_car_deaths_pa_Parkinson",-0.00002,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","35-39","sc_car_deaths_pa_Parkinson",-2e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_car_deaths_pa_Parkinson",-0.00055,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_car_deaths_pa_Parkinson",-0.00208,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_car_deaths_pa_Parkinson",-0.00453,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4202,9 +4202,9 @@
 "female","60-64","sc_car_deaths_pa_Parkinson",-0.01235,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_car_deaths_pa_Parkinson",-0.02807,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_bus_deaths_pa_Parkinson",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_bus_deaths_pa_Parkinson",0.00004,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_bus_deaths_pa_Parkinson",4e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_bus_deaths_pa_Parkinson",0.00013,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_bus_deaths_pa_Parkinson",0.00008,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","30-34","sc_bus_deaths_pa_Parkinson",8e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_bus_deaths_pa_Parkinson",0.00043,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_bus_deaths_pa_Parkinson",0.00154,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_bus_deaths_pa_Parkinson",0.00503,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",215491
@@ -4213,10 +4213,10 @@
 "male","60-64","sc_bus_deaths_pa_Parkinson",0.02675,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_bus_deaths_pa_Parkinson",0.06123,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_bus_deaths_pa_Parkinson",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_bus_deaths_pa_Parkinson",0.00001,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_bus_deaths_pa_Parkinson",0.00002,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","20-24","sc_bus_deaths_pa_Parkinson",1e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_bus_deaths_pa_Parkinson",2e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_bus_deaths_pa_Parkinson",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_bus_deaths_pa_Parkinson",0.00002,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","35-39","sc_bus_deaths_pa_Parkinson",2e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_bus_deaths_pa_Parkinson",0.00048,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_bus_deaths_pa_Parkinson",0.0013,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_bus_deaths_pa_Parkinson",0.00267,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4224,7 +4224,7 @@
 "female","60-64","sc_bus_deaths_pa_Parkinson",0.0084,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_bus_deaths_pa_Parkinson",0.02225,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_cycle_deaths_pa_Parkinson_lb",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_cycle_deaths_pa_Parkinson_lb",0.00005,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_cycle_deaths_pa_Parkinson_lb",5e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_cycle_deaths_pa_Parkinson_lb",0.00022,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360031
 "male","30-34","sc_cycle_deaths_pa_Parkinson_lb",0.00013,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_cycle_deaths_pa_Parkinson_lb",0.00068,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",289808
@@ -4235,20 +4235,20 @@
 "male","60-64","sc_cycle_deaths_pa_Parkinson_lb",0.03773,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_cycle_deaths_pa_Parkinson_lb",0.11769,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_cycle_deaths_pa_Parkinson_lb",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_cycle_deaths_pa_Parkinson_lb",0.00003,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_cycle_deaths_pa_Parkinson_lb",0.00003,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_cycle_deaths_pa_Parkinson_lb",0.00001,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_cycle_deaths_pa_Parkinson_lb",0.00004,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
-"female","40-44","sc_cycle_deaths_pa_Parkinson_lb",0.0009,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",275440
+"female","20-24","sc_cycle_deaths_pa_Parkinson_lb",3e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_cycle_deaths_pa_Parkinson_lb",3e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","30-34","sc_cycle_deaths_pa_Parkinson_lb",1e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","35-39","sc_cycle_deaths_pa_Parkinson_lb",4e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","40-44","sc_cycle_deaths_pa_Parkinson_lb",9e-04,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_cycle_deaths_pa_Parkinson_lb",0.00285,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_cycle_deaths_pa_Parkinson_lb",0.00578,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",256059
 "female","55-59","sc_cycle_deaths_pa_Parkinson_lb",0.00863,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",235548
 "female","60-64","sc_cycle_deaths_pa_Parkinson_lb",0.01787,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_cycle_deaths_pa_Parkinson_lb",0.06338,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_car_deaths_pa_Parkinson_lb",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_car_deaths_pa_Parkinson_lb",-0.00008,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_car_deaths_pa_Parkinson_lb",-8e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_car_deaths_pa_Parkinson_lb",-0.00019,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_car_deaths_pa_Parkinson_lb",-0.00008,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","30-34","sc_car_deaths_pa_Parkinson_lb",-8e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_car_deaths_pa_Parkinson_lb",-0.00037,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_car_deaths_pa_Parkinson_lb",-0.00131,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_car_deaths_pa_Parkinson_lb",-0.00475,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",215491
@@ -4257,10 +4257,10 @@
 "male","60-64","sc_car_deaths_pa_Parkinson_lb",-0.01836,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_car_deaths_pa_Parkinson_lb",-0.09409,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_car_deaths_pa_Parkinson_lb",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_car_deaths_pa_Parkinson_lb",-0.00005,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_car_deaths_pa_Parkinson_lb",-0.00004,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_car_deaths_pa_Parkinson_lb",-0.00001,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_car_deaths_pa_Parkinson_lb",-0.00003,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","20-24","sc_car_deaths_pa_Parkinson_lb",-5e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_car_deaths_pa_Parkinson_lb",-4e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","30-34","sc_car_deaths_pa_Parkinson_lb",-1e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","35-39","sc_car_deaths_pa_Parkinson_lb",-3e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_car_deaths_pa_Parkinson_lb",-0.00092,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_car_deaths_pa_Parkinson_lb",-0.00347,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_car_deaths_pa_Parkinson_lb",-0.00735,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4268,7 +4268,7 @@
 "female","60-64","sc_car_deaths_pa_Parkinson_lb",-0.01944,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_car_deaths_pa_Parkinson_lb",-0.0446,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_bus_deaths_pa_Parkinson_lb",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_bus_deaths_pa_Parkinson_lb",0.00008,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_bus_deaths_pa_Parkinson_lb",8e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_bus_deaths_pa_Parkinson_lb",0.00028,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360031
 "male","30-34","sc_bus_deaths_pa_Parkinson_lb",0.00017,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_bus_deaths_pa_Parkinson_lb",0.00092,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",289808
@@ -4279,10 +4279,10 @@
 "male","60-64","sc_bus_deaths_pa_Parkinson_lb",0.05579,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_bus_deaths_pa_Parkinson_lb",0.13208,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_bus_deaths_pa_Parkinson_lb",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_bus_deaths_pa_Parkinson_lb",0.00003,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_bus_deaths_pa_Parkinson_lb",0.00004,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_bus_deaths_pa_Parkinson_lb",0.00001,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_bus_deaths_pa_Parkinson_lb",0.00005,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","20-24","sc_bus_deaths_pa_Parkinson_lb",3e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_bus_deaths_pa_Parkinson_lb",4e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","30-34","sc_bus_deaths_pa_Parkinson_lb",1e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","35-39","sc_bus_deaths_pa_Parkinson_lb",5e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_bus_deaths_pa_Parkinson_lb",0.00102,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_bus_deaths_pa_Parkinson_lb",0.00289,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_bus_deaths_pa_Parkinson_lb",0.00565,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4290,10 +4290,10 @@
 "female","60-64","sc_bus_deaths_pa_Parkinson_lb",0.01728,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_bus_deaths_pa_Parkinson_lb",0.04833,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_cycle_deaths_pa_Parkinson_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_cycle_deaths_pa_Parkinson_ub",0.00002,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
-"male","25-29","sc_cycle_deaths_pa_Parkinson_ub",0.00007,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_cycle_deaths_pa_Parkinson_ub",0.00004,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",321492
-"male","35-39","sc_cycle_deaths_pa_Parkinson_ub",0.0002,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",289808
+"male","20-24","sc_cycle_deaths_pa_Parkinson_ub",2e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","25-29","sc_cycle_deaths_pa_Parkinson_ub",7e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360031
+"male","30-34","sc_cycle_deaths_pa_Parkinson_ub",4e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","35-39","sc_cycle_deaths_pa_Parkinson_ub",2e-04,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_cycle_deaths_pa_Parkinson_ub",0.00056,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_cycle_deaths_pa_Parkinson_ub",0.00252,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",215491
 "male","50-54","sc_cycle_deaths_pa_Parkinson_ub",0.00317,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",209137
@@ -4301,10 +4301,10 @@
 "male","60-64","sc_cycle_deaths_pa_Parkinson_ub",0.0141,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_cycle_deaths_pa_Parkinson_ub",0.03496,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_cycle_deaths_pa_Parkinson_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_cycle_deaths_pa_Parkinson_ub",0.00001,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_cycle_deaths_pa_Parkinson_ub",0.00001,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","20-24","sc_cycle_deaths_pa_Parkinson_ub",1e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_cycle_deaths_pa_Parkinson_ub",1e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_cycle_deaths_pa_Parkinson_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_cycle_deaths_pa_Parkinson_ub",0.00001,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","35-39","sc_cycle_deaths_pa_Parkinson_ub",1e-05,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_cycle_deaths_pa_Parkinson_ub",0.00032,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_cycle_deaths_pa_Parkinson_ub",0.00098,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_cycle_deaths_pa_Parkinson_ub",0.00215,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4312,10 +4312,10 @@
 "female","60-64","sc_cycle_deaths_pa_Parkinson_ub",0.00521,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_cycle_deaths_pa_Parkinson_ub",0.02165,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_car_deaths_pa_Parkinson_ub",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_car_deaths_pa_Parkinson_ub",-0.00002,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
-"male","25-29","sc_car_deaths_pa_Parkinson_ub",-0.00004,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360031
-"male","30-34","sc_car_deaths_pa_Parkinson_ub",-0.00002,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
-"male","35-39","sc_car_deaths_pa_Parkinson_ub",-0.00007,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",289808
+"male","20-24","sc_car_deaths_pa_Parkinson_ub",-2e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","25-29","sc_car_deaths_pa_Parkinson_ub",-4e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360031
+"male","30-34","sc_car_deaths_pa_Parkinson_ub",-2e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",321492
+"male","35-39","sc_car_deaths_pa_Parkinson_ub",-7e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",289808
 "male","40-44","sc_car_deaths_pa_Parkinson_ub",-0.00035,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_car_deaths_pa_Parkinson_ub",-0.00083,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",215491
 "male","50-54","sc_car_deaths_pa_Parkinson_ub",-0.00178,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",209137
@@ -4323,10 +4323,10 @@
 "male","60-64","sc_car_deaths_pa_Parkinson_ub",-0.00573,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_car_deaths_pa_Parkinson_ub",-0.01798,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_car_deaths_pa_Parkinson_ub",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_car_deaths_pa_Parkinson_ub",-0.00001,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_car_deaths_pa_Parkinson_ub",-0.00001,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","20-24","sc_car_deaths_pa_Parkinson_ub",-1e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_car_deaths_pa_Parkinson_ub",-1e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_car_deaths_pa_Parkinson_ub",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_car_deaths_pa_Parkinson_ub",-0.00001,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","35-39","sc_car_deaths_pa_Parkinson_ub",-1e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_car_deaths_pa_Parkinson_ub",-0.00019,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_car_deaths_pa_Parkinson_ub",-0.00072,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_car_deaths_pa_Parkinson_ub",-0.00178,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",256059
@@ -4337,8 +4337,8 @@
 "male","20-24","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360031
 "male","30-34","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",321492
-"male","35-39","sc_bus_deaths_pa_Parkinson_ub",-0.00002,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",289808
-"male","40-44","sc_bus_deaths_pa_Parkinson_ub",-0.00005,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",244543
+"male","35-39","sc_bus_deaths_pa_Parkinson_ub",-2e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",289808
+"male","40-44","sc_bus_deaths_pa_Parkinson_ub",-5e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",244543
 "male","45-49","sc_bus_deaths_pa_Parkinson_ub",-0.00015,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",215491
 "male","50-54","sc_bus_deaths_pa_Parkinson_ub",0.00024,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",209137
 "male","55-59","sc_bus_deaths_pa_Parkinson_ub",-0.00105,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",187551
@@ -4349,10 +4349,10 @@
 "female","25-29","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
 "female","35-39","sc_bus_deaths_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
-"female","40-44","sc_bus_deaths_pa_Parkinson_ub",-0.00001,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",275440
+"female","40-44","sc_bus_deaths_pa_Parkinson_ub",-1e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_bus_deaths_pa_Parkinson_ub",-0.00013,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",254843
-"female","50-54","sc_bus_deaths_pa_Parkinson_ub",-0.00005,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",256059
-"female","55-59","sc_bus_deaths_pa_Parkinson_ub",-0.00003,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",235548
+"female","50-54","sc_bus_deaths_pa_Parkinson_ub",-5e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",256059
+"female","55-59","sc_bus_deaths_pa_Parkinson_ub",-3e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",235548
 "female","60-64","sc_bus_deaths_pa_Parkinson_ub",0.00013,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_bus_deaths_pa_Parkinson_ub",-0.00301,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_cycle_deaths_pa_head_neck_cancer",0.00035,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",282736
@@ -4487,9 +4487,9 @@
 "female","55-59","sc_bus_deaths_pa_head_neck_cancer_lb",0.16928,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",235548
 "female","60-64","sc_bus_deaths_pa_head_neck_cancer_lb",0.13207,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",189600
 "female","65-69","sc_bus_deaths_pa_head_neck_cancer_lb",0.21433,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",141409
-"male","15-19","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00001,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",282736
-"male","20-24","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.0001,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",357934
-"male","25-29","sc_cycle_deaths_pa_head_neck_cancer_ub",0.0001,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",360031
+"male","15-19","sc_cycle_deaths_pa_head_neck_cancer_ub",-1e-05,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",282736
+"male","20-24","sc_cycle_deaths_pa_head_neck_cancer_ub",-1e-04,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",357934
+"male","25-29","sc_cycle_deaths_pa_head_neck_cancer_ub",1e-04,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",360031
 "male","30-34","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00046,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",321492
 "male","35-39","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00116,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",289808
 "male","40-44","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00121,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",244543
@@ -4498,18 +4498,18 @@
 "male","55-59","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00451,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",187551
 "male","60-64","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00311,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",146500
 "male","65-69","sc_cycle_deaths_pa_head_neck_cancer_ub",0.01906,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",105412
-"female","15-19","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00002,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",279280
+"female","15-19","sc_cycle_deaths_pa_head_neck_cancer_ub",-2e-05,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",279280
 "female","20-24","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00011,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",360197
-"female","25-29","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.0003,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",364423
-"female","30-34","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00005,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",330341
+"female","25-29","sc_cycle_deaths_pa_head_neck_cancer_ub",-3e-04,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",364423
+"female","30-34","sc_cycle_deaths_pa_head_neck_cancer_ub",5e-05,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",330341
 "female","35-39","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00013,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",309304
 "female","40-44","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00022,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",275440
-"female","45-49","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.0001,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",254843
+"female","45-49","sc_cycle_deaths_pa_head_neck_cancer_ub",-1e-04,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",254843
 "female","50-54","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00077,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",256059
 "female","55-59","sc_cycle_deaths_pa_head_neck_cancer_ub",-0.00053,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",235548
 "female","60-64","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00184,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",189600
 "female","65-69","sc_cycle_deaths_pa_head_neck_cancer_ub",0.00267,"bogota","Bicycling",NA,NA,"L3: head_neck_cancer","PA",141409
-"male","15-19","sc_car_deaths_pa_head_neck_cancer_ub",-0.00004,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",282736
+"male","15-19","sc_car_deaths_pa_head_neck_cancer_ub",-4e-05,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",282736
 "male","20-24","sc_car_deaths_pa_head_neck_cancer_ub",-0.00023,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",357934
 "male","25-29","sc_car_deaths_pa_head_neck_cancer_ub",-0.00053,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",360031
 "male","30-34","sc_car_deaths_pa_head_neck_cancer_ub",-0.00088,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",321492
@@ -4520,7 +4520,7 @@
 "male","55-59","sc_car_deaths_pa_head_neck_cancer_ub",-0.02062,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",187551
 "male","60-64","sc_car_deaths_pa_head_neck_cancer_ub",-0.00381,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",146500
 "male","65-69","sc_car_deaths_pa_head_neck_cancer_ub",-0.03985,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",105412
-"female","15-19","sc_car_deaths_pa_head_neck_cancer_ub",-0.00006,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",279280
+"female","15-19","sc_car_deaths_pa_head_neck_cancer_ub",-6e-05,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",279280
 "female","20-24","sc_car_deaths_pa_head_neck_cancer_ub",-0.00027,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",360197
 "female","25-29","sc_car_deaths_pa_head_neck_cancer_ub",-0.00023,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",364423
 "female","30-34","sc_car_deaths_pa_head_neck_cancer_ub",-0.00067,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",330341
@@ -4531,7 +4531,7 @@
 "female","55-59","sc_car_deaths_pa_head_neck_cancer_ub",-0.00504,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",235548
 "female","60-64","sc_car_deaths_pa_head_neck_cancer_ub",-0.0048,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",189600
 "female","65-69","sc_car_deaths_pa_head_neck_cancer_ub",-0.00896,"bogota","Car",NA,NA,"L3: head_neck_cancer","PA",141409
-"male","15-19","sc_bus_deaths_pa_head_neck_cancer_ub",0.00008,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",282736
+"male","15-19","sc_bus_deaths_pa_head_neck_cancer_ub",8e-05,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",282736
 "male","20-24","sc_bus_deaths_pa_head_neck_cancer_ub",0.00053,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",357934
 "male","25-29","sc_bus_deaths_pa_head_neck_cancer_ub",0.00162,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",360031
 "male","30-34","sc_bus_deaths_pa_head_neck_cancer_ub",0.00332,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",321492
@@ -4542,7 +4542,7 @@
 "male","55-59","sc_bus_deaths_pa_head_neck_cancer_ub",0.06993,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",187551
 "male","60-64","sc_bus_deaths_pa_head_neck_cancer_ub",0.06503,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",146500
 "male","65-69","sc_bus_deaths_pa_head_neck_cancer_ub",0.10687,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",105412
-"female","15-19","sc_bus_deaths_pa_head_neck_cancer_ub",0.00008,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",279280
+"female","15-19","sc_bus_deaths_pa_head_neck_cancer_ub",8e-05,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",279280
 "female","20-24","sc_bus_deaths_pa_head_neck_cancer_ub",0.00034,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",360197
 "female","25-29","sc_bus_deaths_pa_head_neck_cancer_ub",0.00069,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",364423
 "female","30-34","sc_bus_deaths_pa_head_neck_cancer_ub",0.00131,"bogota","Public Transport",NA,NA,"L3: head_neck_cancer","PA",330341

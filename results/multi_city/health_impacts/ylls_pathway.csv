@@ -1845,7 +1845,7 @@
 "female","45-49","sc_bus_ylls_ap_stroke",0.23535,"bogota","Public Transport",NA,NA,"L3: stroke","AP",254843
 "female","50-54","sc_bus_ylls_ap_stroke",0.26084,"bogota","Public Transport",NA,NA,"L3: stroke","AP",256059
 "female","55-59","sc_bus_ylls_ap_stroke",0.58344,"bogota","Public Transport",NA,NA,"L3: stroke","AP",235548
-"female","60-64","sc_bus_ylls_ap_stroke",-0.00009,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
+"female","60-64","sc_bus_ylls_ap_stroke",-9e-05,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
 "female","65-69","sc_bus_ylls_ap_stroke",0.10651,"bogota","Public Transport",NA,NA,"L3: stroke","AP",141409
 "male","15-19","sc_cycle_ylls_ap_stroke_lb",0,"bogota","Bicycling",NA,NA,"L3: stroke","AP",282736
 "male","20-24","sc_cycle_ylls_ap_stroke_lb",0,"bogota","Bicycling",NA,NA,"L3: stroke","AP",357934
@@ -1911,7 +1911,7 @@
 "female","45-49","sc_bus_ylls_ap_stroke_lb",0.23535,"bogota","Public Transport",NA,NA,"L3: stroke","AP",254843
 "female","50-54","sc_bus_ylls_ap_stroke_lb",0.26084,"bogota","Public Transport",NA,NA,"L3: stroke","AP",256059
 "female","55-59","sc_bus_ylls_ap_stroke_lb",0.58344,"bogota","Public Transport",NA,NA,"L3: stroke","AP",235548
-"female","60-64","sc_bus_ylls_ap_stroke_lb",-0.00009,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
+"female","60-64","sc_bus_ylls_ap_stroke_lb",-9e-05,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
 "female","65-69","sc_bus_ylls_ap_stroke_lb",0.10651,"bogota","Public Transport",NA,NA,"L3: stroke","AP",141409
 "male","15-19","sc_cycle_ylls_ap_stroke_ub",0,"bogota","Bicycling",NA,NA,"L3: stroke","AP",282736
 "male","20-24","sc_cycle_ylls_ap_stroke_ub",0,"bogota","Bicycling",NA,NA,"L3: stroke","AP",357934
@@ -1977,7 +1977,7 @@
 "female","45-49","sc_bus_ylls_ap_stroke_ub",0.23535,"bogota","Public Transport",NA,NA,"L3: stroke","AP",254843
 "female","50-54","sc_bus_ylls_ap_stroke_ub",0.26084,"bogota","Public Transport",NA,NA,"L3: stroke","AP",256059
 "female","55-59","sc_bus_ylls_ap_stroke_ub",0.58344,"bogota","Public Transport",NA,NA,"L3: stroke","AP",235548
-"female","60-64","sc_bus_ylls_ap_stroke_ub",-0.00009,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
+"female","60-64","sc_bus_ylls_ap_stroke_ub",-9e-05,"bogota","Public Transport",NA,NA,"L3: stroke","AP",189600
 "female","65-69","sc_bus_ylls_ap_stroke_ub",0.10651,"bogota","Public Transport",NA,NA,"L3: stroke","AP",141409
 "male","15-19","sc_cycle_ylls_pa_T2D",0.09065,"bogota","Bicycling",NA,"L2: Other","L3: T2D","PA",282736
 "male","20-24","sc_cycle_ylls_pa_T2D",0.23695,"bogota","Bicycling",NA,"L2: Other","L3: T2D","PA",357934
@@ -2727,10 +2727,10 @@
 "female","55-59","sc_cycle_ylls_pa_breast_cancer_ub",2.33336,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",235548
 "female","60-64","sc_cycle_ylls_pa_breast_cancer_ub",1.19001,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",189600
 "female","65-69","sc_cycle_ylls_pa_breast_cancer_ub",1.87907,"bogota","Bicycling",NA,NA,"L3: breast_cancer","PA",141409
-"male","15-19","sc_car_ylls_pa_breast_cancer_ub",-0.0009,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
+"male","15-19","sc_car_ylls_pa_breast_cancer_ub",-9e-04,"bogota","Car",NA,NA,"L3: breast_cancer","PA",282736
 "male","20-24","sc_car_ylls_pa_breast_cancer_ub",-0.0011,"bogota","Car",NA,NA,"L3: breast_cancer","PA",357934
 "male","25-29","sc_car_ylls_pa_breast_cancer_ub",-0.00073,"bogota","Car",NA,NA,"L3: breast_cancer","PA",360031
-"male","30-34","sc_car_ylls_pa_breast_cancer_ub",-0.0003,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
+"male","30-34","sc_car_ylls_pa_breast_cancer_ub",-3e-04,"bogota","Car",NA,NA,"L3: breast_cancer","PA",321492
 "male","35-39","sc_car_ylls_pa_breast_cancer_ub",-0.00014,"bogota","Car",NA,NA,"L3: breast_cancer","PA",289808
 "male","40-44","sc_car_ylls_pa_breast_cancer_ub",-0.00188,"bogota","Car",NA,NA,"L3: breast_cancer","PA",244543
 "male","45-49","sc_car_ylls_pa_breast_cancer_ub",-0.00041,"bogota","Car",NA,NA,"L3: breast_cancer","PA",215491
@@ -4259,7 +4259,7 @@
 "female","15-19","sc_car_ylls_pa_Parkinson_lb",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",279280
 "female","20-24","sc_car_ylls_pa_Parkinson_lb",-0.00353,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
 "female","25-29","sc_car_ylls_pa_Parkinson_lb",-0.00268,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_car_ylls_pa_Parkinson_lb",-0.0004,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","30-34","sc_car_ylls_pa_Parkinson_lb",-4e-04,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
 "female","35-39","sc_car_ylls_pa_Parkinson_lb",-0.00181,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_car_ylls_pa_Parkinson_lb",-0.04279,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_car_ylls_pa_Parkinson_lb",-0.14545,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",254843
@@ -4301,7 +4301,7 @@
 "male","60-64","sc_cycle_ylls_pa_Parkinson_ub",0.3922,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_cycle_ylls_pa_Parkinson_ub",0.81605,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_cycle_ylls_pa_Parkinson_ub",0,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_cycle_ylls_pa_Parkinson_ub",0.0009,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","20-24","sc_cycle_ylls_pa_Parkinson_ub",9e-04,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",360197
 "female","25-29","sc_cycle_ylls_pa_Parkinson_ub",0.00091,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",364423
 "female","30-34","sc_cycle_ylls_pa_Parkinson_ub",0.00013,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",330341
 "female","35-39","sc_cycle_ylls_pa_Parkinson_ub",0.00077,"bogota","Bicycling",NA,"L2: Other","L3: Parkinson","PA",309304
@@ -4325,7 +4325,7 @@
 "female","15-19","sc_car_ylls_pa_Parkinson_ub",0,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",279280
 "female","20-24","sc_car_ylls_pa_Parkinson_ub",-0.00078,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",360197
 "female","25-29","sc_car_ylls_pa_Parkinson_ub",-0.00076,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_car_ylls_pa_Parkinson_ub",-0.00008,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","30-34","sc_car_ylls_pa_Parkinson_ub",-8e-05,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",330341
 "female","35-39","sc_car_ylls_pa_Parkinson_ub",-0.00041,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_car_ylls_pa_Parkinson_ub",-0.00895,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_car_ylls_pa_Parkinson_ub",-0.03027,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",254843
@@ -4334,7 +4334,7 @@
 "female","60-64","sc_car_ylls_pa_Parkinson_ub",-0.14371,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",189600
 "female","65-69","sc_car_ylls_pa_Parkinson_ub",-0.24541,"bogota","Car",NA,"L2: Other","L3: Parkinson","PA",141409
 "male","15-19","sc_bus_ylls_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",282736
-"male","20-24","sc_bus_ylls_pa_Parkinson_ub",0.00006,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
+"male","20-24","sc_bus_ylls_pa_Parkinson_ub",6e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",357934
 "male","25-29","sc_bus_ylls_pa_Parkinson_ub",0.00018,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360031
 "male","30-34","sc_bus_ylls_pa_Parkinson_ub",0.00012,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",321492
 "male","35-39","sc_bus_ylls_pa_Parkinson_ub",-0.00089,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",289808
@@ -4345,10 +4345,10 @@
 "male","60-64","sc_bus_ylls_pa_Parkinson_ub",0.01267,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",146500
 "male","65-69","sc_bus_ylls_pa_Parkinson_ub",-0.16396,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",105412
 "female","15-19","sc_bus_ylls_pa_Parkinson_ub",0,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",279280
-"female","20-24","sc_bus_ylls_pa_Parkinson_ub",-0.00008,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
-"female","25-29","sc_bus_ylls_pa_Parkinson_ub",0.00004,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
-"female","30-34","sc_bus_ylls_pa_Parkinson_ub",-0.00001,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
-"female","35-39","sc_bus_ylls_pa_Parkinson_ub",-0.00002,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
+"female","20-24","sc_bus_ylls_pa_Parkinson_ub",-8e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",360197
+"female","25-29","sc_bus_ylls_pa_Parkinson_ub",4e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",364423
+"female","30-34","sc_bus_ylls_pa_Parkinson_ub",-1e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",330341
+"female","35-39","sc_bus_ylls_pa_Parkinson_ub",-2e-05,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",309304
 "female","40-44","sc_bus_ylls_pa_Parkinson_ub",-0.00028,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",275440
 "female","45-49","sc_bus_ylls_pa_Parkinson_ub",-0.0054,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",254843
 "female","50-54","sc_bus_ylls_pa_Parkinson_ub",-0.00194,"bogota","Public Transport",NA,"L2: Other","L3: Parkinson","PA",256059

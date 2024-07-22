@@ -350,7 +350,7 @@ run_ithim_setup <- function(seed = 1,
     cycle = 0,
     motorcycle = 0.002303165,
     truck = 0.33879567,
-    big_truck = 0.454454038,
+    heavy_truck = 0.454454038,
     other = 0
   )
   if (!is.null(PM_emission_inventory)) { # overwrite default inventory if city specific input values are given
@@ -377,7 +377,7 @@ run_ithim_setup <- function(seed = 1,
     motorcycle = 30033.57,
     car = 1033377.34,
     bus_driver = 100429.72,
-    big_truck = 259655.32,
+    heavy_truck = 259655.32,
     truck = 163516.11,
     van = 0,
     auto_rickshaw = 0,
