@@ -233,7 +233,7 @@ ithim_calculation_sequence <- function(ithim_object, seed = 1) {
     pathway_hb <- join_hb_and_injury(pathway_hb_AP_PA, deaths_yll_injuries$deaths_yll_injuries)
     return(list(
       mmets = mmets_pp, scenario_pm = scenario_pm, pm_conc_pp = pm_conc_pp, co2_emission_inventory = co2_emission_inventory,
-      injuries = injuries, ref_injuries = ref_injuries, hb = hb, pathway_hb = pathway_hb, whw = whw
+      ref_injuries = ref_injuries, hb = hb, pathway_hb = pathway_hb, whw = whw
     ))
   } else {
     return(list(hb = hb, ref_injuries = ref_injuries))
