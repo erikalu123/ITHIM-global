@@ -31,8 +31,12 @@ This function performs the following steps:
 \item find the trip stages that need changing
 
 \item add new 'walk to pt' stages. If the duration of the public transport stage is shorter than
-  BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, set the new stage duration to 3. Otherwise,
-  set the new stage duration to either BUS_WALK_TIME or RAIL_WALK_TIME depending on the trip mode
+  the minimum_pt_time, then do not add any walking stage. If the duration is in between the minimum_pt_time
+  and the BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, then set the pt stage to the minimum_pt_time
+  and the rest of the trip duration is defined as walking to pt. If the duration is larger than 
+  BUS_WALK_TIME / RAIL_WALK_TIME + MINIMUM_PT_TIME, set the new walking stage duration to
+  either BUS_WALK_TIME or RAIL_WALK_TIME depending on the trip mode and subtract this BUS_WALK_TIME
+  or RAIL_WALK_TIME from the pt stage.
 
 \item update the original public transport stage duration
 

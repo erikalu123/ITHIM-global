@@ -40,9 +40,12 @@ counts for the Baseline and all the scenarios. It performs the following steps:
   and each scenario (incl Baseline). If the sample mode is set to 'constant' (and not 'sample'),
   we also predict upper and lower confidence interval boundaries
 
-\item create a whw_temp list containing the total predicted fatality counts for each casualty
-  and strike mode pair for each scenario split into whw and nov matrices and, for the
-  constant mode also give the upper and lower confidence interval limit predictions
+\item if running in constant mode, create a whw_temp list containing the total predicted
+  fatality counts for each casualty and strike mode pair for each scenario split into whw
+  and nov matrices and also give the upper and lower confidence interval limit predictions.
+  Also create a combined outcome table where NOV fatalities are added as casualty mode
+  equals strike mode fatalities.
+  
 
 \item create an injuries2 data frame containing the total predicted fatality counts
   for each casualty mode by age and sex for each scenario. This dataframe also

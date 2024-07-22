@@ -72,7 +72,7 @@ This function performs the following steps to load and process the input data:
 
 \item compute proportion of injuries in the age range considered in the model from the GBD data,
   this proportion is applied to those injury datasets without age and sex information
-
+  
 \item remove ages outside age ranges considered in model from GBD_data
 
 \item create burden_of_disease dataframe from the GBD_data by changing the layout of the GBD_data:
@@ -89,6 +89,10 @@ This function performs the following steps to load and process the input data:
 \item read in the city specific road injury data:
    \itemize{
    \item Set a 'weight' column to the unique number of years for which injury data exists (if such column does not already exist)
+   
+   \item calculate average yearly injury fatalities for each strike and casualty mode pair from original injury data
+   
+   \item adjusted those yearly counts by the injury reporting rate
 
    \item where strike mode equals casualty mode, set the strike mode to 'nov' (no other vehicle)
 

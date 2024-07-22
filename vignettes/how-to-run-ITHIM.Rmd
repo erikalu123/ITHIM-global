@@ -245,6 +245,8 @@ For each city modelled it contains the following data:
 
 -   **injury_table**: summarised total road fatality counts from the injury input data by age and sex category and strike and casualty mode for all years (`weight` column) given in the input data for both `whw` (who-hit-whom) and `nov` (no-other-vehicle) injuries.
 
+-   **orig_inj**: gives baseline average yearly injury counts by strike mode and casualty mode before accidents where strike mode = cas mode where converted to NOV accidents. There are two tables, one containing the original numbers from the original injury data and the other one  the original counts scaled by the injury_reporting_rate.
+
 -   **vehicle_inventory**: gives the speed and CO2 and PM2.5 emissions inventories for all vehicles in the baseline scenario.
 
 -   **location**: country and continent information.

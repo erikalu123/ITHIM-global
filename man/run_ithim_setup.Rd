@@ -12,6 +12,7 @@ run_ithim_setup(
   CO2_emission_inventory = NULL,
   DIST_CAT = c("0-2 km", "2-6 km", "6+ km"),
   AGE_RANGE = c(15, 69),
+  TREAT_TAXI_AS_CAR = T,
   ADD_WALK_TO_PT_TRIPS = T,
   ADD_BUS_DRIVERS = T,
   ADD_CAR_DRIVERS = T,
@@ -92,6 +93,8 @@ run_ithim_setup(
 \item{DIST_CAT}{vector string of distance categories in the form '0-6'. (The unit is assumed to be the same as in the trip set and is related to speed values, usually in km)}
 
 \item{AGE_RANGE}{vector of minimum and maximum ages to include}
+
+\item{TREAT_TAXI_AS_CAR}{logic: whether to treat taxi as car/car_driver}
 
 \item{ADD_WALK_TO_PT_TRIPS}{logic: whether or not to add short walks to all PT trips}
 
