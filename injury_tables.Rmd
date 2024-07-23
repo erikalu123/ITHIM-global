@@ -939,7 +939,7 @@ for (city in cities){ # loop through cities
                                                                   x = sum(active_travel[,2]))
       colnames(active_travel) <- colnames(td4)
       
-      # add active travel
+      # add active travel and total
       td4 <- rbind(td4, active_travel)
 
       
@@ -982,7 +982,7 @@ td <- overall_el_normalized %>% purrr::reduce(full_join, by = c("stage_mode", "m
 td[is.na(td)] <- 0
 td <- td %>% dplyr::select(stage_mode, sort(names(.)))
 td <- rename(td, mode = stage_mode)
-td <- td %>% filter(!mode == 'Total')
+#td <- td %>% filter(!mode == 'Total')
 
 # get fatalities per 100,000 people into correct format where all scenarios are in the same column
 injury_risks_per_100k <- reshape2::melt(td)
@@ -1020,7 +1020,7 @@ baseline_counts_pop <- left_join(baseline_counts_pop, true_distances, by = c('ci
 injury_risks_per_100k <- rbind(injury_risks_per_100k, baseline_counts_pop)
 
 # write to csv with and without output version number
-readr::write_csv(injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'), paste0('results/multi_city/inj/injury_risks_per_100k_pop.csv'))
+readr::write_csv(injury_risks_per_100k %>% filter(scenario != 'Total'), paste0('results/multi_city/inj/injury_risks_per_100k_pop.csv'))
 ```
 
 
@@ -1042,7 +1042,7 @@ true_distances_df <- bind_rows(true_distances_city)
 
 # calculate total distances
 true_distances_df_total <- true_distances_df %>% group_by(city,scenario) %>% summarise(
-                                              distance = sum(distance), mode = 'Total')
+                                              distance = sum(distance), stage_mode = 'Total')
 
 # add active travel distances
 true_distances_df_at <- true_distances_df %>% filter(stage_mode == 'cycle' | stage_mode == 'pedestrian')
@@ -1218,10 +1218,11 @@ injury_risks_lng_hours <- injury_risks_lng_hours %>% dplyr::select(-variable)
 injury_risks_lng_hours$scenario <- as.character(injury_risks_lng_hours$scenario)
 
 rd_hours <- rename(injury_risks_lng_hours, mode = stage_mode)
-rd_hours <- rd_hours %>% filter(mode != 'Total')
+#rd_hours <- rd_hours %>% filter(mode != 'Total')
 
 # add country and continent information
 rd_hours <- left_join(rd_hours, location, by = 'city')
+
 
 # add distance information
 rd_hours <- left_join(rd_hours, true_distances, by = c('city','mode','scenario'))
@@ -1229,12 +1230,16 @@ rd_hours <- left_join(rd_hours, true_distances, by = c('city','mode','scenario')
 # get duration into correct format
 duration <- duration  %>% rename(mode = stage_mode)
 
+# add total mode duration
+duration_total <- duration %>% group_by(scenario, city) %>% summarise(mode = 'Total',
+                                                                      mode_duration = sum(mode_duration))
+
 # add active travel mode duration
 duration_at <- duration %>% filter(mode == 'pedestrian' | mode == 'cycle')
 duration_at <- duration_at %>% group_by(scenario, city) %>% summarise(mode = 'active_travel',
                                                                       mode_duration = sum(mode_duration))
-
-duration <- rbind(duration, duration_at)
+# add total and active travel duration to duration table
+duration <- rbind(duration, duration_at, duration_total)
 
 
 # add duration information
@@ -1251,7 +1256,7 @@ active_travel <- active_travel %>% group_by(city, scenario, country, continent, 
 
 baseline_counts_dur <- rbind(baseline_counts_dur, active_travel)
 
-# calculate fatalities per 100mil h travelled for baseine counts
+# calculate fatalities per 100mil h travelled for baseline counts
 baseline_counts_dur$value <- round((baseline_counts_dur$value /(baseline_counts_dur$mode_duration * 365))*100000000,4)
 baseline_counts_dur <- left_join(baseline_counts_dur,true_distances, by = c('city', 'mode','scenario'))
 
@@ -1267,9 +1272,9 @@ readr::write_csv(rd_hours, paste0('results/multi_city/inj/injury_risks_per_100mi
 # Export injury datasets as a single excel file
 path_inj_wb <- paste0('results/multi_city/inj/inj_data.xlsx')
  writexl::write_xlsx(list(inj_counts = inj_counts_list, #%>% filter(str_mode != 'Total'),
-                          injury_risks_billion_kms = rd %>% filter(mode != 'Total'),
-                          injury_risks_100k_people  = injury_risks_per_100k %>% filter(mode != 'Total' & scenario != 'Total'),
-                          injury_risks_100mil_h = rd_hours%>% filter(mode != 'Total'),
+                          injury_risks_billion_kms = rd, #%>% filter(mode != 'Total'),
+                          injury_risks_100k_people  = injury_risks_per_100k, # %>% filter(mode != 'Total' & scenario != 'Total'),
+                          injury_risks_100mil_h = rd_hours, #%>% filter(mode != 'Total'),
                           true_distances = true_distances_df),
                      path = path_inj_wb)
 ```
