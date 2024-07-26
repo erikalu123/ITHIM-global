@@ -426,7 +426,7 @@ plotly::ggplotly(ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)
   geom_point() +
   labs(title = "Deciles of Value by Scenario", x = "Quantiles (0.1 - 0.9)", y = "MMET hours per week") +
   geom_hline(yintercept = 17.5, linetype="dashed", color = "red") +
-  geom_hline(yintercept = 17.5 * 2, linetype="dashed", color = "red") +
+  # geom_hline(yintercept = 17.5 * 2, linetype="dashed", color = "red") +
   theme_minimal())
 ```
 
@@ -435,11 +435,11 @@ plotly::ggplotly(ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)
 ```{r}
 pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(3:5, ~ ifelse(. != 0, round(((Baseline - .)/.), 2), 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile))
 
-ggplot(pif_deciles) +
+plotly::ggplotly(ggplot(pif_deciles) +
   aes(x = decile, y = value, fill = name) +
   geom_col() +
   scale_fill_hue(direction = 1) +
-  theme_minimal()
+  theme_minimal())
 
 
 ```
