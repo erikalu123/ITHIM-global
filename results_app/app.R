@@ -30,7 +30,7 @@ repo_sha <-  as.character(readLines(file.path("repo_sha")))
 # repo_sha <- "f7292509"
 output_version <- paste0(repo_sha, "_test_run")
 github_path <- "https://raw.githubusercontent.com/ITHIM/ITHIM-R/bogota/"
-# github_path <- "../"
+github_path <- "../"
 
 
 # results_file
@@ -39,10 +39,10 @@ results_file <- 'multi_city'
 rel_path_health <- paste0(github_path, "results/",results_file,"/health_impacts/")
 
 ren_dose <- function(df){
-  df[df$dose == "RTI",]$dose <- "Road Traffic Injuries (RTI)"
-  df[df$dose == "AP",]$dose <- "Air Pollution (AP)"
-  df[df$dose == "PA",]$dose <- "Physical Activity (PA)"
-  df[df$dose == "PA and AP",]$dose <- "Physical Activity (PA) and Air Pollution (AP)"
+  df[df$dose == "RTI",]$dose <- "Road Traffic Fatalities"
+  df[df$dose == "AP",]$dose <- "Air Pollution"
+  df[df$dose == "PA",]$dose <- "Physical Activity"
+  df[df$dose == "PA and AP",]$dose <- "Physical Activity and Air Pollution"
   df
 }
 
@@ -130,7 +130,7 @@ injury_risks_per_100million_h_lng <- ren_scen(injury_risks_per_100million_h_lng)
 # ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00']
  
 scen_colours <- c("Baseline" = '#ffff33',
-                  "Cycling Scenario" = '#abdda4',
+                  "Cycle Scenario" = '#abdda4',
                   "Car Scenario" = '#d7191c',
                   "Bus Scenario" = '#2b83ba',
                   "Motorcycle Scenario" = '#fdae61')
@@ -208,13 +208,13 @@ level_choices <- c("All-cause mortality: L1" = "level1",
 
 per_100k <- c("Per 100k")
 
-scens <- c("Cycling Scenario" = "CYC_SC",
+scens <- c("Cycle Scenario" = "CYC_SC",
            "Car Scenario" = "CAR_SC",
            "Bus Scenario" = "BUS_SC")#,
            #"Motorcycle Scenario" = "MOT_SC")
 
 inj_scens <- c("Baseline" = "Baseline",
-               "Cycling Scenario" = "CYC_SC",
+               "Cycle Scenario" = "CYC_SC",
                "Car Scenario" = "CAR_SC",
                "Bus Scenario" = "BUS_SC")#,
                #"Motorcycle Scenario" = "MOT_SC")
@@ -393,6 +393,7 @@ server <- function(input, output, session) {
         theme_minimal() +
         scale_fill_manual(values = scen_colours) +
         labs(title = paste(ylab, "(by mode)"), y = ylab,
+             x = "",
              fill='Scenario') + 
         facet_wrap(vars(mode))
       
@@ -419,6 +420,30 @@ server <- function(input, output, session) {
     filtered_scens <- input$in_scens
     filtered_pathways <- input$in_pathways
     in_per_100k <- input$in_per_100k
+    
+    
+    t <- list(
+      
+      family = "Courier New",
+      
+      size = 14,
+      
+      color = "blue")
+    
+    t1 <- list(
+      
+      family = "Times New Roman",
+      
+      color = "red"
+      
+    )
+    
+    t2 <- list(
+      family = "Arial",
+      # size = 10,
+      color = "black")
+    
+    t3 <- list(family = 'Arial')
     
     m <- list(
       l = 10,
@@ -470,14 +495,22 @@ server <- function(input, output, session) {
             scale_fill_manual(values = scen_colours) +
             labs(title = y_lab,
                  y = ifelse(in_CIs == "Yes", y_lab, ""),
-                 x = ifelse(in_CIs == "No", y_lab, ""),
+                 x  = "",#x = ifelse(in_CIs == "No", y_lab, ""),
                  fill='Scenario')
           
-          # plotly::ggplotly(gg) |> plotly::layout(boxmode = "group"#,
-                                                 #margin = m
-                                                 # )
+          plotly::ggplotly(gg) |> 
+            plotly::layout(legend = list(orientation = "h", 
+                                         xanchor = "center",  
+                                         x = 0.5,
+                                         font = t2)) |> 
+            plotly::config(
+              toImageButtonOptions = list(
+                format = "svg",
+                filename = "myplot",
+                width = NULL,
+                height = NULL
+              ))
           
-          plotly::ggplotly(gg)
         }
     }else{
       plotly::ggplotly(ggplot(data.frame()))
@@ -519,7 +552,7 @@ server <- function(input, output, session) {
                scenario %in% filtered_scens &
                mode %in% filtered_modes) |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycling Scenario",
+        scenario == "CYC_SC" ~ "Cycle Scenario",
         scenario == "CAR_SC" ~ "Car Scenario",
         scenario == "BUS_SC" ~ "Bus Scenario",
         scenario == "MOT_SC" ~ "Motorcycle Scenario",
@@ -639,7 +672,7 @@ server <- function(input, output, session) {
     
     ld <- ld |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycling Scenario",
+        scenario == "CYC_SC" ~ "Cycle Scenario",
         scenario == "CAR_SC" ~ "Car Scenario",
         scenario == "BUS_SC" ~ "Bus Scenario",
         scenario == "MOT_SC" ~ "Motorcycle Scenario"),
