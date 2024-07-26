@@ -130,10 +130,10 @@ injury_risks_per_100million_h_lng <- ren_scen(injury_risks_per_100million_h_lng)
 # ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00']
  
 scen_colours <- c("Baseline" = '#ffff33',
-                  "Cycle Scenario" = '#abdda4',
-                  "Car Scenario" = '#d7191c',
-                  "Bus Scenario" = '#2b83ba',
-                  "Motorcycle Scenario" = '#fdae61')
+                  "Cycle" = '#abdda4',
+                  "Car" = '#d7191c',
+                  "Bus" = '#2b83ba',
+                  "Motorcycle" = '#fdae61')
 
 global_alpha_val <- 0.7
 
@@ -208,15 +208,15 @@ level_choices <- c("All-cause mortality: L1" = "level1",
 
 per_100k <- c("Per 100k")
 
-scens <- c("Cycle Scenario" = "CYC_SC",
-           "Car Scenario" = "CAR_SC",
-           "Bus Scenario" = "BUS_SC")#,
+scens <- c("Cycle" = "CYC_SC",
+           "Car" = "CAR_SC",
+           "Bus" = "BUS_SC")#,
            #"Motorcycle Scenario" = "MOT_SC")
 
 inj_scens <- c("Baseline" = "Baseline",
-               "Cycle Scenario" = "CYC_SC",
-               "Car Scenario" = "CAR_SC",
-               "Bus Scenario" = "BUS_SC")#,
+               "Cycle" = "CYC_SC",
+               "Car" = "CAR_SC",
+               "Bus" = "BUS_SC")#,
                #"Motorcycle Scenario" = "MOT_SC")
 
 dose <- ylls |> filter(!is.na(level1)) |> distinct(dose)  |> pull()
@@ -392,7 +392,8 @@ server <- function(input, output, session) {
         coord_flip() +
         theme_minimal() +
         scale_fill_manual(values = scen_colours) +
-        labs(title = paste(ylab, "(by mode)"), y = ylab,
+        labs(title = paste(ylab, "(by mode)"), 
+             y = ylab,
              x = "",
              fill='Scenario') + 
         facet_wrap(vars(mode))
@@ -420,7 +421,6 @@ server <- function(input, output, session) {
     filtered_scens <- input$in_scens
     filtered_pathways <- input$in_pathways
     in_per_100k <- input$in_per_100k
-    
     
     t <- list(
       
@@ -452,7 +452,6 @@ server <- function(input, output, session) {
       t = 50,
       pad = 50
     )
-    
     
     if (!is.null(in_col_lvl)){
       
@@ -495,18 +494,28 @@ server <- function(input, output, session) {
             scale_fill_manual(values = scen_colours) +
             labs(title = y_lab,
                  y = ifelse(in_CIs == "Yes", y_lab, ""),
-                 x  = "",#x = ifelse(in_CIs == "No", y_lab, ""),
+                 x = ifelse(in_CIs == "No", y_lab, ""),
                  fill='Scenario')
           
+          fname <- do.call(paste, c(as.list(filtered_pathways), 
+                                          as.list(filtered_scens),
+                                          as.list(in_strata),
+                                          as.list(in_col_lvl),
+                                          as.list(in_measure),
+                                          as.list(input$in_int_pathway),
+                                          sep = "-"))
+          
+          # ggsave(fname,units="in", width=5, height=4, dpi=300)
+          
           plotly::ggplotly(gg) |> 
-            plotly::layout(legend = list(orientation = "h", 
-                                         xanchor = "center",  
-                                         x = 0.5,
-                                         font = t2)) |> 
+            # plotly::layout(legend = list(orientation = "h", 
+            #                              xanchor = "center",  
+            #                              x = 0.5,
+            #                              font = t2)) |> 
             plotly::config(
               toImageButtonOptions = list(
                 format = "svg",
-                filename = "myplot",
+                filename = fname,
                 width = NULL,
                 height = NULL
               ))
@@ -552,10 +561,10 @@ server <- function(input, output, session) {
                scenario %in% filtered_scens &
                mode %in% filtered_modes) |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycle Scenario",
-        scenario == "CAR_SC" ~ "Car Scenario",
-        scenario == "BUS_SC" ~ "Bus Scenario",
-        scenario == "MOT_SC" ~ "Motorcycle Scenario",
+        scenario == "CYC_SC" ~ "Cycle",
+        scenario == "CAR_SC" ~ "Car",
+        scenario == "BUS_SC" ~ "Bus",
+        scenario == "MOT_SC" ~ "Motorcycle",
         scenario == "Baseline" ~ "Baseline")) |> 
       distinct()
     
@@ -672,10 +681,10 @@ server <- function(input, output, session) {
     
     ld <- ld |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycle Scenario",
-        scenario == "CAR_SC" ~ "Car Scenario",
-        scenario == "BUS_SC" ~ "Bus Scenario",
-        scenario == "MOT_SC" ~ "Motorcycle Scenario"),
+        scenario == "CYC_SC" ~ "Cycle",
+        scenario == "CAR_SC" ~ "Car",
+        scenario == "BUS_SC" ~ "Bus",
+        scenario == "MOT_SC" ~ "Motorcycle"),
         measure = in_measure)
     
     if (is.null(ld) || nrow(ld) == 0)
