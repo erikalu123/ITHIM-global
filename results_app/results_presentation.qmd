@@ -83,13 +83,13 @@ get_qualified_scen_name <- function(cs){
   else if(cs == "sc_walk")
     qualified_scen_name <- 'Walking'
   else if(cs == "sc_cycle")
-    qualified_scen_name <- 'Bicycling'
+    qualified_scen_name <- 'Cycling'
   else if(cs == "sc_car")
     qualified_scen_name <- 'Car'
   else if(cs == "sc_motorcycle")
     qualified_scen_name <- 'Motorcycling'
   else if(cs == "sc_bus")
-    qualified_scen_name <- 'Public Transport'
+    qualified_scen_name <- 'Bus'
   
   return(qualified_scen_name)
 }
@@ -131,14 +131,14 @@ prop <- io$bogota$trip_scen_sets |>
   filter(pd != 0)
 
 prop[prop$scenario == "baseline",]$scenario <- "Baseline"
-prop[prop$scenario == "sc_bus",]$scenario <- "Public Transport"
+prop[prop$scenario == "sc_bus",]$scenario <- "Bus"
 prop[prop$scenario == "sc_car",]$scenario <- "Car"
-prop[prop$scenario == "sc_cycle",]$scenario <- "Bicycling"
+prop[prop$scenario == "sc_cycle",]$scenario <- "Cycling"
 
 scen_colours <- c("Baseline" = '#ffffbf',
-                  "Bicycling" = '#abdda4',
+                  "Cycling" = '#abdda4',
                   "Car" = '#d7191c',
-                  "Public Transport" = '#2b83ba',
+                  "Bus" = '#2b83ba',
                   "Motorcycle" = '#fdae61')
 
 
@@ -313,27 +313,51 @@ gtb
 
 ## PA outcomes - Marginal METs per person per week
 
-```{r mmets}
+# Comparison of baseline and bus scenaro
+
+```{r mmets_dist_bus}
 
 mmets <- io$bogota$outcomes$mmets #|> pivot_longer(cols = ends_with("mmet"))
 
 change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
   names(mmets)[change_names] <- sapply(gsub("_mmet" , "", names(mmets)[change_names]), FUN = get_qualified_scen_name)
-  
+
 mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
+  
+mmets_df <- mmets |> filter(Scenario %in% c("Baseline", "Bus"))
 
-# write_csv(mmets, "mmets.csv")
-
-plotly::ggplotly(ggplot(mmets, aes(x=value, fill=Scenario)) + 
+plotly::ggplotly(ggplot(mmets_df, aes(x=value, fill=Scenario)) + 
                    geom_density(alpha=.3) + 
-                   scale_fill_manual(values = scen_colours) +
-                   xlim(0, 120) +
-                   labs(title = "Cumulative Distribution of MMETs per person per week (by scenario)",
+                   scale_fill_manual(values = scen_colours[1:4]) +
+                   xlim(0, 30) +
+                   geom_vline(xintercept = 17.5, linetype="dashed", color = "red") +
+                   labs(title = "Cumulative Distribution of MMETs per person per week (Baseline versus Bus scenario)",
                         x = "MMETs per person per week",
                         y = "Density")
                    )
 
 ```
+
+
+# Comparison of baseline and cycling scenario
+
+```{r mmets_dist_cycling}
+
+mmets_df <- mmets |> filter(Scenario %in% c("Baseline", "Cycling"))
+
+plotly::ggplotly(ggplot(mmets_df, aes(x=value, fill=Scenario)) + 
+                   geom_density(alpha=.3) + 
+                   scale_fill_manual(values = scen_colours[1:2]) +
+                   xlim(0, 30) +
+                   geom_vline(xintercept = 17.5, linetype="dashed", color = "red") +
+                   labs(title = "Cumulative Distribution of MMETs per person per week (Baseline versus Cycling scenario)",
+                        x = "MMETs per person per week",
+                        y = "Density")
+                   )
+
+```
+
+
 
 ## AP Outcomes - PM2.5 exposure levels ($\mu$/$m^3$)
 
@@ -390,7 +414,7 @@ print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile = "PIF for cycling/public transport with censor point at 17.5 MMET hours per week")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile = "PIF for cycling/bus with censor point at 17.5 MMET hours per week")
 
 ```
 
@@ -398,7 +422,7 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile =
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/public transport with censor point at 35 MMET hours per week")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/bus with censor point at 35 MMET hours per week")
 
 ```
 
@@ -406,7 +430,7 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile =
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/public transport with no censor point")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/bus with no censor point")
 
 ```
 

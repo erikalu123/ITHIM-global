@@ -111,8 +111,8 @@ ren_scen <- function(df){
     filter(scenario != "Baseline") |> 
     mutate(scenario = case_when(
       grepl("Baseline_predicted|Baseline predicted", scenario) ~ "Baseline",
-      grepl("Bicycling|cycle", scenario) ~ "CYC_SC",
-      grepl("Public Transport|bus", scenario) ~ "BUS_SC",
+      grepl("Bicycling|cycle|Cycling", scenario) ~ "CYC_SC",
+      grepl("Public Transport|bus|Bus", scenario) ~ "BUS_SC",
       grepl("Motorcycling|motorcycle", scenario) ~ "MOT_SC",
       grepl("Car|car", scenario) ~ "CAR_SC"
       )
@@ -130,7 +130,7 @@ injury_risks_per_100million_h_lng <- ren_scen(injury_risks_per_100million_h_lng)
 # ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00']
  
 scen_colours <- c("Baseline" = '#ffff33',
-                  "Cycle" = '#abdda4',
+                  "Cycling" = '#abdda4',
                   "Car" = '#d7191c',
                   "Bus" = '#2b83ba',
                   "Motorcycle" = '#fdae61')
@@ -164,10 +164,10 @@ cities <- cities |> filter(city %in% unique(combined_health_dataset$city)) |> mu
 
 
 ren_scen_health <- function(df){
-  df[df$scenario == "motorcycle"  | df$scenario == "Motorcycle",]$scenario <- "MOT_SC"
-  df[df$scenario == "car" | df$scenario == "Car",]$scenario <- "CAR_SC"
-  df[df$scenario == "bus" | df$scenario == "Public Transport",]$scenario <- "BUS_SC"
-  df[df$scenario == "cycle" | df$scenario == "Bicycling",]$scenario <- "CYC_SC"
+  df[df$scenario == "Motorcycle" | df$scenario == "motorcycle"  | df$scenario == "Motorcycle",]$scenario <- "MOT_SC"
+  df[df$scenario == "Car" | df$scenario == "car" | df$scenario == "Car",]$scenario <- "CAR_SC"
+  df[df$scenario == "Bus" | df$scenario == "bus" | df$scenario == "Public Transport",]$scenario <- "BUS_SC"
+  df[df$scenario == "Cycling" | df$scenario == "cycle" | df$scenario == "Bicycling",]$scenario <- "CYC_SC"
   df
   
 }
@@ -208,13 +208,13 @@ level_choices <- c("All-cause mortality: L1" = "level1",
 
 per_100k <- c("Per 100k")
 
-scens <- c("Cycle" = "CYC_SC",
+scens <- c("Cycling" = "CYC_SC",
            "Car" = "CAR_SC",
            "Bus" = "BUS_SC")#,
            #"Motorcycle Scenario" = "MOT_SC")
 
 inj_scens <- c("Baseline" = "Baseline",
-               "Cycle" = "CYC_SC",
+               "Cycling" = "CYC_SC",
                "Car" = "CAR_SC",
                "Bus" = "BUS_SC")#,
                #"Motorcycle Scenario" = "MOT_SC")
@@ -561,7 +561,7 @@ server <- function(input, output, session) {
                scenario %in% filtered_scens &
                mode %in% filtered_modes) |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycle",
+        scenario == "CYC_SC" ~ "Cycling",
         scenario == "CAR_SC" ~ "Car",
         scenario == "BUS_SC" ~ "Bus",
         scenario == "MOT_SC" ~ "Motorcycle",
@@ -681,7 +681,7 @@ server <- function(input, output, session) {
     
     ld <- ld |>
       mutate(scenario = case_when(
-        scenario == "CYC_SC" ~ "Cycle",
+        scenario == "CYC_SC" ~ "Cycling",
         scenario == "CAR_SC" ~ "Car",
         scenario == "BUS_SC" ~ "Bus",
         scenario == "MOT_SC" ~ "Motorcycle"),

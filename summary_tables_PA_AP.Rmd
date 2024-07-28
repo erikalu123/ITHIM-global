@@ -154,15 +154,15 @@ get_qualified_scen_name <- function(cs){
   if (cs == 'base' | cs == 'Baseline' | cs == 'baseline')
     qualified_scen_name <- 'Baseline'
   else if(cs == "sc_walk")
-    qualified_scen_name <- 'Walking'
+    qualified_scen_name <- 'Walk'
   else if(cs == "sc_cycle" | cs == "Bicycling")
-    qualified_scen_name <- 'Bicycling'
+    qualified_scen_name <- 'Cycling'
   else if(cs == "sc_car" | cs == "Car")
     qualified_scen_name <- 'Car'
   else if(cs == "sc_motorcycle")
     qualified_scen_name <- 'Motorcycling'
   else if(cs == "sc_bus" | cs == "Public Transport")
-    qualified_scen_name <- 'Public Transport'
+    qualified_scen_name <- 'Bus'
   
   return(qualified_scen_name)
 }

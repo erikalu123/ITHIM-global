@@ -212,15 +212,15 @@ get_qualified_scen_name <- function(cs){
   if (cs == 'baseline')
     qualified_scen_name <- 'Baseline predicted'
   else if(cs == "sc_walk")
-    qualified_scen_name <- 'Walking'
+    qualified_scen_name <- 'Walk'
   else if(cs == "sc_cycle")
-    qualified_scen_name <- 'Bicycling'
+    qualified_scen_name <- 'Cycling'
   else if(cs == "sc_car")
     qualified_scen_name <- 'Car'
   else if(cs == "sc_motorcycle")
     qualified_scen_name <- 'Motorcycling'
   else if(cs == "sc_bus")
-    qualified_scen_name <- 'Public Transport'
+    qualified_scen_name <- 'Bus'
   else if(cs == "Baseline predicted")
     qualified_scen_name <- 'Baseline predicted'
   
