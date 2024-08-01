@@ -518,7 +518,9 @@ server <- function(input, output, session) {
                 filename = fname,
                 width = NULL,
                 height = NULL
-              ))
+              )) |> layout(
+                margin = list(b = 50, l = 50) # to fully display the x and y axis labels
+              )
           
         }
     }else{
