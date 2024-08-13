@@ -759,8 +759,11 @@ for (city in cities){ # loop through cities
     # remove count columns
     el <- el %>% dplyr::select(-contains('count'))
     
+    # round numbers 
+    el2 <- el %>% mutate_if(is.numeric, round, digits = round_to)
+    
     # print fatalities per bn km travelled to .html document
-    print(kable(el, caption = paste(city, ifelse(is.na(pref), "mean", pref))))
+    print(kable(el2, caption = paste(city, ifelse(is.na(pref), "mean", pref))))
     
     td <- el #%>% dplyr::select(-contains('count'))
     names(td)[2:ncol(td)] <- paste(names(td)[2:ncol(td)], city, sep = "_")
@@ -957,9 +960,11 @@ for (city in cities){ # loop through cities
    
     el <- rbind(el, el_total %>% filter(stage_mode == 'Total'))
     
+    # round numbers
+    el2 <- el %>% mutate_if(is.numeric, round, digits = round_to)
     
     # print fatalities per 100,000 people to html
-    print(kable(el, caption = city))
+    print(kable(el2, caption = city))
     
     # get into correct format and add to city_df list
     td <- el
@@ -1166,8 +1171,11 @@ for (city in cities){ # loop through cities
       el <- full_join(el, td4, by = c('stage_mode'))
     }
     
+    # round numbers
+    el2 <- el %>% mutate_if(is.numeric, round, digits = round_to)
+    
     # print fatalities per 100 mil h travelled and total counts to html document
-    print(kable(el, caption = paste(city, ifelse(is.na(pref), "mean", pref))))
+    print(kable(el2, caption = paste(city, ifelse(is.na(pref), "mean", pref))))
     
     
     td <- el # %>% dplyr::select(-contains('count'))
