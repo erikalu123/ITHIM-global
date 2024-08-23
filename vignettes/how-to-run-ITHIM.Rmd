@@ -183,8 +183,6 @@ Once these parameter values have been updated, click on `Source` and the model s
 
 ![](../man/figures/multi_city_scriptwa.png){width="100%"}
 
-It produces pop-up windows showing the plots of the results giving the years of life lost for each scenario and required health outcomes.
-
 ### ithim_objects
 
 The ithim_objects list is saved under *results/multi_city/io\_",output_version,".rds*, where the output_version is currently set as the SHA number (i.e. the unique identifier) of the latest update on Github but can also be updated manually by the user in the `multi_city_script.R`.
