@@ -340,17 +340,7 @@ It produces the following output documents:
     -   one table giving the mean, 5th, 50th and 95th percentile levels of individual physical activity levels (mMETs) for each scenario
 
     -   one table detailing the average mMETs levels for each scenario
-
-    -   2nd Option:
-
-        -   boxplots of daily individual PM2.5 exposure levels for each scenario
-
-        -   one table detailing the baseline PM2.5 emissions for each mode, the city wide PM2.5 concentration and the percentage of concentration attributed to transport
-
-        -   one table detailing the individual PM2.5 exposure levels including the mean, 5th, 50th and 95th percentiles, the mean PM2.5 concentration for each scenario and the change in PM2.5 as compared to the baseline scenario. The table also contains CO2 emissions for each scenario
-
-        -   boxplots of individual mMET physical activity levels for each scenario
-
+    
 -   output .csv/.xlsx files containing the information listed below:
 
     -   desc_stats.csv file (results/multi_city/AP/desc_stats.csv, also saved with output version in name) containing the summary statistics of individual PM2.5 exposure levels, the total PM2.5 concentration, the change in PM2.5 concentration as compared to the baseline scenario and the total transport related CO2 emissions for each scenario
