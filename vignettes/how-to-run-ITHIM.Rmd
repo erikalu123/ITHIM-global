@@ -468,14 +468,14 @@ The Github repository of the Bogota branch is structured as follows:
 
 -   injury_tables.Rmd: R markdown document that can be used to create summary statistics of the injury results.
 
--   injury_tables\_*output_version*.html: html files containing injury summary statistics of the respective model runs.
+-   injury_tables.html: html files containing injury summary statistics of the respective model runs.
 
 -   multi_city_script.R: wrapper function to call all the various functions needed to perform the ITHIM-Global analysis.
 
 -   summary_tables.Rmd: R markdown document to create summary output statistics about distance, duration, mode splits and health outcomes.
 
--   summary_tables\_*output_version*.html: html files containing output summaries of the respective model runs.
+-   summary_tables.html: html files containing output summaries of the respective model runs.
 
 -   summary_tables_PA.Rmd: R markdown document to create summary output statistics about air pollution and physical activity levels.
 
--   summary_tables_PA\_*output_version*.html: html files containing air pollution and physical activity output statistics of the respective model runs.
+-   summary_tables_PA.html: html files containing air pollution and physical activity output statistics of the respective model runs.
