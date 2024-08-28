@@ -24,7 +24,7 @@ reference:
   - complete_trip_distance_duration
   - create_bogota_scenarios
   - create_global_scenarios
-  - create_synth_pop
+  - create_base_pop
   - dirichlet_pointiness
   - distances_for_injury_function
   - dist_dur_tbls
