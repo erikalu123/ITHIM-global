@@ -1,6 +1,6 @@
 #' Get distances and duration summaries by mode
 #'
-#' Summaries of total distances and durations spent travelling per mode and per scenario, for the synthetic population
+#' Summaries of total distances and durations spent travelling per mode and per scenario, for the baseline population
 #'
 #'
 #' The function performs the following steps:
@@ -9,7 +9,7 @@
 #' \item loop through the scenarios (incl Baseline):
 #'  \itemize{
 #'   \item using the trip data, sum across the distances by stage mode to get total
-#'     distance by mode for each scenario for the synthetic population
+#'     distance by mode for each scenario for the baseline population
 #'
 #'   \item sum across the duration by stage mode to get total duration by mode for each scenario
 #'
