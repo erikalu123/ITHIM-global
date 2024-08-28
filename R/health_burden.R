@@ -138,7 +138,7 @@ health_burden <- function(ind_ap_pa, conf_int = F, combined_AP_PA = T) {
       pif_table <- setDT(ind_ap_pa[, colnames(ind_ap_pa) %in% c(base_var, "dem_index")])
       # set the relative risk column name to 'outcome'
       setnames(pif_table, base_var, "outcome")
-      # sum the outcomes for the synthetic population by age and sex category
+      # sum the outcomes for the baseline population by age and sex category
       pif_ref <- pif_table[, .(sum(outcome)), by = "dem_index"]
       ## sort pif_ref
       setorder(pif_ref, dem_index) # order by age and sex category, i.e dem_index
@@ -156,7 +156,7 @@ health_burden <- function(ind_ap_pa, conf_int = F, combined_AP_PA = T) {
         pif_table <- setDT(ind_ap_pa[, colnames(ind_ap_pa) %in% c(scen_var, "dem_index")])
         # set the relative risk column name to 'outcome'
         setnames(pif_table, scen_var, "outcome")
-        # sum the outcomes for the synthetic population by age and sex category
+        # sum the outcomes for the baseline population by age and sex category
         pif_temp <- pif_table[, .(sum(outcome)), by = "dem_index"]
 
         setorder(pif_temp, dem_index) # sort pif_temp

@@ -1,20 +1,20 @@
 #' Find population distances by mode for entire population
 #'
 #' Function to find the distances travelled by age, sex, scenario and mode for the entire population
-#' rather than just the synthetic population.
+#' rather than just the baseline population.
 #'
 #' This function performs the following steps:
 #'
 #' \itemize{
 #' \item generate distance and duration matrices by age, sex, mode and scenario from the ithim_object$trip_scen_sets
-#'   for the synthetic population by calling the \code{\link{dist_dur_tbls()}} function
+#'   for the baseline population by calling the \code{\link{dist_dur_tbls()}} function
 #'
 #' \item find the total mode distances for each scenario and scale this up to the distance travelled by the entire
 #'   population by using the demographic information for the city
 #'
 #' \item in order to scale the distances by age, sex, mode and scenario to the entire population, the proportion of
-#'   the distances travelled by each age, sex, mode and scenario combination in the synthetic population to total
-#'   distances by mode and scenario in the synthetic population is found. The total population distances by mode
+#'   the distances travelled by each age, sex, mode and scenario combination in the baseline population to total
+#'   distances by mode and scenario in the baseline population is found. The total population distances by mode
 #'   are then multiplied by these proportions to find the total population distances travelled by each mode
 #'   and age and sex category.
 #'
@@ -33,7 +33,7 @@
 #'
 #'
 #'
-#' @param ithim_object list containing city specific information including the synthetic trip set
+#' @param ithim_object list containing city specific information including the baseline trip set
 #'
 #' @return ithim_object again, with additional total population distance for each mode and scenario, distances for injury pathway plus parameterised Poisson injury regression model
 #'
@@ -59,13 +59,13 @@ get_all_distances <- function(ithim_object) {
   pop <- pop %>% dplyr::rename(age_cat = age)
 
 
-  total_synth_pop <- nrow(SYNTHETIC_POPULATION) # find the size of the total synthetic population
+  total_base_pop <- nrow(BASELINE_POPULATION) # find the size of the total baseline population
 
-  # Recalculate distance by scaling to the total population (rather than the synthetic population)
+  # Recalculate distance by scaling to the total population (rather than the baseline population)
   dist <- trip_scen_sets %>%
     group_by(stage_mode, scenario) %>%
     summarise(
-      ave_dist = sum(stage_distance) / total_synth_pop * sum(pop$population)
+      ave_dist = sum(stage_distance) / total_base_pop * sum(pop$population)
     ) %>%
     spread(scenario, ave_dist)
 
@@ -94,31 +94,31 @@ get_all_distances <- function(ithim_object) {
 
   ## Find population distances for each age and gender category by
   # - determining the proportion of age and sex specific mode distances
-  #   to total mode distances in the synthetic population
+  #   to total mode distances in the baseline population
   # - multiplying the total population distances by these proportions
 
-  # find individual age / gender distances in synthetic population:
+  # find individual age / gender distances in baseline population:
   trips_age_gender <- trip_scen_sets %>%
     group_by(age_cat, sex, stage_mode, scenario) %>%
     summarise(dist_age = sum(stage_distance))
 
-  # find total trip distances by mode and scenario in the synthetic population
+  # find total trip distances by mode and scenario in the baseline population
   trips_scen_mode <- trip_scen_sets %>%
     group_by(stage_mode, scenario) %>%
     summarise(dist_synth = sum(stage_distance))
 
   # create data frame for each age, sex, mode and scenario combination containing the specific
-  # distance travelled for this combination in the synthetic population and the total
-  # distance travelled by the synthetic population for this specific mode and scenario
+  # distance travelled for this combination in the baseline population and the total
+  # distance travelled by the baseline population for this specific mode and scenario
   trips_age_gender <- left_join(trips_age_gender, trips_scen_mode,
     by = c("stage_mode", "scenario")
   )
 
-  # find proportion of total trip distance for each age and gender category distance in the synthetic population
+  # find proportion of total trip distance for each age and gender category distance in the baseline population
   trips_age_gender$prop <- trips_age_gender$dist_age / trips_age_gender$dist_synth
 
-  # find total distance across entire population (and not just synthetic population)
-  trips_age_gender$tot_dist <- trips_age_gender$dist_synth / total_synth_pop * sum(pop$population)
+  # find total distance across entire population (and not just baseline population)
+  trips_age_gender$tot_dist <- trips_age_gender$dist_synth / total_base_pop * sum(pop$population)
 
   # scale total distance by trip proportion for each age and gender
   trips_age_gender$tot_dist <- trips_age_gender$tot_dist * trips_age_gender$prop

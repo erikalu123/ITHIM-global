@@ -22,7 +22,7 @@
 #' @param ind_ap data frame of individual RRs for diseases affected by AP
 #' @param conf_int logic: whether to include confidence interval from dose response relationships or not
 #'
-#' @return dataframe giving the RR risk for AP, PA and combined AP and PA exposure levels for every person in the synthetic population and for each scenario
+#' @return dataframe giving the RR risk for AP, PA and combined AP and PA exposure levels for every person in the baseline population and for each scenario
 #'
 #' @export
 

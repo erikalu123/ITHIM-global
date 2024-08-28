@@ -1,6 +1,6 @@
 #' Calculate relative risk given PM exposure level
 #'
-#' Calculate the relative risk (RR) for each person in the synthetic population for each
+#' Calculate the relative risk (RR) for each person in the baseline population for each
 #' disease related to air pollution and each scenario based on the individual PM exposure levels
 #'
 #' This function performs the following steps:
@@ -11,7 +11,7 @@
 #' \item get the lookup table for the required dose response functions which contains for each dose
 #'   the median RR and the upper and lower confidence interval RR values
 #'
-#' \item for the PM exposure doses in the synthetic population find the needed RR by extrapolating the
+#' \item for the PM exposure doses in the baseline population find the needed RR by extrapolating the
 #'   dose responses given in the lookup table
 #'
 #' \item if a confidence interval is required, repeat this interpolation using the upper and lower
@@ -28,7 +28,7 @@
 #' @param quantile quantile of the dose response functions to be used as output value
 #' @param confidence_intervals logic: whether or not to return confidence intervals
 #'
-#' @return data frame of relative risks for each person in the synthetic population and each AP related disease in each scenario
+#' @return data frame of relative risks for each person in the baseline population and each AP related disease in each scenario
 #'
 #' @export
 
@@ -69,7 +69,7 @@ AP_dose_response <- function(cause, dose, quantile, confidence_intervals = F) {
   lookup_df <- setDT(lookup_table)
   
   # interpolate the values in the lookup table to get RR values for all PM exposure doses
-  # in the synthetic population
+  # in the baseline population
   
   suppressWarnings(
     rr <- approx(
@@ -81,7 +81,7 @@ AP_dose_response <- function(cause, dose, quantile, confidence_intervals = F) {
   # if a confidence interval is to be returned or if the quantile is not 0.5,
   # i.e. the median define an upper or lower band
   # interpolate the upper and lower band values in the lookup table to get upper and lower band
-  # RR values for all PM exposure doses in the synthetic population
+  # RR values for all PM exposure doses in the baseline population
   if (confidence_intervals || quantile != 0.5) {
     suppressWarnings(
       lb <-

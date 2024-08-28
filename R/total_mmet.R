@@ -1,6 +1,6 @@
 #' Calculate total mMETs per person
 #'
-#' Calculate total mMETs per person in the synthetic population based
+#' Calculate total mMETs per person in the baseline population based
 #' on non-travel PA and active travel for each scenario
 #'
 #' This function performs the following steps:
@@ -13,17 +13,17 @@
 #'
 #' \item for each scenario:
 #'    \itemize{
-#'    \item scale the non-travel mMET value for the people in the synthetic population by the
+#'    \item scale the non-travel mMET value for the people in the baseline population by the
 #'      BACKGROUND_PA_SCALAR to adjust for any biases in the PA data
 #'
 #'    \item calculate the total cycling and walking mMET values for each relevant
 #'      person in the trip set and scale up to a week
 #'
 #'    \item add the active travel mMET to the non-travel mMET values for each
-#'      person in the synthetic population
+#'      person in the baseline population
 #'      }
 #'
-#' \item create one dataframe with total MMET for all people in the synthetic
+#' \item create one dataframe with total MMET for all people in the baseline
 #'   population for all scenarios
 #' }
 #'
@@ -35,7 +35,7 @@
 
 
 total_mmet <- function(trip_scen_sets) {
-  synth_pop <- setDT(SYNTHETIC_POPULATION)
+  synth_pop <- setDT(BASELINE_POPULATION)
 
   # extract all people from the trip set with an active travel (walk or cycle) stage mode
   rd_pa <- setDT(trip_scen_sets)[trip_scen_sets$stage_mode %in% c(
@@ -64,7 +64,7 @@ total_mmet <- function(trip_scen_sets) {
       walking_mmet_base = sum(stage_duration_hrs[stage_mode == "pedestrian"])
     ), by = "participant_id"]
 
-    # calculate total travel mMET for relevant people in synthetic population and add to non_travel MMET
+    # calculate total travel mMET for relevant people in baseline population and add to non_travel MMET
     part_id <- match(individual_data$participant_id, synth_pop$participant_id)
     synth_pop[[paste0(SCEN_SHORT_NAME[i], "_mmet")]][part_id] <-
       synth_pop[[paste0(SCEN_SHORT_NAME[i], "_mmet")]][part_id] + individual_data$cycling_mmet_base *
@@ -72,7 +72,7 @@ total_mmet <- function(trip_scen_sets) {
   }
 
   # create dataframe containing the total mMET (sum of travel and non_travel mMET) for
-  # each person in the synthetic population and for each scenario
+  # each person in the baseline population and for each scenario
   name_indices <- which(colnames(synth_pop) %in% c(
     "participant_id", "sex", "age", "age_cat",
     paste0(SCEN_SHORT_NAME, "_mmet")

@@ -307,7 +307,7 @@ print(system.time(for(city in cities){
   # add additional information to the ithim_objects list storing the key input and output data
   ithim_objects$scen_prop <- SCENARIO_PROPORTIONS
   ithim_objects[[city]]$demographic <- DEMOGRAPHIC
-  ithim_objects[[city]]$synth_pop <- SYNTHETIC_POPULATION
+  ithim_objects[[city]]$base_pop <- BASELINE_POPULATION
   
   # run the ITHIM-Global health impact assessment
   ithim_objects[[city]]$outcomes <- run_ithim(ithim_object=ithim_objects[[city]], seed = 1)

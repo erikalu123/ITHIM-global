@@ -42,21 +42,21 @@ run_ithim <- function(ithim_object, seed = 1) {
 #'
 #' \item  air pollution pathway:
 #'    \itemize{
-#'    \item calculate the PM2.5 exposure for each person in the synthetic population
+#'    \item calculate the PM2.5 exposure for each person in the baseline population
 #'      and PM2.5 emissions for each mode and scenario (\code{\link{scenario_pm_calculations()}})
 #'
 #'    \item calculate the CO2 emissions for each mode and scenario (\code{\link{scenario_co2_calculations()}})
 #'
-#'    \item assign relative risk to each person in the synthetic population for each disease
+#'    \item assign relative risk to each person in the baseline population for each disease
 #'      related to PM pollution and each scenario based on the individual PM exposure
 #'      levels (\code{\link{gen_ap_rr()}})
 #'      }
 #'
 #' \item  physical activity pathway:
 #'    \itemize{
-#'    \item calculate total mMETs for each person in the synthetic population (\code{\link{total_mmet()}})
+#'    \item calculate total mMETs for each person in the baseline population (\code{\link{total_mmet()}})
 #'
-#'    \item assign relative risk to each person in the synthetic population for each disease
+#'    \item assign relative risk to each person in the baseline population for each disease
 #'      related to physical activity levels and each scenario based on the individual mMET
 #'      values (\code{\link{gen_pa_rr()}})
 #'    }
@@ -119,7 +119,7 @@ ithim_calculation_sequence <- function(ithim_object, seed = 1) {
   ############################
   ## (1) AP PATHWAY
   # Calculate PM2.5 emissions for each mode and scenario and calculate PM2.5
-  # exposure for each person in the synthetic population
+  # exposure for each person in the baseline population
   pm_conc <- scenario_pm_calculations(
     dist = (true_dist %>% dplyr::filter(stage_mode != "unknown")
       %>% dplyr::mutate_at(-c(1), as.integer)),
@@ -136,7 +136,7 @@ ithim_calculation_sequence <- function(ithim_object, seed = 1) {
   pm_conc_pp <- pm_conc$pm_conc_pp
   pm_conc <- NULL
 
-  # Assign relative risks to each person in the synthetic population for each disease
+  # Assign relative risks to each person in the baseline population for each disease
   # related to air pollution and each scenario based on the individual PM exposure levels
   RR_AP_calculations <- gen_ap_rr(pm_conc_pp)
   if (!constant_mode) pm_conc_pp <- NULL
@@ -146,11 +146,11 @@ ithim_calculation_sequence <- function(ithim_object, seed = 1) {
   ## (2) PA PATHWAY
   # Physical activity calculations
 
-  # calculate total mMETs for each person in the synthetic population
+  # calculate total mMETs for each person in the baseline population
   mmets_pp <- total_mmet(trip_scen_sets)
   trip_scen_sets <- NULL
 
-  # assign a relative risk to each person in the synthetic population for each disease
+  # assign a relative risk to each person in the baseline population for each disease
   # related to physical activity levels and each scenario based on the individual mMET values
   RR_PA_calculations <- gen_pa_rr(mmets_pp,
     conf_int = ifelse(constant_mode, TRUE, FALSE)
@@ -163,7 +163,7 @@ ithim_calculation_sequence <- function(ithim_object, seed = 1) {
   # Physical activity and air pollution combined
 
   # create one dataframe containing both the PA, the AP and the combined PA and AP relative risks
-  # (for those diseases affected by both PA and AP) for all people in the synthetic population and all scenarios
+  # (for those diseases affected by both PA and AP) for all people in the baseline population and all scenarios
   RR_PA_AP_calculations <- combined_rr_ap_pa(
     ind_pa = RR_PA_calculations, ind_ap = RR_AP_calculations,
     conf_int = ifelse(constant_mode, TRUE, FALSE)

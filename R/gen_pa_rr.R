@@ -1,6 +1,6 @@
 #' Get relative risk for diseases given mMETs
 #'
-#' Computes the relative risks (RR) for individuals in the synthetic population for each disease given their mMETs (PA exposure)
+#' Computes the relative risks (RR) for individuals in the baseline population for each disease given their mMETs (PA exposure)
 #'
 #' This function performs the following steps:
 #'
@@ -13,7 +13,7 @@
 #'      input parameters.
 #'    \item create one vector containing all the mMET values for all scenarios
 #'    \item assign the relative risk for the given disease and quantile to the
-#'      given mMET values for all people in the synthetic population for all
+#'      given mMET values for all people in the baseline population for all
 #'      scenarios by calling the drpa::dose_response function
 #'    \item extract the RR for each scenario from the vector containing all RR for all scenarios
 #'    \item if confidence intervals are required, also extract the RR upper and lower
@@ -31,7 +31,7 @@
 gen_pa_rr <- function(mmets_pp, conf_int = F) {
   dose_columns <- match(paste0(SCEN_SHORT_NAME, "_mmet"), colnames(mmets_pp))
 
-  # create one long vector containing all mMET values for the synthetic population for all scenarios
+  # create one long vector containing all mMET values for the baseline population for all scenarios
   doses_vector <- unlist(data.frame(mmets_pp[, dose_columns]))
 
   ### iterate over all all disease outcomes that are related to physical activity levels

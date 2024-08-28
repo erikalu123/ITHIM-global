@@ -1,6 +1,6 @@
-#' Generate synthetic population from trip data
+#' Generate baseline population from trip data
 #'
-#' Sequence of functions to set up the synthetic population, the synthetic trips, and the scenarios.
+#' Sequence of functions to set up the baseline population, the synthetic trips, and the scenarios.
 #'
 #' This function performs the following steps:
 #'
@@ -16,9 +16,9 @@
 #'
 #' \item add commercial motorcycle trips if required (\code{\link{add_ghost_trips()}})
 #'
-#' \item build the synthetic population by creating a data set that contains the (non-zero) participant
+#' \item build the baseline population by creating a data set that contains the (non-zero) participant
 #'   ids and demographic information from the trip data set and adds work and leisure MMET
-#'   values by calling \code{\link{create_synth_pop()}} (non travel entries in the trip data set are also removed)
+#'   values by calling \code{\link{create_base_pop()}} (non travel entries in the trip data set are also removed)
 #'
 #' \item adds car driver trips if required (\code{\link{add_ghost_trips()}})
 #'
@@ -133,8 +133,8 @@ get_synthetic_from_trips <- function() {
   }
   # raw_trip_set <- add_ghost_trips(raw_trip_set,trip_mode='motorcycle',distance_ratio=(1-FLEET_TO_MOTORCYCLE_RATIO)/FLEET_TO_MOTORCYCLE_RATIO,reference_mode='motorcycle')
 
-  # create synthetic population
-  synth_pop <- create_synth_pop(raw_trip_set)
+  # create baseline population
+  base_pop <- create_base_pop(raw_trip_set)
 
 
   # add car drivers by assuming that only a certain percentage of car trips (population_in_model_ratio) are driven
@@ -143,7 +143,7 @@ get_synthetic_from_trips <- function() {
     car_driver_scalar <<- min(1, CAR_OCCUPANCY_RATIO * 1 / population_in_model_ratio)
     # age ranges are not needed as car drivers are only used to calculate total vehicle km travelled for the CO2 model but are not
     # needed for the injury model unlike truck, motorcycle and bus drivers
-    synth_pop$trip_set <- add_ghost_trips(synth_pop$trip_set,
+    base_pop$trip_set <- add_ghost_trips(base_pop$trip_set,
       trip_mode = "car_driver",
       distance_ratio = car_driver_scalar * DISTANCE_SCALAR_CAR_TAXI,
       reference_mode = "car"
@@ -153,36 +153,36 @@ get_synthetic_from_trips <- function() {
   raw_trip_set <- NULL
 
   # extract the population statistics and pa non-travel MMET values
-  SYNTHETIC_POPULATION <<- synth_pop$synthetic_population
+  BASELINE_POPULATION <<- base_pop$baseline_population
 
-  trip_set <- synth_pop$trip_set # extract the trip characteristics
-  synth_pop <- NULL
+  trip_set <- base_pop$trip_set # extract the trip characteristics
+  base_pop <- NULL
 
   # create scenarios by calling the appropriate function
   trip_set <- ithim_setup_baseline_scenario(trip_set)
 
   if (SCENARIO_NAME == "TEST_WALK_SCENARIO") {
-    SYNTHETIC_TRIPS <- create_walk_scenario(trip_set)
+    BASELINE_TRIPS <- create_walk_scenario(trip_set)
   } else if (SCENARIO_NAME == "TEST_CYCLE_SCENARIO") {
-    SYNTHETIC_TRIPS <- create_cycle_scenarios(trip_set)
+    BASELINE_TRIPS <- create_cycle_scenarios(trip_set)
   } else if (SCENARIO_NAME == "MAX_MODE_SHARE_SCENARIO") {
-    SYNTHETIC_TRIPS <- create_max_mode_share_scenarios(trip_set)
+    BASELINE_TRIPS <- create_max_mode_share_scenarios(trip_set)
   } else if (SCENARIO_NAME == "LATAM") {
-    SYNTHETIC_TRIPS <- create_latam_scenarios(trip_set)
+    BASELINE_TRIPS <- create_latam_scenarios(trip_set)
   } else if (SCENARIO_NAME == "GLOBAL") {
-    SYNTHETIC_TRIPS <- create_global_scenarios(trip_set)
+    BASELINE_TRIPS <- create_global_scenarios(trip_set)
   } else if (SCENARIO_NAME == "AFRICA_INDIA") {
-    SYNTHETIC_TRIPS <- create_africa_india_scenarios(trip_set)
+    BASELINE_TRIPS <- create_africa_india_scenarios(trip_set)
   } else if (SCENARIO_NAME == "BOGOTA") {
-    SYNTHETIC_TRIPS <- create_bogota_scenarios(trip_set)
+    BASELINE_TRIPS <- create_bogota_scenarios(trip_set)
   } else {
-    SYNTHETIC_TRIPS <- create_all_scenarios(trip_set)
+    BASELINE_TRIPS <- create_all_scenarios(trip_set)
   }
 
 
   # some useful variables.
-  NSCEN <<- length(SYNTHETIC_TRIPS) - 1 # define number of scenarios
-  SCEN <<- sapply(SYNTHETIC_TRIPS, function(x) x$scenario[1])
+  NSCEN <<- length(BASELINE_TRIPS) - 1 # define number of scenarios
+  SCEN <<- sapply(BASELINE_TRIPS, function(x) x$scenario[1])
 
   # define the scenario names
   # SCEN_SHORT_NAME <<- c("base",paste0("scen", 1:NSCEN) )
@@ -190,7 +190,7 @@ get_synthetic_from_trips <- function() {
 
 
   # add walk to pt trips, as appropriate, and combines list of scenarios
-  trip_scen_sets <- walk_to_pt_and_combine_scen(SYNTHETIC_TRIPS)
+  trip_scen_sets <- walk_to_pt_and_combine_scen(BASELINE_TRIPS)
 
   trip_scen_sets
 }

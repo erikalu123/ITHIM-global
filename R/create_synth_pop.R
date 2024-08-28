@@ -1,6 +1,6 @@
-#' Creates synthetic population
+#' Creates baseline population
 #'
-#' Creates a synthetic population by matching individuals in the trip set
+#' Creates a baseline population by matching individuals in the trip set
 #' to individuals in the physical activity (PA) dataset
 #'
 #' The function performs the following steps:
@@ -10,12 +10,12 @@
 #'
 #' \item To match people in trip data with people in the physical activity dataset:
 #'   \itemize{
-#'   \item create a synthetic population by taking the unique participant ids together with age and gender
+#'   \item create a baseline population by taking the unique participant ids together with age and gender
 #'     information from the trip data (not including bus driver, truck, car driver and commercial
 #'     motorcycle trips)
 #'
 #'   \item to assign non-occupational physical activity MMET values to this
-#'     synthetic population, the following steps are performed:
+#'     baseline population, the following steps are performed:
 #'
 #'    \itemize{
 #'     \item for each sex and age category, find the proportion of people with zero non-occupational MMET values
@@ -28,7 +28,7 @@
 #'
 #'     \item sample with replacement from a vector with 0 MMET values and the vector non-zero MMET values (from
 #'       the people having non-zero work and leisure MMET values) using the proportion of people with
-#'       zero work and leisure MMET values and assign those sampled MMET values to the synthetic population
+#'       zero work and leisure MMET values and assign those sampled MMET values to the baseline population
 #'
 #'      }
 #'   }
@@ -39,12 +39,12 @@
 #'
 #' @param raw_trip_set data frame of raw trips taken, bus_driver, new motorcycle and truck trips have already been added
 #'
-#' @return the synthetic population and the trip set which has been pruned
+#' @return the baseline population and the trip set which has been pruned
 #'
 #' @export
 
 
-create_synth_pop <- function(raw_trip_set) {
+create_base_pop <- function(raw_trip_set) {
   # Notes:
   ## duration: units are minutes per day.
   ## work_ltpa_marg_met: units are marginal MET-h/week.
@@ -75,7 +75,7 @@ create_synth_pop <- function(raw_trip_set) {
 
   # match only for "real" people (i.e. not `ghost drivers', whose participant id is 0)
   # extract unique participant ids including age, sex and age category information from the trip data
-  synthetic_population <- subset(trip_set, !duplicated(participant_id) & participant_id > 0)[, names(trip_set) %in% c("participant_id", "age", "sex", "age_cat")]
+  baseline_population <- subset(trip_set, !duplicated(participant_id) & participant_id > 0)[, names(trip_set) %in% c("participant_id", "age", "sex", "age_cat")]
 
   # initialise zeros and densities
   zeros <- densities <- list()
@@ -116,7 +116,7 @@ create_synth_pop <- function(raw_trip_set) {
   }
 
   # assign all participants 0 non-occupational mmets
-  synthetic_population$work_ltpa_marg_met <- 0
+  baseline_population$work_ltpa_marg_met <- 0
 
   # match population to PA dataset via demographic information
   for (age_group in unique_ages) { # loop through age groups
@@ -124,7 +124,7 @@ create_synth_pop <- function(raw_trip_set) {
 
     for (gender in unique_genders) { # loop through sexes
 
-      i <- which(synthetic_population$age_cat == age_group & synthetic_population$sex == gender)
+      i <- which(baseline_population$age_cat == age_group & baseline_population$sex == gender)
       raw_density <- densities[[age_group]][[gender]] # people with non zero non-occupational met
       prob_zero <- zeros[[age_group]][[gender]] # proportion of people with zero non-occupational met
 
@@ -132,21 +132,21 @@ create_synth_pop <- function(raw_trip_set) {
       v <- sample(c(0, raw_density), length(i), replace = T, prob = c(prob_zero, (rep(1, length(raw_density)) - prob_zero) / length(raw_density)))
 
       if (length(v) > 0) {
-        # assign new mmet to synthetic population (from trip data) with given age category and sex
-        synthetic_population$work_ltpa_marg_met[i] <- c(v)
+        # assign new mmet to baseline population (from trip data) with given age category and sex
+        baseline_population$work_ltpa_marg_met[i] <- c(v)
       }
     }
   }
 
   # Convert all integer columns to numeric
-  synthetic_population[, sapply(synthetic_population, class) == "integer"] <- lapply(synthetic_population[, sapply(synthetic_population, class) == "integer"], as.numeric)
+  baseline_population[, sapply(baseline_population, class) == "integer"] <- lapply(baseline_population[, sapply(baseline_population, class) == "integer"], as.numeric)
 
   # remove participants with trip or stage modes that are not in Vehicle inventory
   trip_set <- subset(trip_set, trip_mode %in% VEHICLE_INVENTORY$stage_mode & stage_mode %in% VEHICLE_INVENTORY$stage_mode)
 
   trip_set <- drop_na(trip_set)
 
-  return(list(trip_set = trip_set, synthetic_population = synthetic_population))
+  return(list(trip_set = trip_set, baseline_population = baseline_population))
 }
 
 

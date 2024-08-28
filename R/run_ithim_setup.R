@@ -66,7 +66,7 @@
 #'   distance and emission information
 #'
 #' \item if none of the corresponding input parameters were sampled from a distribution,
-#'   call \code{\link{get_synthetic_from_trips()}} to set synthetic trips and synthetic population
+#'   call \code{\link{get_synthetic_from_trips()}} to set synthetic trips and baseline population
 #'
 #' \item if none of the corresponding input parameters were sampled from a distribution,
 #'   call \code{\link{get_all_distances()}} to calculate trip distances
@@ -505,7 +505,7 @@ run_ithim_setup <- function(seed = 1,
 
   # create inventory and edit trips, if they are not variable dependent
   if (!RECALCULATE_TRIPS) {
-    ithim_object$trip_scen_sets <- get_synthetic_from_trips() # sets synthetic trips and synthetic population
+    ithim_object$trip_scen_sets <- get_synthetic_from_trips() # sets synthetic trips and baseline population
   }
 
   # calculate distances, if distances are not variable dependent

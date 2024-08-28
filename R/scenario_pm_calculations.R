@@ -33,14 +33,14 @@
 #'
 #' \item calculate ventilation rate for sleep, moderate and vigorous activities
 #'
-#' \item for each participant in the synthetic population (with travel component),
+#' \item for each participant in the baseline population (with travel component),
 #'   calculate the total air inhaled, the total PM inhaled and
 #'   the total PM concentration inhaled for each scenario
 #'
-#' \item assign all participants in the synthetic population without travel component,
+#' \item assign all participants in the baseline population without travel component,
 #'   the baseline or scenario PM concentrations
 #'
-#' \item join all people with and without travel in the synthetic population
+#' \item join all people with and without travel in the baseline population
 #' }
 #'
 #'
@@ -48,7 +48,7 @@
 #' @param trip_scen_sets trips data frame of all trips from all scenarios
 #'
 #' @return background PM concentration for baseline and all scenarios
-#' @return total AP exposure per person in the synthetic population (for baseline and scenarios)
+#' @return total AP exposure per person in the baseline population (for baseline and scenarios)
 #'
 #' @export
 scenario_pm_calculations <- function(dist, trip_scen_sets) {
@@ -61,7 +61,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
   # concentration contributed by non-transport share (remains constant across the scenarios)
   non_transport_pm_conc <- PM_CONC_BASE * (1 - PM_TRANS_SHARE)
 
-  # adding in travel not covered in the synthetic trip set
+  # adding in travel not covered in the baseline trip set
   emission_dist <- dist
   
   # Make a local copy of vehicle inventory
@@ -101,7 +101,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
 
   # Merge baseline PA
   trip_set <- dplyr::left_join(trip_set,
-    SYNTHETIC_POPULATION[, c(
+    BASELINE_POPULATION[, c(
       "participant_id",
       "work_ltpa_marg_met"
     )],
@@ -169,7 +169,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     )
   )
 
-  # Dan: Extract people from the synthetic population to calculate their
+  # Dan: Extract people from the baseline population to calculate their
   # ventilation rates
   people_for_vent_rates <- trip_set %>%
     filter(participant_id != 0) %>%
@@ -177,7 +177,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     dplyr::select(participant_id, age, sex)
 
   # Dan: Draw from a log-normal distribution the body mass [kg] of each person
-  # in the synthetic population
+  # in the baseline population
   people_for_vent_rates <- people_for_vent_rates %>%
     left_join(body_mass_df, by = c("age", "sex")) %>%
     rowwise() %>% # To apply an operation in each row
@@ -192,7 +192,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     dplyr::select(participant_id, age, sex, body_mass)
 
   # Dan: Draw from a uniform distribution the Energy Conversion Factor [lt/kcal]
-  # of each person in the synthetic population
+  # of each person in the baseline population
   people_for_vent_rates <- people_for_vent_rates %>%
     left_join(ecf_df, by = c("age", "sex")) %>%
     rowwise() %>% # To apply an operation in each row
@@ -202,7 +202,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     ) %>%
     dplyr::select(participant_id, age, sex, body_mass, ecf)
 
-  # Dan: For each person in the synthetic population, calculate the Resting
+  # Dan: For each person in the baseline population, calculate the Resting
   # Metabolic Rate [kcal/min] from a given regression formula with a normally
   # distributed error
   people_for_vent_rates <- people_for_vent_rates %>%
@@ -217,7 +217,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     dplyr::select(participant_id, age, sex, body_mass, ecf, rmr)
 
   # Dan: Draw from a normalized maximum oxygen uptake rate (NVO2max) [lt/(min*kg)]
-  # of each person in the synthetic population
+  # of each person in the baseline population
   people_for_vent_rates <- people_for_vent_rates %>%
     left_join(nvo2max_df, by = c("age", "sex")) %>%
     rowwise() %>% # To apply an operation in each row
@@ -234,13 +234,13 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     dplyr::select(participant_id, age, sex, body_mass, ecf, rmr, nvo2max)
 
   # Dan: Calculate the maximum oxygen uptake rate [lt/min] of each person in the
-  # synthetic population
+  # baseline population
   people_for_vent_rates <- people_for_vent_rates %>%
     mutate(vo2max = nvo2max * body_mass)
 
   # Dan: Get the parameters for the empirical equation to calculate the
   # Ventilation Rate from Oxygen Uptake Rate in each person in the
-  # synthetic population
+  # baseline population
   people_for_vent_rates <- people_for_vent_rates %>%
     left_join(vent_from_oxygen_df, by = c("age", "sex")) %>%
     rowwise() %>% # To apply an operation in each row
@@ -489,7 +489,7 @@ scenario_pm_calculations <- function(dist, trip_scen_sets) {
     setNames(gsub("baseline", "pm_conc_base", names(.)))
   
   # Get all participants without any travel (in the travel survey)
-  id_wo_travel <- SYNTHETIC_POPULATION |>
+  id_wo_travel <- BASELINE_POPULATION |>
     filter(!participant_id %in% trip_set$participant_id)
   
   # Assign all participants without travel baseline + scenario specific base concentration
