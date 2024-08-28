@@ -27,7 +27,7 @@ This function works by performing the following steps:
 \item call \code{\link{set_vehicle_inventory()}} to update emissions if any
   emission parameters have been sampled from a distribution
 
-\item call \code{\link{get_synthetic_from_trips()}} to update the synthetic trips and synthetic population if any
+\item call \code{\link{get_synthetic_from_trips()}} to update the synthetic trips and baseline population if any
   relevant input parameters have been sampled from a distribution
 
 \item call \code{\link{get_all_distances()}} to recalculate the distances if any of the relevant input parameters have

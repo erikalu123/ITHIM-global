@@ -13,7 +13,7 @@ gen_pa_rr(mmets_pp, conf_int = F)
 data frame of relative risks per person per disease
 }
 \description{
-Computes the relative risks (RR) for individuals in the synthetic population for each disease given their mMETs (PA exposure)
+Computes the relative risks (RR) for individuals in the baseline population for each disease given their mMETs (PA exposure)
 }
 \details{
 This function performs the following steps:
@@ -27,7 +27,7 @@ This function performs the following steps:
      input parameters.
    \item create one vector containing all the mMET values for all scenarios
    \item assign the relative risk for the given disease and quantile to the
-     given mMET values for all people in the synthetic population for all
+     given mMET values for all people in the baseline population for all
      scenarios by calling the drpa::dose_response function
    \item extract the RR for each scenario from the vector containing all RR for all scenarios
    \item if confidence intervals are required, also extract the RR upper and lower

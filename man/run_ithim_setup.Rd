@@ -296,7 +296,7 @@ This function performs the following steps:
   distance and emission information
 
 \item if none of the corresponding input parameters were sampled from a distribution,
-  call \code{\link{get_synthetic_from_trips()}} to set synthetic trips and synthetic population
+  call \code{\link{get_synthetic_from_trips()}} to set synthetic trips and baseline population
 
 \item if none of the corresponding input parameters were sampled from a distribution,
   call \code{\link{get_all_distances()}} to calculate trip distances

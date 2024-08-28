@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_synthetic_from_trips.R
 \name{get_synthetic_from_trips}
 \alias{get_synthetic_from_trips}
-\title{Generate synthetic population from trip data}
+\title{Generate baseline population from trip data}
 \usage{
 get_synthetic_from_trips()
 }
@@ -10,7 +10,7 @@ get_synthetic_from_trips()
 data frame of all synthetic trips from all scenarios
 }
 \description{
-Sequence of functions to set up the synthetic population, the synthetic trips, and the scenarios.
+Sequence of functions to set up the baseline population, the synthetic trips, and the scenarios.
 }
 \details{
 This function performs the following steps:
@@ -27,9 +27,9 @@ This function performs the following steps:
 
 \item add commercial motorcycle trips if required (\code{\link{add_ghost_trips()}})
 
-\item build the synthetic population by creating a data set that contains the (non-zero) participant
+\item build the baseline population by creating a data set that contains the (non-zero) participant
   ids and demographic information from the trip data set and adds work and leisure MMET
-  values by calling \code{\link{create_synth_pop()}} (non travel entries in the trip data set are also removed)
+  values by calling \code{\link{create_base_pop()}} (non travel entries in the trip data set are also removed)
 
 \item adds car driver trips if required (\code{\link{add_ghost_trips()}})
 

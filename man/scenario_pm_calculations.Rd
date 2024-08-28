@@ -14,7 +14,7 @@ scenario_pm_calculations(dist, trip_scen_sets)
 \value{
 background PM concentration for baseline and all scenarios
 
-total AP exposure per person in the synthetic population (for baseline and scenarios)
+total AP exposure per person in the baseline population (for baseline and scenarios)
 }
 \description{
 Calculate total AP exposure per person based on population and personal travel
@@ -51,13 +51,13 @@ This function performs the following steps:
 
 \item calculate ventilation rate for sleep, moderate and vigorous activities
 
-\item for each participant in the synthetic population (with travel component),
+\item for each participant in the baseline population (with travel component),
   calculate the total air inhaled, the total PM inhaled and
   the total PM concentration inhaled for each scenario
 
-\item assign all participants in the synthetic population without travel component,
+\item assign all participants in the baseline population without travel component,
   the baseline or scenario PM concentrations
 
-\item join all people with and without travel in the synthetic population
+\item join all people with and without travel in the baseline population
 }
 }

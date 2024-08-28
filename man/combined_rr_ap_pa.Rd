@@ -14,7 +14,7 @@ combined_rr_ap_pa(ind_pa, ind_ap, conf_int = FALSE)
 \item{conf_int}{logic: whether to include confidence interval from dose response relationships or not}
 }
 \value{
-dataframe giving the RR risk for AP, PA and combined AP and PA exposure levels for every person in the synthetic population and for each scenario
+dataframe giving the RR risk for AP, PA and combined AP and PA exposure levels for every person in the baseline population and for each scenario
 }
 \description{
 Combine relative risks (RR) from air pollution (AP) and physical activity (PA)

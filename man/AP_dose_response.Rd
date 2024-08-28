@@ -16,10 +16,10 @@ AP_dose_response(cause, dose, quantile, confidence_intervals = F)
 \item{confidence_intervals}{logic: whether or not to return confidence intervals}
 }
 \value{
-data frame of relative risks for each person in the synthetic population and each AP related disease in each scenario
+data frame of relative risks for each person in the baseline population and each AP related disease in each scenario
 }
 \description{
-Calculate the relative risk (RR) for each person in the synthetic population for each
+Calculate the relative risk (RR) for each person in the baseline population for each
 disease related to air pollution and each scenario based on the individual PM exposure levels
 }
 \details{
@@ -31,7 +31,7 @@ This function performs the following steps:
 \item get the lookup table for the required dose response functions which contains for each dose
   the median RR and the upper and lower confidence interval RR values
 
-\item for the PM exposure doses in the synthetic population find the needed RR by extrapolating the
+\item for the PM exposure doses in the baseline population find the needed RR by extrapolating the
   dose responses given in the lookup table
 
 \item if a confidence interval is required, repeat this interpolation using the upper and lower

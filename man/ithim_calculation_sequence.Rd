@@ -26,21 +26,21 @@ This function performs the following steps:
 
 \item  air pollution pathway:
    \itemize{
-   \item calculate the PM2.5 exposure for each person in the synthetic population
+   \item calculate the PM2.5 exposure for each person in the baseline population
      and PM2.5 emissions for each mode and scenario (\code{\link{scenario_pm_calculations()}})
 
    \item calculate the CO2 emissions for each mode and scenario (\code{\link{scenario_co2_calculations()}})
 
-   \item assign relative risk to each person in the synthetic population for each disease
+   \item assign relative risk to each person in the baseline population for each disease
      related to PM pollution and each scenario based on the individual PM exposure
      levels (\code{\link{gen_ap_rr()}})
      }
 
 \item  physical activity pathway:
    \itemize{
-   \item calculate total mMETs for each person in the synthetic population (\code{\link{total_mmet()}})
+   \item calculate total mMETs for each person in the baseline population (\code{\link{total_mmet()}})
 
-   \item assign relative risk to each person in the synthetic population for each disease
+   \item assign relative risk to each person in the baseline population for each disease
      related to physical activity levels and each scenario based on the individual mMET
      values (\code{\link{gen_pa_rr()}})
    }

@@ -7,28 +7,28 @@
 get_all_distances(ithim_object)
 }
 \arguments{
-\item{ithim_object}{list containing city specific information including the synthetic trip set}
+\item{ithim_object}{list containing city specific information including the baseline trip set}
 }
 \value{
 ithim_object again, with additional total population distance for each mode and scenario, distances for injury pathway plus parameterised Poisson injury regression model
 }
 \description{
 Function to find the distances travelled by age, sex, scenario and mode for the entire population
-rather than just the synthetic population.
+rather than just the baseline population.
 }
 \details{
 This function performs the following steps:
 
 \itemize{
 \item generate distance and duration matrices by age, sex, mode and scenario from the ithim_object$trip_scen_sets
-  for the synthetic population by calling the \code{\link{dist_dur_tbls()}} function
+  for the baseline population by calling the \code{\link{dist_dur_tbls()}} function
 
 \item find the total mode distances for each scenario and scale this up to the distance travelled by the entire
   population by using the demographic information for the city
 
 \item in order to scale the distances by age, sex, mode and scenario to the entire population, the proportion of
-  the distances travelled by each age, sex, mode and scenario combination in the synthetic population to total
-  distances by mode and scenario in the synthetic population is found. The total population distances by mode
+  the distances travelled by each age, sex, mode and scenario combination in the baseline population to total
+  distances by mode and scenario in the baseline population is found. The total population distances by mode
   are then multiplied by these proportions to find the total population distances travelled by each mode
   and age and sex category.
 

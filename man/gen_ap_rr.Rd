@@ -7,19 +7,19 @@
 gen_ap_rr(pm_conc_pp)
 }
 \arguments{
-\item{pm_conc_pp}{individual PM exposures for each person in the synthetic population}
+\item{pm_conc_pp}{individual PM exposures for each person in the baseline population}
 }
 \value{
 data frame of relative risks per person for each disease and each scenario
 }
 \description{
-Computes the relative risk (RR) for individuals in the synthetic population for each disease given PM exposure
+Computes the relative risk (RR) for individuals in the baseline population for each disease given PM exposure
 }
 \details{
 This function performs the following steps:
 \itemize{
 \item minimum ages for each age group corresponding to disease risks are assigned to the individuals in the
-  synthetic population (with added PM exposure levels)
+  baseline population (with added PM exposure levels)
 
 \item loop through all diseases that are related to PM pollution:
   \itemize{
@@ -35,7 +35,7 @@ This function performs the following steps:
    \item loop through the scenarios:
      \itemize{
      \item assign the relative risk for the given disease, age group, quantile and scenario to the
-       relevant people in the synthetic population by calling the \code{\link{AP_dose_response()}} function
+       relevant people in the baseline population by calling the \code{\link{AP_dose_response()}} function
      }
    }
 }
