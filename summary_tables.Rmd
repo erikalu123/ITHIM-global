@@ -35,11 +35,11 @@ output:
 
 
 ## Distances travelled
-# - city specific distance tables showing average daily distances in km travelled by each person in the synthetic population by mode for all scenarios (incl Baseline)
+# - city specific distance tables showing average daily distances in km travelled by each person in the baseline population by mode for all scenarios (incl Baseline)
 
-# - city specific distance tables showing average daily distances in km travelled by each person in the synthetic population WITH a trip by mode for all scenarios (incl Baseline)
+# - city specific distance tables showing average daily distances in km travelled by each person in the baseline population WITH a trip by mode for all scenarios (incl Baseline)
 
-# - one table giving the city specific baseline average daily distances (km) travelled by each person in the synthetic population for all cities
+# - one table giving the city specific baseline average daily distances (km) travelled by each person in the baseline population for all cities
 
 #( - city specific distance tables showing total yearly distances in km travelled by the total population with ages considered in the model for each mode for all scenarios (incl Baseline)  - CURRENTLY COMMENTED OUT)
 
@@ -51,11 +51,11 @@ output:
 
 
 ## Travel duration
-# - city specific duration tables showing average daily duration (h) spent travelling by each person in the synthetic population by mode for all scenarios (incl Baseline)
+# - city specific duration tables showing average daily duration (h) spent travelling by each person in the baseline population by mode for all scenarios (incl Baseline)
 
-# - city specific duration tables showing average daily duration (h) spent travelling by each person in the synthetic population WITH a trip by mode for all scenarios (incl Baseline)
+# - city specific duration tables showing average daily duration (h) spent travelling by each person in the baseline population WITH a trip by mode for all scenarios (incl Baseline)
 
-#( - one table giving the city specific baseline average duration (h) spent travelling by each person in the respective synthetic populations for all cities  - CURRENTLY COMMENTED OUT)
+#( - one table giving the city specific baseline average duration (h) spent travelling by each person in the respective baseline populations for all cities  - CURRENTLY COMMENTED OUT)
 
 
 
@@ -119,11 +119,11 @@ output:
 
 # - create one table showing the baseline mode split for all cities
 
-# - create city specific distance tables showing average daily distances in km travelled by each person in the synthetic population by mode for all scenarios (incl Baseline)
+# - create city specific distance tables showing average daily distances in km travelled by each person in the baseline population by mode for all scenarios (incl Baseline)
 
-# - create  city specific distance tables showing average daily distances in km travelled by each person in the synthetic population WITH a trip by mode for all scenarios (incl Baseline)
+# - create  city specific distance tables showing average daily distances in km travelled by each person in the baseline population WITH a trip by mode for all scenarios (incl Baseline)
 
-# - create one table giving the city specific baseline average daily distances (km) travelled by each person in the synthetic population for all cities
+# - create one table giving the city specific baseline average daily distances (km) travelled by each person in the baseline population for all cities
 
 # - create city specific distance tables showing total yearly distances in km travelled by the total  population with ages considered in the model for each mode for all scenarios (incl Baseline)
 
@@ -133,11 +133,11 @@ output:
 
 # - create city specific distance tables showing total daily distances in km travelled by the total population  with ages considered in the model for each mode for all scenarios (incl Baseline)
 
-# - create city specific duration tables showing average daily duration (h) spent travelling by each person in the synthetic population by mode for all scenarios (incl Baseline)
+# - create city specific duration tables showing average daily duration (h) spent travelling by each person in the baseline population by mode for all scenarios (incl Baseline)
 
-# - create city specific duration tables showing average daily duration (h) spent travelling by each person in the synthetic population WITH a trip by mode for all scenarios (incl Baseline)
+# - create city specific duration tables showing average daily duration (h) spent travelling by each person in the baseline population WITH a trip by mode for all scenarios (incl Baseline)
 
-# - create one table giving the city specific baseline average duration (h) spent travelling by each person in the respective synthetic populations for all cities
+# - create one table giving the city specific baseline average duration (h) spent travelling by each person in the respective baseline populations for all cities
 
 # - create one table for each city showing the change in total YLLsfor each of the scenarios compared to the reference scenario  for each age group
 
@@ -474,17 +474,17 @@ for (city in cities) { # Loop for each city
 
 ## Distance tables
 
-City specific distance tables showing average distance in km travelled by each person in the synthetic population by mode for all scenarios (incl Baseline)
+City specific distance tables showing average distance in km travelled by each person in the baseline population by mode for all scenarios (incl Baseline)
 
 ```{r trip_dist = "asis"}
-# find the average distance a person in the synthetic population spends travelling on each mode per day
+# find the average distance a person in the baseline population spends travelling on each mode per day
 
 trip_dist <- list()
 
 for (city in cities) { # loop through cities
   
-  # find number of rows / people in the synthetic population
-  count_people <- nrow(io[[city]]$synth_pop) 
+  # find number of rows / people in the baseline population
+  count_people <- nrow(io[[city]]$base_pop) 
   
   # extract distances and divide by number of people
   td <- io[[city]]$dist %>% 
@@ -503,7 +503,7 @@ for (city in cities) { # loop through cities
   row.names(td) <- NULL
   
   # write to .html
-  print(kable(td, caption = paste("Distance table (km) per day for ", city, "(", count_people, ") per person in the synthetic population")))
+  print(kable(td, caption = paste("Distance table (km) per day for ", city, "(", count_people, ") per person in the baseline population")))
   cat("\n")
   
   td1 <- td
@@ -523,7 +523,7 @@ for (city in cities) { # loop through cities
   
   
   ## repeat but only for people who are travelling
-  # extract number of people travelling from the trip data rather than the synthetic population
+  # extract number of people travelling from the trip data rather than the baseline population
   count_people <- length(unique(io[[city]]$trip_scen_sets$participant_id))
   td <- io[[city]]$dist %>% 
     # dplyr::filter(stage_mode != 'bus_driver') %>%
@@ -536,13 +536,13 @@ for (city in cities) { # loop through cities
   td <- td[order(x),]
   row.names(td) <- NULL
   
-  print(kable(td, caption = paste("Distance table (km) for ", city, "(", count_people, ") per person in the synthetic population (people with trips ONLY)")))
+  print(kable(td, caption = paste("Distance table (km) for ", city, "(", count_people, ") per person in the baseline population (people with trips ONLY)")))
   
 }
 
 ```
 
-<!-- ### Distance table showing average baseline distances in km travelled by each person in the synthetic population by mode for all cities -->
+<!-- ### Distance table showing average baseline distances in km travelled by each person in the baseline population by mode for all cities -->
 
 <!-- ```{r} -->
 
@@ -550,7 +550,7 @@ for (city in cities) { # loop through cities
 
 <!-- trip_dist <- trip_dist %>% janitor::adorn_totals('row') -->
 
-<!-- kable(trip_dist, caption = "Avg. baseline distance (km) per person in the synthetic population per day across all cities") -->
+<!-- kable(trip_dist, caption = "Avg. baseline distance (km) per person in the baseline population per day across all cities") -->
 
 <!-- ``` -->
 
@@ -696,19 +696,19 @@ for (city in cities) { # loop through cities
 
 ## Duration tables
 
-City specific duration tables for the synthetic population for baseline and scenarios (per day in minutes)
+City specific duration tables for the baseline population for baseline and scenarios (per day in minutes)
 
 ```{r trip_dur = "asis"}
 
-# create tables showing the average duration each person in the synthetic population spends travelling per mode 
+# create tables showing the average duration each person in the baseline population spends travelling per mode 
 
 trip_dur <- list()
 l <- list()
 
 for(city in cities){ # loop through cities
-  count_people <- nrow(io[[city]]$synth_pop)
+  count_people <- nrow(io[[city]]$base_pop)
   
-  # extract the duration for the synthetic population
+  # extract the duration for the baseline population
   td <- io[[city]]$dur %>% 
     # dplyr::filter(stage_mode != 'bus_driver' & stage_mode != 'car_driver') %>% 
     filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
@@ -742,10 +742,10 @@ for(city in cities){ # loop through cities
   trip_dur <- inner_join(trip_dur, td1, by = 'stage_mode')
   
   # print to html
-  print(kable(td, caption = paste("Duration table (mins) per day for synthetic population for ", city, "(", count_people, ") per person (everyone)")))
+  print(kable(td, caption = paste("Duration table (mins) per day for baseline population for ", city, "(", count_people, ") per person (everyone)")))
   
   # repeat but only counting people who are actually taking a trip
-  count_people <- length(unique(io[[city]]$trip_scen_sets$participant_id)) # find unique trip ids rather than rows in synthetic population
+  count_people <- length(unique(io[[city]]$trip_scen_sets$participant_id)) # find unique trip ids rather than rows in baseline population
   td <- io[[city]]$dur %>% 
     # dplyr::filter(stage_mode != 'bus_driver' & stage_mode != 'car_driver') %>% 
     filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
@@ -766,13 +766,13 @@ for(city in cities){ # loop through cities
 
 <!-- ```{r} -->
 
-<!-- # Average baseline duration travelled on each mode for all cities for all people in synthetic population -->
+<!-- # Average baseline duration travelled on each mode for all cities for all people in baseline population -->
 
 <!-- # calculate the row sum -->
 
 <!-- trip_dur <- trip_dur %>% janitor::adorn_totals('row') -->
 
-<!-- kable(trip_dur, caption = "Avg. duration (min) per person in the synthetic population per day across all cities") -->
+<!-- kable(trip_dur, caption = "Avg. duration (min) per person in the baseline population per day across all cities") -->
 
 <!-- ``` -->
 
