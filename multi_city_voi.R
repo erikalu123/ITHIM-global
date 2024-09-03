@@ -10,6 +10,7 @@ library(future.apply)
 library(voi) #install_github("chjackson/voi")
 library(readxl)
 library(rlist)
+library(janitor)
 
 if (!require("drpa",character.only = TRUE)) {
   print('Installing "drpa" package...')
@@ -57,7 +58,7 @@ voi_age_gender <- F   # set to T if want to include split and to F otherwise
 voi_add_sum <- T
 
 
-input_parameter_file <- "InputParameters_v37.0.xlsx"
+input_parameter_file <- "InputParameters_v38.0.xlsx"
 
 
 ## Get the current repo sha
@@ -278,7 +279,7 @@ save(cities,setting_parameters,injury_reporting_rate,chronic_disease_scalar,pm_c
      bus_to_passenger_ratio,car_occupancy_ratio,truck_to_car_ratio,PM_emission_confidence,CO2_emission_confidence,
      distance_scalar_car_taxi,distance_scalar_motorcycle,
      distance_scalar_pt,distance_scalar_walking,distance_scalar_cycling,add_motorcycle_fleet,add_personal_motorcycle_trips, 
-     fleet_to_motorcycle_ratio, proportion_motorcycle_trips,
+     fleet_to_motorcycle_ratio, proportion_motorcycle_trips, 
      betaVariables,normVariables,file='diagnostic/parameter_settings.Rdata')
 
 
@@ -298,6 +299,7 @@ print(system.time(
                                                 ADD_WALK_TO_PT_TRIPS = as.logical(add_walk_to_pt_trips[[city]]),# originally = F,
                                                 CITY=city,
                                                 AGE_RANGE =  c(min_age,max_age),
+                                                TREAT_TAXI_AS_CAR = as.logical(treat_taxi_as_car),
                                                 ADD_TRUCK_DRIVERS = as.logical(add_truck_drivers),
                                                 ADD_BUS_DRIVERS = as.logical(add_bus_drivers),
                                                 ADD_CAR_DRIVERS = as.logical(add_car_drivers),
@@ -398,12 +400,15 @@ print(system.time(
         FUN(ithim_object, seed=i)
       }
     }
+    
+  
     multi_city_ithim[[city]]$outcomes <- run_ithm_fn(nsamples,ithim_object = multi_city_ithim[[city]], seed)
     
     #multi_city_ithim[[cities]]$outcomes <- run_ithim(ithim_object=multi_city_ithim[[cities]], seed = 1)
     
     multi_city_ithim[[city]]$DEMOGRAPHIC <- DEMOGRAPHIC
     
+    scenario_names <- multi_city_ithim[[city]]$outcome[[1]]$SCEN
     
     ## rename city-specific parameters according to city
     for(i in 1:length(multi_city_ithim[[city]]$parameters$PM_EMISSION_INVENTORY[[1]])){
@@ -427,53 +432,36 @@ print(system.time(
     parameter_samples <- cbind(parameter_samples,sapply(parameter_names_city,function(x)multi_city_ithim[[city]]$parameters[[x]]))
     #if(ci>1) multi_city_ithim[[city]]$parameters <- c()
     
-    # save scenario names
-    scenario_names <- multi_city_ithim[[city]]$outcomes[[1]]$SCEN
-    
-    # remove scenario definitions
-    for (n in 1:nsamples){
-      multi_city_ithim[[city]]$outcomes[[n]]<-list.remove(multi_city_ithim[[city]]$outcomes[[n]],'SCEN')
-    }
-    
-    # add relevant model run information to  multi_city_ithim list
-    timestamp <- Sys.time()
-    multi_city_ithim[[city]]$ithim_run <- list()
-    multi_city_ithim[[city]]$ithim_run$input_parameter_file <- input_parameter_file
-    multi_city_ithim[[city]]$ithim_run$scenarios_used <- scenario_name
-    multi_city_ithim[[city]]$ithim_run$reference_scenario <- reference_scenario
-    multi_city_ithim[[city]]$ithim_run$scenario_increase <- scenario_increase
-    multi_city_ithim[[city]]$ithim_run$scenario_names <- scenario_names
-    multi_city_ithim[[city]]$ithim_run$compute_mode <- compute_mode
-    multi_city_ithim[[city]]$ithim_run$timestamp <- timestamp
-    multi_city_ithim[[city]]$ithim_run$output_version <- output_version
-    multi_city_ithim[[city]]$ithim_run$author <- author
-    multi_city_ithim[[city]]$ithim_run$comment <- comment
-    
+   
+  
     
     # save results for city and then delete
     saveRDS(multi_city_ithim[[city]],paste0('results/multi_city/',city,'.Rds'))
     
-    if(ci>1){
-      multi_city_ithim[[ci]] <- 0
-    }else{
-      multi_city_ithim[[ci]]$outcomes <- 0
-    }
+    # if(ci>1){
+    #   multi_city_ithim[[ci]] <- 0
+    # }else{
+    #   multi_city_ithim[[ci]]$outcomes <- 0
+    # }
   }
 )) 
 
 
-# save scenario names and then delete this sublist from the multi_city_ithim outcomes
-# scenario_names <- multi_city_ithim[[city]]$outcomes[[1]]$SCEN
-# 
-# for (city in cities){
-#   for (n in 1:nsamples){
-#     multi_city_ithim[[city]]$outcomes[[n]]<-list.remove(multi_city_ithim[[city]]$outcomes[[n]],'SCEN')
-#   }
-# }
 
 
-
-
+# add relevant model run information to  multi_city_ithim list
+timestamp <- Sys.time()
+multi_city_ithim$ithim_run <- list()
+multi_city_ithim$ithim_run$input_parameter_file <- input_parameter_file
+multi_city_ithim$ithim_run$scenarios_used <- scenario_name
+multi_city_ithim$ithim_run$reference_scenario <- reference_scenario
+multi_city_ithim$ithim_run$scenario_increase <- scenario_increase
+multi_city_ithim$ithim_run$scenario_names <- scenario_names
+multi_city_ithim$ithim_run$compute_mode <- compute_mode
+multi_city_ithim$ithim_run$timestamp <- timestamp
+multi_city_ithim$ithim_run$output_version <- output_version
+multi_city_ithim$ithim_run$author <- author
+multi_city_ithim$ithim_run$comment <- comment
 
 
 # save the sampled parameters for all model runs and cities
@@ -603,7 +591,7 @@ if (voi_analysis == T & nsamples > 1){ # only run EVPPI part if there is more th
                                                                                  collapse = "|"),x))
   general_noDRpara_parsampl <- general_parsampl[,general_noDRpara]
   
-  
+  scen_names_only <- scenario_names[1:NSCEN+1]
   
   ########### EVPPI for total YLLs (i.e. summed across the entire population considered in the model
   # by disease and scenario outcome)
@@ -627,14 +615,12 @@ if (voi_analysis == T & nsamples > 1){ # only run EVPPI part if there is more th
     city_outcomes <- city_out[,city_outputs]
     
     if(voi_add_sum){
-      # add total result for each scenario - only makes sense if results are independent of each other
-      # i.e. combining e.g. "total_cancer" with "lung_cancer" results in double-counting and an invalid VOI analysis for the sum
       for (n in 1:NSCEN){
-        scen_outputs <- sapply(colnames(city_outcomes), function(x)grepl(paste0("scen",n),x))
+        scen_outputs <- sapply(colnames(city_outcomes), function(x)grepl(scen_names_only[n],x))
         if (length(outcome_voi_list) == 1){
-          city_outcomes[paste0('scen',n,"_ylls_sum_",city)] <- city_outcomes[,scen_outputs]
+          city_outcomes[paste0(scen_names_only[n],"_ylls_sum_",city)] <- city_outcomes[,scen_outputs]
         } else{
-          city_outcomes[paste0('scen',n,"_ylls_sum_",city)] <- rowSums(city_outcomes[,scen_outputs])
+          city_outcomes[paste0(scen_names_only[n],"_ylls_sum_",city)] <- rowSums(city_outcomes[,scen_outputs])
         }
       }
     }
@@ -795,15 +781,16 @@ if (voi_analysis == T & nsamples > 1){ # only run EVPPI part if there is more th
           # add total result for each scenario - only makes sense if results are independent of each other
           # i.e. combining e.g. "total_cancer" with "lung_cancer" results in double-counting and invalid VOI analysis for the sum
           for (n in 1:NSCEN){
-            scen_outputs <- sapply(colnames(city_agesex_outcomes), function(x)grepl(paste0("scen",n),x))
+            scen_outputs <- sapply(colnames(city_agesex_outcomes), function(x)grepl(scen_names_only[n],x))
             if (length(outcome_voi_list) == 1){
-              city_agesex_outcomes[paste0('scen',n,"_ylls_sum_",city)] <- sapply(city_agesex_outcomes[,scen_outputs], unlist)
+              city_agesex_outcomes[paste0(scen_names_only[n],"_ylls_sum_",city)] <- sapply(city_agesex_outcomes[,scen_outputs], unlist)
             } else{
-              city_agesex_outcomes[paste0('scen',n,"_ylls_sum_",city)] <- rowSums(sapply(city_agesex_outcomes[,scen_outputs], unlist))
+              city_agesex_outcomes[paste0(scen_names_only[n],"_ylls_sum_",city)] <- rowSums(sapply(city_agesex_outcomes[,scen_outputs], unlist))
             }
           }
         }
         
+
         # replace NA with 0s, note that the evppi analysis returns NA for all outcomes that are all 0
         city_agesex_outcomes_na_cols <- names(which(colSums(is.na(city_agesex_outcomes))>0)) # record colnames
         city_agesex_outcomes[is.na(city_agesex_outcomes)] <- 0 # replace NAs with 0
@@ -1042,6 +1029,7 @@ if (write_output_control == TRUE){
   cat("",
       paste(timestamp, "by", author, sep = " "),
       paste("Cities:", cities, sep = " "),
+      paste("Scenario:", SCENARIO_INCREASE * 100, "%", sep = " "),
       paste("Input parameter file:", input_version, sep = " "),
       paste("Version number of outputs:", output_version, sep = " "),
       paste("Number of samples:", '1', sep = " "),

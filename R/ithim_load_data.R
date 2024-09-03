@@ -532,11 +532,12 @@ ithim_load_data <- function(speeds =
   inj_orig_1year <<- inj_orig_1year
   
   # calculate the fatality counts adjusted by the injury_reporting_rate
-  inj_orig_1year_injreprate <- inj_orig_1year %>% modify_if(is.numeric, ~./injury_reporting_rate[[city]])
-  inj_orig_1year_injreprate <- inj_orig_1year_injreprate %>% mutate_if(is.numeric, round, digits = 1)
-  
-  inj_orig_1year_injreprate <<- inj_orig_1year_injreprate
-  
+  if (compute_mode == 'constant'){
+    inj_orig_1year_injreprate <- inj_orig_1year %>% modify_if(is.numeric, ~./injury_reporting_rate[[city]])
+    inj_orig_1year_injreprate <- inj_orig_1year_injreprate %>% mutate_if(is.numeric, round, digits = 1)
+    
+    inj_orig_1year_injreprate <<- inj_orig_1year_injreprate
+  }
 
   # Get all injuries where casualty and strike mode are identical for car, bus, motorcycle, cycle and truck
   # Treat bus_driver same as bus for strike mode
