@@ -61,7 +61,7 @@ if (!require("drpa",character.only = TRUE)) {
 
 cities <- 'bogota'
 
-input_parameter_file <- "Bogota_InputParameters_v3.3.xlsx" # file containing the local and global input parameters
+input_parameter_file <- "Bogota_InputParameters_v4.0.xlsx" # file containing the local and global input parameters
 # 
 
 ## Get the current repo sha
@@ -255,15 +255,15 @@ print(system.time(for(city in cities){
     
     FLEET_TO_MOTORCYCLE_RATIO = fleet_to_motorcycle_ratio[[city]],
     PROPORTION_MOTORCYCLE_TRIPS = proportion_motorcycle_trips[[city]],
-    CYCLING_MET =	cycling_met,
-    WALKING_MET =	walking_met,
-    PASSENGER_MET =	passenger_met,
-    CAR_DRIVER_MET =	car_driver_met,
-    MOTORCYCLIST_MET =	motorcyclist_met,
-    SEDENTARY_ACTIVITY_MET =	sedentary_activity_met,
-    LIGHT_ACTIVITY_MET =	light_activity_met,
-    MODERATE_PA_MET =	moderate_pa_met,
-    VIGOROUS_PA_MET	= vigorous_pa_met,
+    CYCLING_MMET =	cycling_mmet,
+    WALKING_MMET =	walking_mmet,
+    PASSENGER_MMET =	passenger_mmet,
+    CAR_DRIVER_MMET =	car_driver_mmet,
+    MOTORCYCLIST_MMET =	motorcyclist_mmet,
+    SEDENTARY_ACTIVITY_MMET =	sedentary_activity_mmet,
+    LIGHT_ACTIVITY_MMET =	light_activity_mmet,
+    MODERATE_PA_MMET =	moderate_pa_mmet,
+    VIGOROUS_PA_MMET	= vigorous_pa_mmet,
     DAY_TO_WEEK_TRAVEL_SCALAR = as.numeric(day_to_week_scalar[[city]]),
     SIN_EXPONENT_SUM = sin_exponent_sum,
     CASUALTY_EXPONENT_FRACTION = casualty_exponent_fraction,

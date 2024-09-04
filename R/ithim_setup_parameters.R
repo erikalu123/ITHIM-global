@@ -43,15 +43,15 @@
 #' @param NSAMPLES constant integer: number of samples to take
 #' @param BUS_WALK_TIME lognormal parameter: duration of walk to bus stage
 #' @param RAIL_WALK_TIME lognormal parameter: duration of walk to rail stage
-#' @param CYCLING_MET lognormal parameter: METs when cycling
-#' @param WALKING_MET lognormal parameter: METs when walking
-#' @param PASSENGER_MET lognormal parameter: MET value associated with being a passenger on public transport
-#' @param CAR_DRIVER_MET lognormal parameter: MET value associated with being a car driver
-#' @param MOTORCYCLIST_MET lognormal parameter: MET value associated with being a motorcyclist
-#' @param SEDENTARY_ACTIVITY_MET lognormal parameter: MET value associated with sedentary activity
-#' @param LIGHT_ACTIVITY_MET lognormal parameter: MET value associated with light activity
-#' @param MODERATE_PA_MET lognormal parameter: MET value associated with moderate activity
-#' @param VIGOROUS_PA_MET lognormal parameter: MET value associated with vigorous activity
+#' @param CYCLING_MMET lognormal parameter: MMETs when cycling
+#' @param WALKING_MMET lognormal parameter: MMETs when walking
+#' @param PASSENGER_MMET lognormal parameter: MMET value associated with being a passenger on public transport
+#' @param CAR_DRIVER_MMET lognormal parameter: MMET value associated with being a car driver
+#' @param MOTORCYCLIST_MMET lognormal parameter: MMET value associated with being a motorcyclist
+#' @param SEDENTARY_ACTIVITY_MMET lognormal parameter: MMET value associated with sedentary activity
+#' @param LIGHT_ACTIVITY_MMET lognormal parameter: MMET value associated with light activity
+#' @param MODERATE_PA_MMET lognormal parameter: MMET value associated with moderate activity
+#' @param VIGOROUS_PA_MMET lognormal parameter: MMET value associated with vigorous activity
 #' @param PM_CONC_BASE lognormal parameter: background PM2.5 concentration
 #' @param PM_TRANS_SHARE beta parameter: fraction of background PM2.5 attributable to transport
 #' @param PA_DOSE_RESPONSE_QUANTILE logic: whether or not to sample from physical activity relative risk dose response functions
@@ -101,15 +101,15 @@
 ithim_setup_parameters <- function(NSAMPLES = 1,
                                    BUS_WALK_TIME = 16,
                                    RAIL_WALK_TIME = 12.5,
-                                   CYCLING_MET = 6.8,
-                                   WALKING_MET = 3.5,
-                                   PASSENGER_MET = 1.3,
-                                   CAR_DRIVER_MET = 2.5,
-                                   MOTORCYCLIST_MET = 2.8,
-                                   SEDENTARY_ACTIVITY_MET = 1.3,
-                                   LIGHT_ACTIVITY_MET = 1.3,
-                                   MODERATE_PA_MET = 4,
-                                   VIGOROUS_PA_MET = 8,
+                                   CYCLING_MMET = 5.8,
+                                   WALKING_MMET = 2.5,
+                                   PASSENGER_MMET = 0.3,
+                                   CAR_DRIVER_MMET = 1.5,
+                                   MOTORCYCLIST_MMET = 1.8,
+                                   SEDENTARY_ACTIVITY_MMET = 0.3,
+                                   LIGHT_ACTIVITY_MMET = 2,
+                                   MODERATE_PA_MMET = 3,
+                                   VIGOROUS_PA_MMET = 7,
                                    PM_CONC_BASE = 12.69,
                                    PM_TRANS_SHARE = 0.42,
                                    PA_DOSE_RESPONSE_QUANTILE = F,
@@ -165,15 +165,15 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
   # They are over-written when sample_parameters is called.
   BUS_WALK_TIME <<- BUS_WALK_TIME
   RAIL_WALK_TIME <<- RAIL_WALK_TIME
-  CYCLING_MET <<- CYCLING_MET
-  WALKING_MET <<- WALKING_MET
-  PASSENGER_MET <<- PASSENGER_MET
-  CAR_DRIVER_MET <<- CAR_DRIVER_MET
-  MOTORCYCLIST_MET <<- MOTORCYCLIST_MET
-  SEDENTARY_ACTIVITY_MET <<- SEDENTARY_ACTIVITY_MET
-  LIGHT_ACTIVITY_MET <<- LIGHT_ACTIVITY_MET
-  MODERATE_PA_MET <<- MODERATE_PA_MET
-  VIGOROUS_PA_MET <<- VIGOROUS_PA_MET
+  CYCLING_MET <<- CYCLING_MMET + 1
+  WALKING_MET <<- WALKING_MMET + 1
+  PASSENGER_MET <<- PASSENGER_MMET + 1
+  CAR_DRIVER_MET <<- CAR_DRIVER_MMET + 1
+  MOTORCYCLIST_MET <<- MOTORCYCLIST_MMET + 1
+  SEDENTARY_ACTIVITY_MET <<- SEDENTARY_ACTIVITY_MMET + 1
+  LIGHT_ACTIVITY_MET <<- LIGHT_ACTIVITY_MMET + 1
+  MODERATE_PA_MET <<- MODERATE_PA_MMET + 1
+  VIGOROUS_PA_MET <<- VIGOROUS_PA_MMET + 1
   PM_CONC_BASE <<- PM_CONC_BASE
   PM_TRANS_SHARE <<- PM_TRANS_SHARE
   PA_DOSE_RESPONSE_QUANTILE <<- PA_DOSE_RESPONSE_QUANTILE
@@ -212,21 +212,12 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
   MODERATE_PA_CONTRIBUTION <<- MODERATE_PA_CONTRIBUTION
   parameters <- list()
 
-  # Variables with lognormal distribution
+  # Variables with lognormal distribution (no MMET values)
   # Define those variables and loop through them, sampling
   # from a pre-defined lognormal distribution if needed
   normVariables <- c(
     "BUS_WALK_TIME",
     "RAIL_WALK_TIME",
-    "CYCLING_MET",
-    "WALKING_MET",
-    "PASSENGER_MET",
-    "CAR_DRIVER_MET",
-    "MOTORCYCLIST_MET",
-    "SEDENTARY_ACTIVITY_MET",
-    "LIGHT_ACTIVITY_MET",
-    "MODERATE_PA_MET",
-    "VIGOROUS_PA_MET",
     "PM_CONC_BASE",
     "BACKGROUND_PA_SCALAR",
     "SIN_EXPONENT_SUM",
@@ -253,6 +244,34 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
     }
   }
 
+  
+  # MMET values with lognormal distribution
+  # Define those variables and loop through them, sampling
+  # from a pre-defined lognormal distribution if needed and add 1
+  normVariablesMMET <- c(
+    "CYCLING_MMET",
+    "WALKING_MMET",
+    "PASSENGER_MMET",
+    "CAR_DRIVER_MMET",
+    "MOTORCYCLIST_MMET",
+    "SEDENTARY_ACTIVITY_MMET",
+    "LIGHT_ACTIVITY_MMET",
+    "MODERATE_PA_MMET",
+    "VIGOROUS_PA_MMET"
+  )
+  for (i in 1:length(normVariablesMMET)) {
+    name <- gsub('MMET', 'MET',normVariablesMMET[i])
+    val <- get(normVariablesMMET[i])
+    if (length(val) == 1) { # if variable length is 1, do not sample
+      assign(name, val + 1, envir = .GlobalEnv)
+    } else {
+      # Use mean and sd values in log form, sample from a lognormal distribution
+      parameters[[name]] <-
+        rlnorm(NSAMPLES, log(val[1]), log(val[2])) + 1
+    }
+  }
+  
+  
   # Variables with beta distribution
   # Define those variables and loop through them, sampling
   # from a pre-defined beta distribution if needed

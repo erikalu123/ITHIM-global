@@ -58,7 +58,7 @@ voi_age_gender <- F   # set to T if want to include split and to F otherwise
 voi_add_sum <- T
 
 
-input_parameter_file <- "InputParameters_v38.0.xlsx"
+input_parameter_file <- "InputParameters_v39.0.xlsx"
 
 
 ## Get the current repo sha
@@ -247,15 +247,15 @@ betaVariables <- c("PM_TRANS_SHARE",
                    "SIN_EXPONENT_SUM_CYCLE",
                    "SIN_EXPONENT_SUM_PED",
                    "SIN_EXPONENT_SUM_VEH")
-normVariables <- c('CYCLING_MET',
-                   'WALKING_MET', 
-                   'PASSENGER_MET',
-                   'CAR_DRIVER_MET',
-                   'MOTORCYCLIST_MET',
-                   'SEDENTARY_ACTIVITY_MET',
-                   'LIGHT_ACTIVITY_MET',
-                   'MODERATE_PA_MET',
-                   'VIGOROUS_PA_MET',
+normVariables <- c('CYCLING_MMET',
+                   'WALKING_MMET', 
+                   'PASSENGER_MMET',
+                   'CAR_DRIVER_MMET',
+                   'MOTORCYCLIST_MMET',
+                   'SEDENTARY_ACTIVITY_MMET',
+                   'LIGHT_ACTIVITY_MMET',
+                   'MODERATE_PA_MMET',
+                   'VIGOROUS_PA_MMET',
                    "PM_CONC_BASE",
                    "BACKGROUND_PA_SCALAR",
                    "CASUALTY_EXPONENT_FRACTION",
@@ -270,8 +270,8 @@ normVariables <- c('CYCLING_MET',
 
 
 save(cities,setting_parameters,injury_reporting_rate,chronic_disease_scalar,pm_conc_base,pm_trans_share,
-     background_pa_scalar,background_pa_confidence,cycling_met,walking_met,passenger_met,
-     car_driver_met,motorcyclist_met,sedentary_activity_met,light_activity_met,moderate_pa_met,
+     background_pa_scalar,background_pa_confidence,cycling_mmet,walking_mmet,passenger_mmet,
+     car_driver_mmet,motorcyclist_mmet,sedentary_activity_mmet,light_activity_mmet,moderate_pa_mmet,
      PM_emission_inventories,CO2_emission_inventories,
      sin_exponent_sum,casualty_exponent_fraction, sin_exponent_sum_nov,
      sin_exponent_sum_cycle,casualty_exponent_fraction_cycle, sin_exponent_sum_ped,casualty_exponent_fraction_ped,
@@ -311,15 +311,15 @@ print(system.time(
                                                 
                                                 FLEET_TO_MOTORCYCLE_RATIO = fleet_to_motorcycle_ratio[[city]],
                                                 PROPORTION_MOTORCYCLE_TRIPS = proportion_motorcycle_trips[[city]],
-                                                CYCLING_MET =	cycling_met,
-                                                WALKING_MET =	walking_met,
-                                                PASSENGER_MET =	passenger_met,
-                                                CAR_DRIVER_MET =	car_driver_met,
-                                                MOTORCYCLIST_MET =	motorcyclist_met,
-                                                SEDENTARY_ACTIVITY_MET =	sedentary_activity_met,
-                                                LIGHT_ACTIVITY_MET =	light_activity_met,
-                                                MODERATE_PA_MET =	moderate_pa_met,
-                                                VIGOROUS_PA_MET	= vigorous_pa_met,
+                                                CYCLING_MMET =	cycling_mmet,
+                                                WALKING_MMET =	walking_mmet,
+                                                PASSENGER_MMET =	passenger_mmet,
+                                                CAR_DRIVER_MMET =	car_driver_mmet,
+                                                MOTORCYCLIST_MMET =	motorcyclist_mmet,
+                                                SEDENTARY_ACTIVITY_MMET =	sedentary_activity_mmet,
+                                                LIGHT_ACTIVITY_MMET =	light_activity_mmet,
+                                                MODERATE_PA_MMET =	moderate_pa_mmet,
+                                                VIGOROUS_PA_MMET	= vigorous_pa_mmet,
                                                 DAY_TO_WEEK_TRAVEL_SCALAR = as.numeric(day_to_week_scalar[[city]]),
                                                 SIN_EXPONENT_SUM = sin_exponent_sum,
                                                 CASUALTY_EXPONENT_FRACTION = casualty_exponent_fraction,
@@ -438,11 +438,11 @@ print(system.time(
     # save results for city and then delete
     saveRDS(multi_city_ithim[[city]],paste0('results/multi_city/',city,'.Rds'))
     
-    # if(ci>1){
-    #   multi_city_ithim[[ci]] <- 0
-    # }else{
-    #   multi_city_ithim[[ci]]$outcomes <- 0
-    # }
+    if(ci>1){
+      multi_city_ithim[[ci]] <- 0
+    }else{
+      multi_city_ithim[[ci]]$outcomes <- 0
+    }
   }
 )) 
 
