@@ -736,14 +736,14 @@
     },
     "drpa": {
       "Package": "drpa",
-      "Version": "0.0.3",
+      "Version": "0.0.4",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "drpa",
       "RemoteUsername": "meta-analyses",
       "RemoteRef": "HEAD",
-      "RemoteSha": "f38552a29eafba421ef049b0473562097111b337",
+      "RemoteSha": "dc8c4728e58169183c864df5f515836246901a54",
       "Requirements": [
         "R",
         "magrittr",
@@ -751,7 +751,7 @@
         "stats",
         "tidyverse"
       ],
-      "Hash": "881201d8ca55eb991f78597a12c21e8b"
+      "Hash": "fa728a8ee2642d20e55b905c5894f98b"
     },
     "dtplyr": {
       "Package": "dtplyr",
@@ -1217,25 +1217,6 @@
         "utils"
       ],
       "Hash": "7d7f283939f563670a697165b2cf5560"
-    },
-    "gridlayout": {
-      "Package": "gridlayout",
-      "Version": "0.2.1",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "gridlayout",
-      "RemoteUsername": "rstudio",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "dc7d8912ae27e5393561dcc2b9bd637f3653ca09",
-      "Requirements": [
-        "R",
-        "htmltools",
-        "lifecycle",
-        "magrittr",
-        "rlang"
-      ],
-      "Hash": "0e212e863398d4587db1721dbe15b05c"
     },
     "gt": {
       "Package": "gt",
