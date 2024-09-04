@@ -38,11 +38,10 @@ gen_pa_rr <- function(mmets_pp, conf_int = F) {
   for (j in c(1:nrow(DISEASE_INVENTORY))[DISEASE_INVENTORY$physical_activity == 1]) {
     # get name of PA DR curve
     pa_dn <- as.character(DISEASE_INVENTORY$pa_acronym[j])
-    # define the potential outcomes as either fatal or fatal-and-non-fatal
-    outcome <- ifelse(DISEASE_INVENTORY$outcome[j] == "deaths", "fatal",
-      "fatal-and-non-fatal"
-    )
-
+    
+    # AA: changed outcome as either fatal, non-fatal or fatal-and-non-fatals
+    # define the potential outcomes as either fatal, non-fatal or fatal-and-non-fatal
+    outcome <- DISEASE_INVENTORY$outcome[j]
     # get name of disease
     pa_n <- as.character(DISEASE_INVENTORY$acronym[j])
 
