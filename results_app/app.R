@@ -1,7 +1,6 @@
 library(shiny)
 library(plotly)
 library(tidyverse)
-library(gridlayout) # devtools::install_github("rstudio/gridlayout")
 library(shinyWidgets)
 library(bslib)
 library(readxl)
