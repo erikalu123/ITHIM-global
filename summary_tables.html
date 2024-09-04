@@ -1484,16 +1484,16 @@ font-size: 0.95em;
 
 
 <h1 class="title toc-ignore">Summary Tables</h1>
-<h4 class="date">28 July, 2024</h4>
+<h4 class="date">04 September, 2024</h4>
 
 </div>
 
 
-<p><a href="https://github.com/ITHIM/ITHIM-R/tree/cec78822" class="uri">https://github.com/ITHIM/ITHIM-R/tree/cec78822</a><br />
+<p><a href="https://github.com/ITHIM/ITHIM-R/tree/0a833e85" class="uri">https://github.com/ITHIM/ITHIM-R/tree/0a833e85</a><br />
 Scenario: 5%<br />
-Input Parameter version: Bogota_InputParameters_v3.2.xlsx<br />
-Output version: cec78822_test_run<br />
-Timestamp of model run: 2024-07-28 11:39:01.724333<br />
+Input Parameter version: Bogota_InputParameters_v4.0.xlsx<br />
+Output version: 0a833e85_test_run<br />
+Timestamp of model run: 2024-09-04 14:29:31.264636<br />
 Comments from model run: Set auto_rickshaw speed to 4, same as default
 speed in model</p>
 <!-- # **1st option** -->
@@ -1677,11 +1677,11 @@ scenarios</p>
 <div id="distance-tables" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Distance tables</h2>
 <p>City specific distance tables showing average distance in km
-travelled by each person in the synthetic population by mode for all
+travelled by each person in the baseline population by mode for all
 scenarios (incl Baseline)</p>
 <table>
 <caption>Distance table (km) per day for bogota ( 38647 ) per person in
-the synthetic population</caption>
+the baseline population</caption>
 <thead>
 <tr class="header">
 <th align="left">stage_mode</th>
@@ -1731,7 +1731,7 @@ the synthetic population</caption>
 </table>
 <table>
 <caption>Distance table (km) for bogota ( 32991 ) per person in the
-synthetic population (people with trips ONLY)</caption>
+baseline population (people with trips ONLY)</caption>
 <thead>
 <tr class="header">
 <th align="left">stage_mode</th>
@@ -1779,11 +1779,11 @@ synthetic population (people with trips ONLY)</caption>
 </tr>
 </tbody>
 </table>
-<!-- ### Distance table showing average baseline distances in km travelled by each person in the synthetic population by mode for all cities -->
+<!-- ### Distance table showing average baseline distances in km travelled by each person in the baseline population by mode for all cities -->
 <!-- ```{r} -->
 <!-- # create table showing average baseline distances by mode for all cities -->
 <!-- trip_dist <- trip_dist %>% janitor::adorn_totals('row') -->
-<!-- kable(trip_dist, caption = "Avg. baseline distance (km) per person in the synthetic population per day across all cities") -->
+<!-- kable(trip_dist, caption = "Avg. baseline distance (km) per person in the baseline population per day across all cities") -->
 <!-- ``` -->
 <!-- ## Distance tables scaled by using total model age population (per year in km) -->
 <!-- City specific distance tables for baseline and scenarios for the entire population with ages considered in the model -->
@@ -1858,10 +1858,10 @@ synthetic population (people with trips ONLY)</caption>
 </div>
 <div id="duration-tables" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Duration tables</h2>
-<p>City specific duration tables for the synthetic population for
+<p>City specific duration tables for the baseline population for
 baseline and scenarios (per day in minutes)</p>
 <table>
-<caption>Duration table (mins) per day for synthetic population for
+<caption>Duration table (mins) per day for baseline population for
 bogota ( 38647 ) per person (everyone)</caption>
 <thead>
 <tr class="header">
@@ -1962,10 +1962,10 @@ survey for bogota ( 32991 ) per person (people with trips)</caption>
 </table>
 <!-- ### Baseline average duration (mins) per day for all cities -->
 <!-- ```{r} -->
-<!-- # Average baseline duration travelled on each mode for all cities for all people in synthetic population -->
+<!-- # Average baseline duration travelled on each mode for all cities for all people in baseline population -->
 <!-- # calculate the row sum -->
 <!-- trip_dur <- trip_dur %>% janitor::adorn_totals('row') -->
-<!-- kable(trip_dur, caption = "Avg. duration (min) per person in the synthetic population per day across all cities") -->
+<!-- kable(trip_dur, caption = "Avg. duration (min) per person in the baseline population per day across all cities") -->
 <!-- ``` -->
 <!-- ## Health outcomes -->
 <!-- ### Change in YLLs compared to reference scenario {#change_YLL} -->
