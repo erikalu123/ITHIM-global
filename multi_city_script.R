@@ -52,6 +52,9 @@ library(truncnorm)
 library(tidyverse)
 library(janitor)
 
+# Disable scientific notation
+options(scipen = 999)
+
 if (!require("drpa",character.only = TRUE)) {
   print('Installing "drpa" package...')
   remotes::install_github("meta-analyses/drpa")
