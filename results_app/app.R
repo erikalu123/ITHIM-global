@@ -128,7 +128,8 @@ injury_risks_per_100million_h_lng <- ren_scen(injury_risks_per_100million_h_lng)
 # https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=5
 # ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00']
  
-scen_colours <- c("Baseline" = '#ffff33',
+# Plot colours for each scenario
+scen_colours <- c("Baseline" = '#b15928',
                   "Cycling" = '#abdda4',
                   "Car" = '#d7191c',
                   "Bus" = '#2b83ba',

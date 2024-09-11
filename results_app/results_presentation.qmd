@@ -135,7 +135,7 @@ prop[prop$scenario == "sc_bus",]$scenario <- "Bus"
 prop[prop$scenario == "sc_car",]$scenario <- "Car"
 prop[prop$scenario == "sc_cycle",]$scenario <- "Cycling"
 
-scen_colours <- c("Baseline" = '#ffffbf',
+scen_colours <- c("Baseline" = '#b15928',
                   "Cycling" = '#abdda4',
                   "Car" = '#d7191c',
                   "Bus" = '#2b83ba',
