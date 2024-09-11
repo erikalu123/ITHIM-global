@@ -757,7 +757,7 @@ for (city in cities){ # loop through cities
     }
     
     # remove count columns
-    el <- el %>% dplyr::select(-contains('count'))
+    # el <- el %>% dplyr::select(-contains('count'))
     
     # round numbers 
     el2 <- el %>% mutate_if(is.numeric, round, digits = round_to)
@@ -797,15 +797,14 @@ td <- overall_el %>% purrr::reduce(full_join, by = c("stage_mode", "measure")) %
 td[is.na(td)] <- 0
 td <- td %>% dplyr::select(stage_mode, sort(names(.)))
 
-
-injury_risks_b <- td
+injury_risks_b <- td |> dplyr::select(contains("mode") | !contains("count"))
 
 # change shape and update some column names
 injury_risks_lng <- reshape2::melt(injury_risks_b)
 col_split <- stringr::str_split(injury_risks_lng$variable, "_", simplify = TRUE, n = 2)
 injury_risks_lng <- cbind(injury_risks_lng, col_split)
-names(injury_risks_lng)[5] <- 'scenario'
-names(injury_risks_lng)[6] <- 'city'
+names(injury_risks_lng)[ncol(injury_risks_lng) - 1] <- 'scenario'
+names(injury_risks_lng)[ncol(injury_risks_lng)] <- 'city'
 injury_risks_lng <- injury_risks_lng %>% dplyr::select(-variable)
 injury_risks_lng$scenario <- as.character(injury_risks_lng$scenario)
 
@@ -815,6 +814,26 @@ rd <- rename(injury_risks_lng, mode = stage_mode)
 # add country and continent information
 rd <- left_join(rd, location, by = 'city')
 
+
+count_m <- td |> dplyr::select(contains("mode") | contains("count") | contains("measure"))
+
+# change shape and update some column names
+count_m <- reshape2::melt(count_m)
+count_m <- count_m |> mutate(variable = str_replace_all(variable, "count_", ""))
+col_split <- stringr::str_split(count_m$variable, "_", simplify = TRUE, n = 2)
+count_m <- cbind(count_m, col_split)
+names(count_m)[ncol(count_m) - 1] <- 'scenario'
+names(count_m)[ncol(count_m)] <- 'city'
+count_m <- count_m %>% dplyr::select(-variable)
+count_m$scenario <- as.character(count_m$scenario)
+
+count_m <- rename(count_m, mode = stage_mode, count = value)
+#rd <- rd %>% filter(mode != 'Total')
+
+# add country and continent information
+# count_m <- left_join(count_m, location, by = 'city') |> rename(count = value)
+
+rd <- left_join(rd, count_m, by = c("mode", "measure", "scenario", "city"))
 
 # get true_distances into correct format
 true_distances <- true_distances  %>% rename(mode = cas_mode)
@@ -860,13 +879,10 @@ active_travel <- active_travel %>% group_by(city, scenario, country, continent, 
 baseline_counts_km <- rbind(baseline_counts_km, active_travel)
 
 
-
-
 # calculate value per distance
 baseline_counts_km$value <- round((baseline_counts_km$value /(baseline_counts_km$mode_distance * 365))*1000000000,4)
 
-rd <- rbind(rd, baseline_counts_km )
-
+rd <- plyr::rbind.fill(rd, baseline_counts_km)
 
 # output csv with and without output version number
 readr::write_csv(rd,paste0( 'results/multi_city/inj/injury_risks_per_billion_kms.csv'))
