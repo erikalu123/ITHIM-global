@@ -379,7 +379,7 @@ for (x in 1:length(cities)) {
   y <- ggplot(data_long, aes(x = scenario, y = pm_conc, fill = scenario)) +
     geom_boxplot(outlier.shape = 8) + ggtitle(cities[x]) + 
     scale_fill_manual("Scenario", values = scen_colours) + 
-    labs(y = "Daily PM2.5 exposure levels", x = "Scenarios") #+
+    labs(y = "Daily PM2.5 exposure levels", x = "Scenarios", title = "") #+
   
   # print to html
   print(y)
