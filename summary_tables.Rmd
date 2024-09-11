@@ -297,7 +297,15 @@ comments_model <- io$ithim_run$comment
 trip_order <- read_csv("results/multi_city/mode_order.csv")
 
 # define which decimal place to round to
-round_to <- 1
+round_to <- 2
+
+
+# Plot colours for each scenario
+scen_colours <- c("Baseline" = '#b15928',
+                  "Cycling" = '#abdda4',
+                  "Car" = '#d7191c',
+                  "Bus" = '#2b83ba',
+                  "Motorcycle" = '#fdae61')
 
 
 # print model run information to screen:
@@ -324,6 +332,53 @@ cat("  \n")
 ```
 
 <!-- # **1st option** -->
+
+# Scenario 
+
+Scenario definition (by mode)
+
+```{r trip_mode_dist = "asis", echo = F}
+# find the modal share for all cities and scenarios
+
+for (city in cities) {
+  
+  # Calculate proportions by mode when compared with baseline
+  prop <- io[[city]]$trip_scen_sets |> 
+    filter(participant_id != 0) |> 
+    distinct(trip_id, scenario, .keep_all = T) |> 
+    count(scenario, trip_mode) |> 
+    mutate(freq = round(prop.table(n) * 100, round_to), .by = scenario) |> 
+    mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> 
+    filter(pd != 0)
+  
+  # Rename scenarios
+  prop[prop$scenario == "baseline",]$scenario <- "Baseline"
+  prop[prop$scenario == "sc_bus",]$scenario <- "Bus"
+  prop[prop$scenario == "sc_car",]$scenario <- "Car"
+  prop[prop$scenario == "sc_cycle",]$scenario <- "Cycling"
+  
+  # plot
+  y <- ggplot(prop) +
+    aes(x = trip_mode, fill = scenario, weight = pd) +
+    geom_bar() +
+    scale_fill_hue(direction = 1) +
+    scale_x_discrete(guide = guide_axis(angle = 90)) + 
+    geom_text(aes(x = trip_mode, y = round(pd, 1), label = round(pd, 1)), size = 4, 
+              position = position_dodge()) + scale_fill_manual("Scenario",values = scen_colours) +
+    facet_wrap(vars(scenario)) + 
+    labs(title = "", y = "Percentage (%)", x = "Trip Mode") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  
+  #print
+  #
+  print(y)
+  
+  # save image
+  ggsave("figures/scen_defn_mode.svg", plot = y, width=10, height=8)
+  
+}
+
+
+```
 
 # Summary tables
 
