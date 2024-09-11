@@ -4,6 +4,8 @@ title: "AP/PA Tables ITHIM Global"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 params:
   output_version: ''
+execute: 
+  cache: true
 output:
   html_document: 
     toc: true
@@ -11,10 +13,17 @@ output:
     toc_float: true
   word_document: default
   pdf_document: default
+  
+format:
+  html: 
+    fig-format: svg
+    
+code-link: true
+  
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='asis')
+knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=F, results='asis', dev = 'svg')
 
 # Script to summarise the PM2.5 personal exposure levels, PM2.5 and CO2 emissions and physical activity levels
 
@@ -114,8 +123,8 @@ library(knitr)
 library(tidyverse)
 library(readxl)
 library(cli)
-#library(plotly)
-#library(htmltools)
+
+theme_set(theme_minimal())
 
 ```
 
@@ -144,8 +153,18 @@ if (!exists("output_version")){
 # read in input file
 io <- readRDS(paste0("results/multi_city/io_", output_version, ".rds"))
 
+# define which decimal place to round to
+round_to <- 2
+
 # Get names of cities from the io object
 cities <- names(io)[!names(io) %in% c('scen_prop','ithim_run' )]
+
+# Plot colours for each scenario
+scen_colours <- c("Baseline" = '#b15928',
+                  "Cycling" = '#abdda4',
+                  "Car" = '#d7191c',
+                  "Bus" = '#2b83ba',
+                  "Motorcycle" = '#fdae61')
 
 
 # function to convert scenario names
@@ -358,11 +377,15 @@ for (x in 1:length(cities)) {
   
   # create boxplot
   y <- ggplot(data_long, aes(x = scenario, y = pm_conc, fill = scenario)) +
-    geom_boxplot(outlier.shape = 8) + ggtitle(cities[x]) +
+    geom_boxplot(outlier.shape = 8) + ggtitle(cities[x]) + 
+    scale_fill_manual("Scenario", values = scen_colours) + 
     labs(y = "Daily PM2.5 exposure levels", x = "Scenarios") #+
   
   # print to html
   print(y)
+  
+  #save
+  ggsave("figures/ap_pm2.5_dist.svg", plot = y, width=10, height=8)
   
 }
 ```
@@ -397,17 +420,20 @@ for (x in 1:length(cities)) {
   summary <- as.data.frame(data_long %>% group_by(scenario) %>%
                              summarise('mean' = mean(pm_conc),
                                        '5th' = quantile(pm_conc, 0.05),
+                                       '20th' = quantile(pm_conc, 0.20),
+                                       '25th' = quantile(pm_conc, 0.25),
+                                       '35th' = quantile(pm_conc, 0.35),
                                        '50th' = quantile(pm_conc, 0.5),
-                                       '95th' = quantile(pm_conc, 0.9)) |> mutate_if(is.numeric, round, 2))
+                                       '95th' = quantile(pm_conc, 0.9)) |> mutate_if(is.numeric, round, round_to))
   
   # Extract scenario_pm with two columns with scenario names and scenario_pm_concentrations
-  scenario_pm_df <- io[[cities[x]]]$outcomes$scenario_pm |> mutate_if(is.numeric, round, 2)
+  scenario_pm_df <- io[[cities[x]]]$outcomes$scenario_pm |> mutate_if(is.numeric, round, round_to)
   
   # Rename scenario names
   scenario_pm_df$scenario <- unlist(lapply(scenario_pm_df$scenario, FUN=get_qualified_scen_name))
   
   # Join summary and scenario_pm_df based on scenario names
-  summary <- left_join(summary, scenario_pm_df) |> mutate(change_PM = round(conc_pm - conc_pm[scenario == "Baseline"], 2))
+  summary <- left_join(summary, scenario_pm_df) |> mutate(change_PM = round(conc_pm - conc_pm[scenario == "Baseline"], round_to))
   
   # print to html file
   print(kable(summary, caption = cities[x]))
@@ -449,7 +475,7 @@ for (x in 1:length(cities)){ # loop through cities
   names(summary)[2] <- cities[x]
   
   # calculate the percentages of PM emissions attributed to each mode
-  summary[[cities[x]]] <- round(summary[[cities[x]]]*100/sum(summary[[cities[x]]]), digits = 1)
+  summary[[cities[x]]] <- round(summary[[cities[x]]]*100/sum(summary[[cities[x]]]), digits = round_to)
   summary <- as.data.frame(summary)
   
   # rename mode columns including the word percentage
@@ -457,7 +483,7 @@ for (x in 1:length(cities)){ # loop through cities
   
   # add transport share 
   summary[nrow(summary) + 1,1] <- "Transport share (percentage)"
-  summary[nrow(summary),2] <- as.character(round(pm_trans_share[[cities[x]]] * 100))
+  summary[nrow(summary),2] <- as.character(round(pm_trans_share[[cities[x]]] * 100, digits = round_to))
   
   # add city wide PM2.5 concentration levels
   summary[nrow(summary) + 1,1] <- "PM2.5 Concentration"
@@ -491,7 +517,7 @@ td <- NA
 for (city in cities) { # loop through cities
   
   # extract CO2 emissions
-  td <- round(colSums(io[[city]]$outcomes$co2_emission_inventory, na.rm = T), 1) %>% 
+  td <- round(colSums(io[[city]]$outcomes$co2_emission_inventory, na.rm = T), round_to) %>% 
     as.data.frame() %>% tibble::rownames_to_column()
   names(td) <- c('Scenario', city)
   
@@ -511,8 +537,8 @@ bv <- co2_emission_inventory |> filter(Scenario == "Baseline") |> dplyr::select(
 
 pop_size <- sum(io[[city]]$demographic$population)
 
-co2_emission_inventory <- co2_emission_inventory |> mutate(change_baseline = !!rlang::sym(city) - bv, change_CO2_percentage = ifelse(change_baseline == 0, 0, round(change_baseline/bv * 100, 1)),
-                                                           CO2_per_capita = round(!!rlang::sym(city)/pop_size, 2))
+co2_emission_inventory <- co2_emission_inventory |> mutate(change_baseline = !!rlang::sym(city) - bv, change_CO2_percentage = ifelse(change_baseline == 0, 0, round(change_baseline/bv * 100, round_to)),
+                                                           CO2_per_capita = round(!!rlang::sym(city)/pop_size, round_to))
 
 # print to html
 print(kable(co2_emission_inventory))
@@ -539,16 +565,19 @@ for (x in 1:length(cities)) { # loop through cities
   # create the boxplots
   y <- ggplot(data_long, aes(x = scenario, y = mmet, fill = scenario)) +
     geom_boxplot(outlier.shape = NA) + ggtitle(cities[x]) + 
-    labs(y = "Weekly mMET", x = "Scenarios")+  ylim(0, limit)
+    scale_fill_manual("Scenario", values = scen_colours) + 
+    labs(y = "mMET-hours/week", x = "Scenarios", title = "")+  ylim(0, limit)
   
   # print to html
   print(y)
+  
+  ggsave("figures/pa_distr.svg", plot = y, width=10, height=8)
   
 }
 ```
 
 
-# Summary statistics of individual physical activity levels (MMETs) 
+# Summary statistics of individual physical activity levels (mMET-hours/week)
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -562,15 +591,18 @@ for (x in 1:length(cities)) { # loop through the cities
   names(io[[cities[x]]]$outcomes$mmets)[change_names] <- sapply(gsub("_mmet" , "", names(io[[cities[x]]]$outcomes$mmets)[change_names]), FUN = get_qualified_scen_name)
   
   # create dataframe with individual mMET values
-  data_long <- pivot_longer(io[[cities[x]]]$outcomes$mmets |> dplyr::select(participant_id, new_scen_names), cols = !participant_id, names_to = "scenario", values_to = "mmet")
+  data_long <- pivot_longer(io[[cities[x]]]$outcomes$mmets |> dplyr::select(participant_id, new_scen_names), cols = !participant_id, names_to = "Scenario", values_to = "mmet")
   
   # create summary stats
-  summary <- as.data.frame(data_long %>% group_by(scenario) %>% 
+  summary <- as.data.frame(data_long %>% group_by(Scenario) %>% 
                              summarise('mean' = mean(mmet),
                                        '5th' = quantile(mmet, 0.05),
+                                       '20th' = quantile(mmet, 0.20),
+                                       '25th' = quantile(mmet, 0.25),
+                                       '35th' = quantile(mmet, 0.35),
                                        '50th' = quantile(mmet, 0.5),
                                        '95th' = quantile(mmet, 0.9)))
-  summary <- cbind(summary$scenario ,round(summary[,2:5], digits = 1))
+  summary <- cbind(summary$Scenario ,round(summary[,-1], digits = round_to))
   names(summary)[1] <- "Scenario"
  
   # print to html
@@ -578,3 +610,137 @@ for (x in 1:length(cities)) { # loop through the cities
 
 }
 ```
+
+
+## Comparison of PA volume of baseline and bus scenario
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+
+for (x in 1:length(cities)) {
+  
+  mmets <- io[[cities[x]]]$outcomes$mmets #|> pivot_longer(cols = ends_with("mmet"))
+  
+  change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
+  names(mmets)[change_names] <- sapply(gsub("_mmet" , "", names(mmets)[change_names]), FUN = get_qualified_scen_name)
+  
+  mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
+  
+  mmets_df <- mmets |> filter(Scenario %in% c("Baseline", "Bus"))
+  
+  y <- ggplot(mmets_df, aes(x=value, colour=Scenario)) + 
+                     geom_density() + 
+                     scale_color_manual(values = scen_colours) + 
+                     xlim(0, 30) +
+                     geom_vline(xintercept = 17.5, linetype="dashed", color = "red") +
+                     labs(title = "",
+                          x = "mMET-hours/week per person",
+                          y = "Density") +
+                    annotate(x = 17.5, y = +Inf, 
+                             label = "17.5 mMET-hours/week", 
+                             vjust = 2, geom="label")
+  
+  # print to html
+  print(y)
+  
+  # ggsave
+  ggsave("figures/pa_vol_base_bus.svg", plot = y, width=10, height=8)
+}
+
+
+
+
+```
+
+
+
+## Comparison of PA volume of baseline and cycling scenario
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+
+for (x in 1:length(cities)) {
+  
+  mmets <- io[[cities[x]]]$outcomes$mmets #|> pivot_longer(cols = ends_with("mmet"))
+  
+  change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
+  names(mmets)[change_names] <- sapply(gsub("_mmet" , "", names(mmets)[change_names]), FUN = get_qualified_scen_name)
+  
+  mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
+  
+  mmets_df <- mmets |> filter(Scenario %in% c("Baseline", "Cycling"))
+  
+  y <- ggplot(mmets_df, aes(x=value, colour=Scenario)) + 
+                     geom_density() + 
+                     scale_color_manual(values = scen_colours) + 
+                     xlim(0, 30) +
+                     geom_vline(xintercept = 17.5, linetype="dashed", color = "red") +
+                     labs(title = "",
+                          x = "mMET-hours/week per person",
+                          y = "Density") +
+    annotate(x = 17.5, y = +Inf, label = "17.5 mMET-hours/week", vjust = 2, geom="label")
+  
+  # print to html
+  print(y)
+  
+  ggsave("figures/pa_vol_base_cyc.svg", plot = y, width=10, height=8)
+}
+
+
+
+
+```
+
+
+
+## Deciles of mMET-hours/week
+```{r}
+
+
+l <- htmltools::tagList()
+
+for (x in 1:length(cities)) {
+  
+  mmets <- io[[cities[x]]]$outcomes$mmets #|> pivot_longer(cols = ends_with("mmet"))
+  
+  change_names <- which(grepl("_mmet", names(mmets), fixed = TRUE))
+  names(mmets)[change_names] <- sapply(gsub("_mmet" , "", names(mmets)[change_names]), FUN = get_qualified_scen_name)
+  
+  mmets <- mmets |> pivot_longer(cols = -c(1:4)) |> rename(Scenario = name)
+
+
+df_deciles <- mmets  |> 
+  group_by(Scenario) |> 
+  summarise(q = list(quantile(value, probs = seq(0, 0.9, by = 0.1) ))) |> 
+  unnest_wider(q) |> 
+  pivot_longer(cols = contains("%"), names_to = "decile", values_to = "value")
+
+# Plot deciles by scenario
+y <- ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)) +
+  geom_line(aes(group = Scenario)) +
+  geom_point() +
+  labs(title = "", x = "Deciles", y = "mMET-hours/week") +
+  geom_hline(yintercept = 17.5, linetype="dashed", color = "red") +
+  scale_color_manual(values = scen_colours) + 
+  annotate(y = 17.5, x = 2, 
+                             label = "17.5 mMET-hours/week", geom="label")
+
+  # print to html
+  print(y)
+  
+  ggsave("figures/pa_deciles.svg", plot = y, width=10, height=8)
+  
+  # l[[i]] <- as_widget(plotly::ggplotly(y) %>%
+  # config(
+  #   toImageButtonOptions = list(
+  #               format = "svg",
+  #               filename = "PA-volume-deciles.svg",
+  #               width = NULL,
+  #               height = NULL
+  # )))
+
+
+}
+
+# l
+
+```
+
