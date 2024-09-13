@@ -44,6 +44,8 @@ library(gghighlight)
 library(gridExtra)
 library(quartomonothemer)
 library(showtext)
+
+theme_set(theme_minimal())
 ```
 
 ```{r}
@@ -121,13 +123,15 @@ io <- readRDS(paste0("../results/multi_city/io_", repo_sha, "_test_run.rds"))
 
 # prop <- io$bogota$trip_scen_sets |> filter(participant_id !=0) |> distinct(scenario, trip_id, .keep_all = T) |> count(scenario, trip_mode) |> mutate(freq = round(prop.table(n) * 100, 1), .by = scenario) |> mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> filter(pd != 0)
 
+total_trips <- io$bogota$trip_scen_sets |> filter(scenario == "baseline") |> 
+    distinct(trip_id, scenario, .keep_all = T) |> nrow()
 
 prop <- io$bogota$trip_scen_sets |> 
   filter(participant_id !=0) |> 
   distinct(trip_id, scenario, .keep_all = T) |> 
-  count(scenario, trip_mode) |> 
-  mutate(freq = round(prop.table(n) * 100, 3), .by = scenario) |> 
-  mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> 
+  group_by(scenario, trip_mode) |> 
+  reframe(freq = round(sum(dplyr::n())/total_trips*100, 1)) |> 
+  mutate(pd = freq - freq[scenario == 'baseline']) |> 
   filter(pd != 0)
 
 prop[prop$scenario == "baseline",]$scenario <- "Baseline"
@@ -387,17 +391,36 @@ print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
     mutate(pif_cyc = ((base_rr - sc_cycle_rr)/base_rr), 
            pif_bus = ((base_rr - sc_bus_rr)/base_rr)) |> 
     dplyr::select(age_cat, sex, contains("pif")) |> 
-    pivot_longer(cols = -c(age_cat, sex))
+    pivot_longer(cols = -c(age_cat, sex)) |> rename(Scenario = name)
   
-  total_pif <- reframe(pif |> ungroup(), total = round(sum(value), 2), .by = name)
-  print(ggplot(pif) +
-          aes(x = value, y = name, fill = name) +
+  pif$Scenario[pif$Scenario == "pif_cyc"] <- "Cycling"
+  pif$Scenario[pif$Scenario == "pif_bus"] <- "Bus"
+  
+  total_pif <- reframe(pif |> ungroup(), mean = round(sum(value), 2), .by = Scenario) |> rename(`Total PIF` = mean)
+  
+  total_pif$Scenario[total_pif$Scenario == "pif_cyc"] <- "Cycling"
+  total_pif$Scenario[total_pif$Scenario == "pif_bus"] <- "Bus"
+  
+  y <- ggplot(pif) +
+          aes(x = value, y = Scenario, fill = Scenario) +
           geom_boxplot() +
           scale_fill_hue(direction = 1) +
+          scale_fill_manual(values = scen_colours) +
           theme_minimal() +
           labs(title = plot_tile, x = "PIF (%)", y = "Scenario") +
           annotation_custom(tableGrob(total_pif, rows=NULL), 
-                            xmin=0.015, xmax=0.020, ymin="pif_bus"))
+                            xmin=0.025, ymin="Bus")
+  
+  print(y)
+  
+  fname <- "pif_w_censor_point_none"
+  if (censor_method == "WHO-QRL")
+    fname <- "pif_w_censor_point_35mmets"
+  else if(censor_method == "WHO-DRL")
+    fname <- "pif_w_censor_point_17.5mmets"
+  
+  ggsave(paste0("../figures/", fname, ".svg"), plot = y, width=10, height=8)
+  
   
   #print(reframe(pif |> ungroup(), sum(value), .by = name))
 }
@@ -414,7 +437,7 @@ print_pif_table <- function(mmets, censor_method = "WHO-QRL", plot_tile = ""){
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile = "PIF for cycling/bus with censor point at 17.5 MMET hours per week")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile = "")
 
 ```
 
@@ -422,7 +445,7 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-DRL", plot_tile =
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "PIF for cycling/bus with censor point at 35 MMET hours per week")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile = "")
 
 ```
 
@@ -430,7 +453,7 @@ print_pif_table(io$bogota$outcomes$mmets, censor_method = "WHO-QRL", plot_tile =
 
 ```{r}
 
-print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "PIF for cycling/bus with no censor point")
+print_pif_table(io$bogota$outcomes$mmets, censor_method = "none", plot_tile = "")
 
 ```
 
@@ -444,27 +467,31 @@ df_deciles <- mmets  |>
   unnest_wider(q) |> 
   pivot_longer(cols = contains("%"), names_to = "decile", values_to = "value")
 
-# Plot deciles by scenario
-plotly::ggplotly(ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)) +
+y <- ggplot(df_deciles, aes(x = decile, y = value, color = Scenario)) +
   geom_line(aes(group = Scenario)) +
   geom_point() +
-  labs(title = "Deciles of Value by Scenario", x = "Quantiles (0.1 - 0.9)", y = "MMET hours per week") +
+  labs(title = "", x = "Deciles (0 - 0.9)", y = "mMET-hours/week") +
   geom_hline(yintercept = 17.5, linetype="dashed", color = "red") +
   # geom_hline(yintercept = 17.5 * 2, linetype="dashed", color = "red") +
-  theme_minimal())
+  theme_minimal()
+
+# Plot deciles by scenario
+plotly::ggplotly(y)
 ```
 
 ## PIF on deciles
 
 ```{r}
-pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(3:5, ~ ifelse(. != 0, round(((Baseline - .)/.), 2), 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile))
+pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(3:5, ~ ifelse(. != 0, round(((Baseline - .)/.), 2), 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile)) |> rename(Scenario = name)
 
-plotly::ggplotly(ggplot(pif_deciles) +
-  aes(x = decile, y = value, fill = name) +
-  geom_col() +
-  scale_fill_hue(direction = 1) +
-  theme_minimal())
+y <- ggplot(pif_deciles) +
+    aes(x = decile, y = value, fill = Scenario) +
+    geom_col() +
+    scale_fill_manual(values = scen_colours) +
+    labs(x = "Deciles (0-0.9)", y = "Proportional difference from baseline", title = "")
+    theme_minimal()
 
+plotly::ggplotly(y)
 
 ```
 
