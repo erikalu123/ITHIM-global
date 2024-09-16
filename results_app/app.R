@@ -180,7 +180,7 @@ combined_health_dataset <- ren_dose(combined_health_dataset)
 
 
 ren_at <- function(df, colname){
-  df[df[[colname]] == "active_travel",][[colname]] <- "Active Travel"
+  df[df[[colname]] == "active_travel",][[colname]] <- "Active Travel (Walking and Cycling)"
   df
 }
 
