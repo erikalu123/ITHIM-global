@@ -490,6 +490,9 @@ y <- ggplot(pif_deciles) +
     scale_fill_manual(values = scen_colours) +
     labs(x = "Deciles (0-0.9)", y = "Proportional difference from baseline", title = "")
     theme_minimal()
+    
+  ggsave(paste0("../figures/", "pa_RR_prop_diff_base.svg"), plot = y, width=10, height=8)
+
 
 plotly::ggplotly(y)
 
