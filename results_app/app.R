@@ -240,7 +240,7 @@ in_cities <- cities$city
 
 ui <- page_sidebar(
   theme = bs_theme(bootswatch = "yeti"),
-  title = paste0("ITHIM Results  ",output_version),
+  title = paste0("ITHIM Results for Bogota"),
   sidebar = sidebar(
     pickerInput(inputId = "in_scens", 
                 label = "Scenario (5% increase)",
