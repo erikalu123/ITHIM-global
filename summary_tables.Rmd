@@ -547,7 +547,7 @@ for (city in cities) { # loop through cities
   # extract distances and divide by number of people
   td <- io[[city]]$dist %>% 
     # dplyr::filter(stage_mode != 'bus_driver' & stage_mode != 'car_driver') %>%
-    filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
+    filter(!stage_mode %in% c("taxi", "rail", "auto_rickshaw", "truck", "other")) |> 
     mutate_if(is.numeric, round, digits = round_to) %>% 
     mutate_if(is.numeric, list(~round((.) / count_people, round_to)))
 
@@ -585,7 +585,7 @@ for (city in cities) { # loop through cities
   count_people <- length(unique(io[[city]]$trip_scen_sets$participant_id))
   td <- io[[city]]$dist %>% 
     # dplyr::filter(stage_mode != 'bus_driver') %>%
-    filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
+    filter(!stage_mode %in% c("taxi", "rail", "auto_rickshaw", "truck", "other")) |> 
     mutate_if(is.numeric, round, digits = round_to) %>% 
     mutate_if(is.numeric, list(~round((.) / count_people, round_to)))
   colnames(td)[2:ncol(td)] <- c('Baseline', orig_scen_names_updated)
@@ -769,7 +769,7 @@ for(city in cities){ # loop through cities
   # extract the duration for the baseline population
   td <- io[[city]]$dur %>% 
     # dplyr::filter(stage_mode != 'bus_driver' & stage_mode != 'car_driver') %>% 
-    filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
+    filter(!stage_mode %in% c("taxi", "rail", "auto_rickshaw", "truck", "other")) |> 
     mutate_if(is.numeric, round, digits = round_to) %>% mutate_if(is.numeric, list(~round((.) / count_people, round_to)))
 
   # update scenario names
@@ -806,7 +806,7 @@ for(city in cities){ # loop through cities
   count_people <- length(unique(io[[city]]$trip_scen_sets$participant_id)) # find unique trip ids rather than rows in baseline population
   td <- io[[city]]$dur %>% 
     # dplyr::filter(stage_mode != 'bus_driver' & stage_mode != 'car_driver') %>% 
-    filter(!stage_mode %in% c("bus_driver", "taxi", "rail", "auto_rickshaw", "truck", "other", "car_driver")) |> 
+    filter(!stage_mode %in% c("taxi", "rail", "auto_rickshaw", "truck", "other")) |> 
     mutate_if(is.numeric, round, digits = round_to) %>% mutate_if(is.numeric, list(~round((.) / count_people, round_to)))
   colnames(td)[2:ncol(td)] <- c('Baseline', orig_scen_names_updated)
   x <- match(td$stage_mode, trip_order$mode)
