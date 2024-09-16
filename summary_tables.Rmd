@@ -343,12 +343,15 @@ Scenario definition (by mode)
 for (city in cities) {
   
   # Calculate proportions by mode when compared with baseline
+  total_trips <- io[[city]]$trip_scen_sets |> filter(scenario == "baseline") |> 
+    distinct(trip_id, scenario, .keep_all = T) |> nrow()
+  
   prop <- io[[city]]$trip_scen_sets |> 
-    filter(participant_id != 0) |> 
+    filter(participant_id !=0) |> 
     distinct(trip_id, scenario, .keep_all = T) |> 
-    count(scenario, trip_mode) |> 
-    mutate(freq = round(prop.table(n) * 100, round_to), .by = scenario) |> 
-    mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> 
+    group_by(scenario, trip_mode) |> 
+    reframe(freq = round(sum(dplyr::n())/total_trips*100, 1)) |> 
+    mutate(pd = freq - freq[scenario == 'baseline']) |> 
     filter(pd != 0)
   
   # Rename scenarios
