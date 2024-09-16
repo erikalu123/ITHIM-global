@@ -380,6 +380,11 @@ server <- function(input, output, session) {
     else if (input$in_risk_type == "100 million hours")
       ylab <- "Duration: risk per 100 million hours"
     
+    
+    fname <- do.call(paste, c(as.list(filtered_scens),
+                              as.list(input$in_risk_type),
+                              sep = "-"))
+    
     if(nrow(local_df) < 1)
       plotly::ggplotly(ggplot(data.frame()))
     else{
@@ -398,7 +403,17 @@ server <- function(input, output, session) {
              fill='Scenario') + 
         facet_wrap(vars(mode))
       
-      plotly::ggplotly(gg)
+      
+      plotly::ggplotly(gg) |>       plotly::config(
+        toImageButtonOptions = list(
+          format = "svg",
+          filename = fname,
+          width = NULL,
+          height = NULL
+        )) |> layout(
+          margin = list(b = 50, l = 50) # to fully display the x and y axis labels
+        )
+      
     }
   })
   
