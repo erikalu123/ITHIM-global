@@ -212,7 +212,7 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
   MODERATE_PA_CONTRIBUTION <<- MODERATE_PA_CONTRIBUTION
   parameters <- list()
 
-  # Variables with lognormal distribution (no MMET values)
+  # Variables with lognormal distribution (no MMET values and no sin_exponent_sum_veh)
   # Define those variables and loop through them, sampling
   # from a pre-defined lognormal distribution if needed
   normVariables <- c(
@@ -224,7 +224,6 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
     "SIN_EXPONENT_SUM_NOV",
     "SIN_EXPONENT_SUM_CYCLE",
     "SIN_EXPONENT_SUM_PED",
-    "SIN_EXPONENT_SUM_VEH",
     "CHRONIC_DISEASE_SCALAR",
     "DISTANCE_SCALAR_CAR_TAXI",
     "DISTANCE_SCALAR_WALKING",
@@ -267,9 +266,54 @@ ithim_setup_parameters <- function(NSAMPLES = 1,
     } else {
       # Use mean and sd values in log form, sample from a lognormal distribution
       parameters[[name]] <-
-        rlnorm(NSAMPLES, log(val[1]), log(val[2])) + 1
+        (rlnorm(NSAMPLES, log(val[1]), log(val[2])) + 1)
     }
   }
+  
+  
+  
+  # SIN_EXPONENT_SUM_VEH with lognormal distribution
+  # Define those variables and loop through them, sampling
+  # from a pre-defined lognormal distribution with mean -1 of the original mean
+  # and if needed and add 1
+  normVariablesSIN_VEH <- c(
+    "SIN_EXPONENT_SUM_VEH"
+  )
+  
+  name <- normVariablesSIN_VEH[1]
+  val <- get(normVariablesSIN_VEH[1])
+  if (length(val) == 1) { # if variable length is 1, do not sample
+    assign(name, val , envir = .GlobalEnv)
+  } else {
+    # calculate original mean and standard deviation from log_mean and log_std
+    log_mean <- val[1]
+    log_std <- val[2]
+    mean_orig <- exp(log(log_mean)+(log(log_std))^2/2)
+    std_orig <- sqrt((exp((log(log_std))^2)-1)*exp(2*log(log_mean)+(log(log_std))^2))
+    
+    # subtract 1 from original mean but keep std
+    mean_up <- mean_orig - 1
+    std_up <- std_orig
+    
+    # recalculate log_mean_up and log_std_up
+    log_mean_up <- mean_up^2/(sqrt(mean_up^2 + std_up^2))
+    log_std_up <- exp( sqrt(log(1 + (std_up^2/mean_up^2))))
+    
+    # Use mean and sd values in log form, sample from a lognormal distribution
+    parameters[[name]] <-
+      (rlnorm(NSAMPLES, log(log_mean_up), log(log_std_up)) + 1)
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   # Variables with beta distribution
