@@ -7,6 +7,8 @@ library(readxl)
 library(ggridges)
 
 options(scipen = 10000)
+SAVE_FIGURES <- FALSE
+SVG <- FALSE
 
 # if (!exists("output_version")){
 #   repo_sha <-  as.character(readLines(file.path("../repo_sha")))
@@ -245,7 +247,7 @@ ui <- page_sidebar(
     pickerInput(inputId = "in_scens", 
                 label = "Scenario (5% increase)",
                 choices = scens,
-                selected = scens[1],
+                selected = scens,
                 options = list(`actions-box` = TRUE), 
                 multiple = TRUE),
     br(),
@@ -382,6 +384,7 @@ server <- function(input, output, session) {
     
     
     fname <- do.call(paste, c(as.list(filtered_scens),
+                              as.list(filtered_modes),
                               as.list(input$in_risk_type),
                               sep = "-"))
     
@@ -392,7 +395,13 @@ server <- function(input, output, session) {
       gg <- ggplot(local_df |> rename(City = city)) +
         aes(x = City, y = mean, fill = scenario) +
         geom_col(position = "dodge", alpha = global_alpha_val) +
-        geom_text(aes(label = round(mean, 1)), size = 3, position = position_dodge(width = 0.9), vjust = -0.5) +
+        ggtext::geom_textbox(aes(label = paste0('<br>', round(mean, 1), "</span>")), 
+                             size = 5, 
+                             position = position_dodge(width = 0.9), 
+                             vjust = -0.5,
+                             fontface = "bold",
+                             hjust = 1,
+                             halight = 1) +
         scale_fill_hue(direction = 1) +
         coord_flip() +
         theme_minimal() +
@@ -402,6 +411,9 @@ server <- function(input, output, session) {
              x = "",
              fill='Scenario') + 
         facet_wrap(vars(mode))
+      
+      if (SAVE_FIGURES)
+        ggsave(paste0("figures/", fname, ifelse(SVG, ".svg", ".png")), plot = gg, width=10, height=8)
       
       
       plotly::ggplotly(gg) |>       plotly::config(
@@ -521,6 +533,10 @@ server <- function(input, output, session) {
                                           sep = "-"))
           
           # ggsave(fname,units="in", width=5, height=4, dpi=300)
+          # 
+          if (SAVE_FIGURES)
+            ggsave(paste0("figures/", fname, ifelse(SVG, ".svg", ".png")), plot = gg, width=10, height=8)
+          
           
           plotly::ggplotly(gg) |> 
             # plotly::layout(legend = list(orientation = "h", 
