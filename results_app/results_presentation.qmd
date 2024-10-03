@@ -482,13 +482,13 @@ plotly::ggplotly(y)
 ## PIF on deciles
 
 ```{r}
-pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(3:5, ~ ifelse(. != 0, round(((Baseline - .)/.), 2), 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile)) |> rename(Scenario = name)
+pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(2:5, ~ drpa::dose_response(dose = ., cause = "all-cause-mortality", outcome_type = "fatal")$rr)) |> mutate(across(2:5, ~ ifelse(. != 0, ((Baseline - .)/Baseline) * 100, 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile)) |> rename(Scenario = name)
 
 y <- ggplot(pif_deciles) +
     aes(x = decile, y = value, fill = Scenario) +
     geom_col() +
     scale_fill_manual(values = scen_colours) +
-    labs(x = "Deciles (0-0.9)", y = "Proportional difference from baseline", title = "")
+    labs(x = "Deciles (0-0.9)", y = "PIF (%)", title = "")
     theme_minimal()
     
   ggsave(paste0("../figures/", "pa_RR_prop_diff_base.svg"), plot = y, width=10, height=8)
