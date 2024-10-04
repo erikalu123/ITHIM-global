@@ -481,12 +481,12 @@ plotly::ggplotly(y)
 
 ## PIF on deciles
 
-```{r}
+```{r echo=F, message=FALSE}
 pif_deciles <- df_deciles |> pivot_wider(id_cols = decile, names_from = Scenario, values_from = value) |> mutate(across(2:5, ~ drpa::dose_response(dose = ., cause = "all-cause-mortality", outcome_type = "fatal")$rr)) |> mutate(across(2:5, ~ ifelse(. != 0, ((Baseline - .)/Baseline) * 100, 0))) |> dplyr::select(-Baseline) |> pivot_longer(cols = -c(decile)) |> rename(Scenario = name)
 
 y <- ggplot(pif_deciles) +
     aes(x = decile, y = value, fill = Scenario) +
-    geom_col() +
+    geom_bar(stat = "identity", position = "dodge", width = 0.5) +
     scale_fill_manual(values = scen_colours) +
     labs(x = "Deciles (0-0.9)", y = "PIF (%)", title = "")
     theme_minimal()
