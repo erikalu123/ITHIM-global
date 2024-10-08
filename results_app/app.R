@@ -229,7 +229,9 @@ dose_pathway <- ylls_pathway |> filter(!is.na(level1)) |> distinct(dose)  |> pul
 dose_pathway_level2 <- ylls_pathway |> filter(!is.na(level2)) |> distinct(dose) |> pull()
 dose_pathway_level3 <- ylls_pathway |> filter(!is.na(level3)) |> distinct(dose) |> pull()
 
-inj_modes <- injury_risks_per_billion_kms_lng$mode |> unique() |> sort()
+um <- unique(injury_risks_per_billion_kms_lng$mode)
+
+inj_modes <- append(um[!um %in% 'Total'] |> sort(), "Total")
 
 inj_risk_types <- c("Billion kms", "Population by 100k people", "100 million hours")
 
@@ -290,7 +292,7 @@ ui <- page_sidebar(
       pickerInput(inputId = "in_inj_modes", 
                   label = "Select modes:",
                   choices = inj_modes,
-                  selected = inj_modes[1],
+                  selected = inj_modes[!inj_modes %in% 'Truck'],# inj_modes[length(inj_modes)],
                   options = list(`actions-box` = TRUE), 
                   multiple = TRUE),
       radioButtons(inputId = "in_risk_type", 
@@ -395,10 +397,10 @@ server <- function(input, output, session) {
       gg <- ggplot(local_df |> rename(City = city)) +
         aes(x = City, y = mean, fill = scenario) +
         geom_col(position = "dodge", alpha = global_alpha_val) +
-        ggtext::geom_textbox(aes(label = paste0('<br>', round(mean, 1), "</span>")), 
-                             size = 5, 
-                             position = position_dodge(width = 0.9), 
-                             vjust = -0.5,
+        geom_text(aes(label = round(.data[["mean"]], 1)),
+                             size = 5,
+                             position = position_dodge(width = 0.9),
+                             #vjust = -0.5,
                              fontface = "bold",
                              hjust = 1,
                              halight = 1) +
@@ -411,7 +413,7 @@ server <- function(input, output, session) {
              x = "",
              fill='Scenario') + 
         facet_wrap(vars(mode))
-      
+      # browser()
       if (SAVE_FIGURES)
         ggsave(paste0("figures/", fname, ifelse(SVG, ".svg", ".png")), plot = gg, width=10, height=8)
       
@@ -526,10 +528,11 @@ server <- function(input, output, session) {
           
           fname <- do.call(paste, c(as.list(filtered_pathways), 
                                           as.list(filtered_scens),
-                                          as.list(in_strata),
                                           as.list(in_col_lvl),
+                                          "strata", as.list(in_strata),
                                           as.list(in_measure),
-                                          as.list(input$in_int_pathway),
+                                          "path_inter", as.list(input$in_int_pathway),
+                                          "per_100k", as.list(input$in_per_100k),
                                           sep = "-"))
           
           # ggsave(fname,units="in", width=5, height=4, dpi=300)
