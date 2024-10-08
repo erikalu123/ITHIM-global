@@ -109,9 +109,9 @@ library(gghighlight)
 library(gt)
 library(gtExtras)
 
-repo_sha <-  as.character(readLines(file.path("repo_sha")))
+repo_sha <-  as.character(readLines(file.path("../repo_sha")))
 io <- readRDS(paste0("../results/multi_city/io_", repo_sha, "_test_run.rds"))
-
+city <- 'bogota'
 # PIF <- read_csv("data/PIF.csv")
 # 
 # PIF <- PIF |> rename(Scenario = name) |> mutate(Scenario = case_when(
@@ -123,16 +123,17 @@ io <- readRDS(paste0("../results/multi_city/io_", repo_sha, "_test_run.rds"))
 
 # prop <- io$bogota$trip_scen_sets |> filter(participant_id !=0) |> distinct(scenario, trip_id, .keep_all = T) |> count(scenario, trip_mode) |> mutate(freq = round(prop.table(n) * 100, 1), .by = scenario) |> mutate(pd = round(freq - freq[scenario == 'baseline'], 1)) |> filter(pd != 0)
 
-total_trips <- io$bogota$trip_scen_sets |> filter(scenario == "baseline") |> 
+# Calculate proportions by mode when compared with baseline
+  total_trips <- io[[city]]$trip_scen_sets |> filter(scenario == "baseline") |> 
     distinct(trip_id, scenario, .keep_all = T) |> nrow()
 
-prop <- io$bogota$trip_scen_sets |> 
-  filter(participant_id !=0) |> 
-  distinct(trip_id, scenario, .keep_all = T) |> 
-  group_by(scenario, trip_mode) |> 
-  reframe(freq = round(sum(dplyr::n())/total_trips*100, 1)) |> 
-  mutate(pd = freq - freq[scenario == 'baseline']) |> 
-  filter(pd != 0)
+prop <- io[[city]]$trip_scen_sets |> 
+    filter(participant_id !=0) |> 
+    distinct(trip_id, scenario, .keep_all = T) |> 
+    group_by(scenario, trip_mode) |> 
+    reframe(freq = round(sum(dplyr::n())/total_trips*100, 1)) |> 
+    mutate(pd = freq - freq[scenario == 'baseline']) |> 
+    filter(pd != 0)
 
 prop[prop$scenario == "baseline",]$scenario <- "Baseline"
 prop[prop$scenario == "sc_bus",]$scenario <- "Bus"
