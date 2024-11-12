@@ -305,7 +305,7 @@ print(system.time(
                                                 ADD_WALK_TO_PT_TRIPS = as.logical(add_walk_to_pt_trips[[city]]),# originally = F,
                                                 CITY=city,
                                                 AGE_RANGE =  c(min_age,max_age),
-                                                TREAT_TAXI_AS_CAR = as.logical(treat_taxi_as_car),
+                                                TREAT_TAXI_AS_CAR = as.logical(treat_taxi_as_car[[city]]),
                                                 ADD_TRUCK_DRIVERS = as.logical(add_truck_drivers),
                                                 ADD_BUS_DRIVERS = as.logical(add_bus_drivers),
                                                 ADD_CAR_DRIVERS = as.logical(add_car_drivers),
