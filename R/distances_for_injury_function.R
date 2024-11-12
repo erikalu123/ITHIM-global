@@ -81,7 +81,7 @@ distances_for_injury_function <- function(journeys, dist) {
   if ('shared_taxi' %in% colnames(distances))  distances$shared_taxi <- distances$shared_taxi * 2
   
   # multiply auto_rickshaw by 2 to add driver
-  distances$auto_rickshaw <- distances$auto_rickshaw * 2
+  if ('auto_rickshaw' %in% colnames(distances)) distances$auto_rickshaw <- distances$auto_rickshaw * 2
   
   ## add all car related distances to car distance
   distances$car <- rowSums(distances[, colnames(distances) %in% c("car", "taxi", "shared_auto", "shared_taxi")])
